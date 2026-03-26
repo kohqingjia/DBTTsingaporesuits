@@ -1,674 +1,255 @@
-[Skip to content](https://www.singaporesuits.com/#MainContent)
-
-Fashion Consultant & Master Tailors
-
-- [Home](https://www.singaporesuits.com/)
-- About Us
-
-
-
-
-
-About Us
-
-
-  - [Who We Are](https://www.singaporesuits.com/pages/about-us)
-
-- [Information](https://www.singaporesuits.com/pages/information)
-- [Products](https://www.singaporesuits.com/collections)
-- [Gallery](https://www.singaporesuits.com/pages/gallery)
-- [Contact Us](https://www.singaporesuits.com/pages/contact)
-
-[Log in](https://www.singaporesuits.com/account/login)
-
-- [Facebook](https://www.facebook.com/picadillytailors)
-- [Instagram](https://www.instagram.com/picadillytailors/)
-
-Search
-
-# [![Picadilly Tailors](https://www.singaporesuits.com/cdn/shop/files/logo.png?v=1732792220&width=600)](https://www.singaporesuits.com/)
-
-- [Home](https://www.singaporesuits.com/)
-- About Us
-
-  - [Who We Are](https://www.singaporesuits.com/pages/about-us)
-
-- [Information](https://www.singaporesuits.com/pages/information)
-- [Products](https://www.singaporesuits.com/collections)
-- [Gallery](https://www.singaporesuits.com/pages/gallery)
-- [Contact Us](https://www.singaporesuits.com/pages/contact)
-
-Search
-
-[Log in](https://www.singaporesuits.com/account/login) [Cart](https://www.singaporesuits.com/cart)
-
-## Item added to your cart
-
-[View cart](https://www.singaporesuits.com/cart)
-Check out
-Continue shopping
-
-![](https://www.singaporesuits.com/cdn/shop/files/banner-min.webp?v=1734582835&width=3840)
-
-## Distinguished and Experienced Bespoke Tailors with Nearly a Century of Tailoring Heritage
-
-[Shop Now](https://www.singaporesuits.com/collections/all)
-
-![100% Bespoke Tailor Made Tuxedo](https://www.singaporesuits.com/cdn/shop/files/tuxedo_5d3640b1-7885-4b01-839a-da87172e3581.jpg?v=1746865286&width=1500)
-
-## About Us
-
-A dedicated team of fashion consultants who are experts in recommending the perfect suit for the ultimate occasion.
-
-Whether it’s a business suit, a wedding suit, a prom suit or a party suit, we got you covered.
-
-## Featured Products
-
-- ![Suits](https://www.singaporesuits.com/cdn/shop/collections/shutterstock_112519763-300x444.jpg?v=1740764793&width=1500)
-
-
-
-
-
-
-
-
-
-### [Suits](https://www.singaporesuits.com/collections/suits)
-
-
-
-Tailored to Perfection – Suits That Make a Statement
-
-
-
-
-
-
-
-
-
-
-
-
-
-### [Suits](https://www.singaporesuits.com/collections/suits)
-
-- ![Tuxedos](https://www.singaporesuits.com/cdn/shop/collections/tuxedo.jpg?v=1740794013&width=1500)
-
-
-
-
-
-
-
-
-
-### [Tuxedos](https://www.singaporesuits.com/collections/tuxedo)
-
-
-
-Elegance Redefined – Tuxedos for Life’s Grandest Moments
-
-
-
-
-
-
-
-
-
-
-
-
-
-### [Tuxedos](https://www.singaporesuits.com/collections/tuxedo)
-
-- ![Shirts](https://www.singaporesuits.com/cdn/shop/collections/short-sleeved-shirts.jpg?v=1740765452&width=1500)
-
-
-
-
-
-
-
-
-
-### [Shirts](https://www.singaporesuits.com/collections/short-sleeved-shirts)
-
-
-
-Crisp, Classic, and Comfortable – The Perfect Shirt for Every Occasion
-
-
-
-
-
-
-
-
-
-
-
-
-
-### [Shirts](https://www.singaporesuits.com/collections/short-sleeved-shirts)
-
-
-1 / of2
-
-![Load video: ](https://www.singaporesuits.com/cdn/shop/files/video-banner.jpg?v=1732792221&width=3840)
-
-## Featured Awards
-
-- ![](https://www.singaporesuits.com/cdn/shop/files/Best-in-Singapore-Badge.jpg?v=1734416607&width=3200)
-
-
-
-
-
-
-
-### [Certified Best in Singapore](https://www.bestinsingapore.co/)
-
-- ![](https://www.singaporesuits.com/cdn/shop/files/SmartSingapore-Colored__1.png?v=1734416741&width=3200)
-
-
-
-
-
-
-
-### [Featured on SmartSingapore](https://www.smartsinga.com/)
-
-- ![](https://www.singaporesuits.com/cdn/shop/files/Top-in-Singapore-Award-300x300-1-1.jpg?v=1734416834&width=3200)
-
-
-
-
-
-
-
-### [Top in Singapore,Reviewed by MediaOne](https://mediaonemarketing.com.sg/)
-
-- ![](https://www.singaporesuits.com/cdn/shop/files/Singapores-Finest-Logo-300x300-1.png?v=1734416954&width=3200)
-
-
-
-
-
-
-
-### [Featured on Singapore's Finest](https://finestservices.com.sg/tailors-singapore/)
-
-- ![](https://www.singaporesuits.com/cdn/shop/files/BIS_Badge_PNG.png?v=1734417001&width=3200)
-
-
-
-
-
-
-
-### [Best in Singapore](https://bestinsingapore.com/)
-
-- ![](https://www.singaporesuits.com/cdn/shop/files/featuren_on_rating.webp?v=1734417234&width=3200)
-
-
-
-
-
-
-
-### [Featured on Rating.sg](https://rating.sg/)
-
-- ![](https://www.singaporesuits.com/cdn/shop/files/Mirchelley_Muses.png?v=1734417167&width=3200)
-
-
-
-
-
-
-
-### [Mirchelley Muses](https://www.mirchelleymuses.com/top-tailoring-singapore/)
-
-
-1 / of5
-
-## What Customers Say About Us..
-
-- ### Yvan
-
-
-
-
-
-Suresh accomplished Mission Impossible. Only given a week before my wedding, he expertly made a bespoke 3 piece suit tailored just for me. Best yet, with just 1 fitting, the suit was perfect and made me feel like a million bucks!
-
-- ### Kenji
-
-
-
-
-
-Suresh was very professional.
-
-He understand it's my first experience with tailored suit and He offers suggestions and shows me samples to what I was expecting. Will definitely come back again for my future suit purchases.
-
-- ### Aifirth Lian
-
-
-
-
-
-Suresh is fantastic! I ordered two suits, and they were ready in record time. He's incredibly knowledgeable about fabrics and styles, and he directed me to the perfect fabrics I desired. He was extremely honest about the entire process, from the cost to the post-sale processes.
-
-- ### Sharad Somani
-
-
-
-
-
-Visited Picadilly to get a suit stitched based on strong recommendation by one of my colleagues. Was attended to by Suresh who is a master of his craft. Honest and efficient, he made the entire process from selecting the cloth to finalising the design very efficient and pleasant. I got my suits within a week and they are just perfect fit and elegant as promised.
-
-- ### Wen Chu
-
-
-
-
-
-I highly recommend Piccadilly Tailors to anyone looking for exceptional tailoring services. They’re not just creating clothes—they’re crafting confidence and elegance. Suresh is such a bundle of joy, always puts a smile on my face dealing with him
-
-- ### M Sanjivan
-
-
-
-
-
-I recently visited Picadilly Tailors to get a customized suit for a wedding reception, and the experience was nothing short of exceptional. Suresh, the owner and salesperson, personally guided me through every step of the process, making it an enjoyable and stress-free experience.
-
-
-## **Our clients**
-
-![](https://www.singaporesuits.com/cdn/shop/files/mediac-min-300x250.jpg?v=1735967698&width=3200)
-
-![](https://www.singaporesuits.com/cdn/shop/files/owndays-min-300x250.jpg?v=1735967698&width=3200)
-
-![](https://www.singaporesuits.com/cdn/shop/files/rimowa-min-300x250.jpg?v=1735967698&width=3200)
-
-![](https://www.singaporesuits.com/cdn/shop/files/harry_winston_1-300x250.png?v=1735967698&width=3200)
-
-![](https://www.singaporesuits.com/cdn/shop/files/malaysia_embassy_2-300x250.png?v=1735967699&width=3200)
-
-## Quick links
-
-- [Home](https://www.singaporesuits.com/)
-- [About Us](https://www.singaporesuits.com/pages/about-us)
-- [Information](https://www.singaporesuits.com/pages/information)
-- [Collections](https://www.singaporesuits.com/collections)
-- [Gallery](https://www.singaporesuits.com/pages/gallery)
-- [Contact Us](https://www.singaporesuits.com/pages/contact)
-
-## Info
-
-- [Terms & Conditions](https://www.singaporesuits.com/pages/terms-conditions)
-- [Privacy Policy](https://www.singaporesuits.com/pages/privacy-policy)
-
-## About Us
-
-A dedicated team of fashion consultants who are experts in recommending the perfect suit for the ultimate occasion.
-
-**Visit us at Picadilly Tailors**
-
-14 Scotts Road, Far East Plaza, #02-85, Singapore 228213
-
-Follow on Shop
-
-- [Facebook](https://www.facebook.com/picadillytailors)
-- [Instagram](https://www.instagram.com/picadillytailors/)
-
-Payment methods
-
-- American Express
-- Apple Pay
-- Google Pay
-- Mastercard
-- Shop Pay
-- Union Pay
-- Visa
-
-Copyright © 2026 Picadilly Tailors. All rights reserved.
-
-www.singaporesuits.com
-
-# www.singaporesuits.com is blocked
-
-This page has been blocked by an extension
-
-- Try disabling your extensions.
-
-ERR\_BLOCKED\_BY\_CLIENT
-
-Reload
-
-
-This page has been blocked by an extension
-
-![](<Base64-Image-Removed>)![](<Base64-Image-Removed>)
-
-- Choosing a selection results in a full page refresh.
-- Opens in a new window.
-
-Need Help? Chat with us
-
-Start a Conversation
-
-Hi! Click one of our member below to chat on WhatsApp
-
-The team typically replies in a few minutes.
-
-[Picadilly Tailors](https://api.whatsapp.com/send?phone=6591462774)
-
-Powered by SeedGrow
-
-shop.app
-
-# shop.app is blocked
-
-This page has been blocked by an extension
-
-- Try disabling your extensions.
-
-ERR\_BLOCKED\_BY\_CLIENT
-
-Reload
-
-
-This page has been blocked by an extension
-
-![](<Base64-Image-Removed>)![](<Base64-Image-Removed>)
-
-Call us now on:
-
-[**9146 2774**](tel:+6591462774)
-
- [Call Us](https://www.singaporesuits.com/#)
-
-
- {
-  "colorScheme": "light",
-  "fonts": [
-    {
-      "family": "Karla",
-      "role": "body"
-    },
-    {
-      "family": "Arial",
-      "role": "unknown"
-    },
-    {
-      "family": "Helvetica",
-      "role": "unknown"
-    }
-  ],
-  "colors": {
-    "primary": "#C5A230",
-    "accent": "#2566D3",
-    "background": "#FFFFFF",
-    "textPrimary": "#252525",
-    "link": "#2566D3"
-  },
-  "typography": {
-    "fontFamilies": {
-      "primary": "Karla",
-      "heading": "Karla"
-    },
-    "fontStacks": {
-      "heading": [
-        "Karla",
-        "sans-serif"
-      ],
-      "body": [
-        "Karla",
-        "sans-serif"
-      ],
-      "paragraph": [
-        "Karla",
-        "sans-serif"
-      ]
-    },
-    "fontSizes": {
-      "h1": "40px",
-      "h2": "13px",
-      "body": "13px"
-    }
-  },
-  "spacing": {
-    "baseUnit": 4,
-    "borderRadius": "0px"
-  },
-  "components": {
-    "input": {
-      "background": "#FFFFFF",
-      "textColor": "#252525",
-      "borderColor": null,
-      "borderRadius": "0px",
-      "borderRadiusCorners": {
-        "topLeft": "0px",
-        "topRight": "0px",
-        "bottomRight": "0px",
-        "bottomLeft": "0px"
-      },
-      "shadow": "none"
-    },
-    "buttonPrimary": {
-      "background": "#2566D3",
-      "textColor": "#FFFFFF",
-      "borderRadius": "20px",
-      "borderRadiusCorners": {
-        "topLeft": "20px",
-        "topRight": "20px",
-        "bottomRight": "20px",
-        "bottomLeft": "20px"
-      },
-      "shadow": "none"
-    },
-    "buttonSecondary": {
-      "background": "#252525",
-      "textColor": "#FFFFFF",
-      "borderRadius": "0px",
-      "borderRadiusCorners": {
-        "topLeft": "0px",
-        "topRight": "0px",
-        "bottomRight": "0px",
-        "bottomLeft": "0px"
-      },
-      "shadow": "none"
-    }
-  },
-  "images": {
-    "logo": "https://www.singaporesuits.com/cdn/shop/files/logo.png?v=1732792220&width=600",
-    "favicon": "https://www.singaporesuits.com/cdn/shop/files/placeholder.png?crop=center&height=32&v=1732792213&width=32",
-    "ogImage": "http://www.singaporesuits.com/cdn/shop/files/logo.png?height=628&pad_color=ffffff&v=1732792220&width=1200",
-    "logoHref": "/",
-    "logoAlt": "Picadilly Tailors"
-  },
-  "__llm_logo_reasoning": {
-    "selectedIndex": 3,
-    "reasoning": "Selected #3 because it is visible, medium-sized, located in the header, and links to the homepage. The alt text matches the brand name 'Picadilly Tailors'.",
-    "confidence": 0.95,
-    "source": "llm"
-  },
-  "__llm_button_reasoning": {
-    "primary": {
-      "index": 3,
-      "text": "Call Us",
-      "reasoning": "Button #3 has a vibrant blue background (#2566D3), which aligns with the brand's accent color and is action-oriented with the text 'Call Us'."
-    },
-    "secondary": {
-      "index": 1,
-      "text": "Check out",
-      "reasoning": "Button #1 has a dark background (#252525) and is labeled 'Check out', making it a suitable secondary action distinct from the primary button's color group."
-    },
-    "confidence": 0.95
-  },
-  "personality": {
-    "tone": "professional",
-    "energy": "medium",
-    "targetAudience": "business professionals seeking tailored suits"
-  },
-  "designSystem": {
-    "framework": "custom",
-    "componentLibrary": ""
-  },
-  "confidence": {
-    "buttons": 0.95,
-    "colors": 0.9,
-    "overall": 0.925
-  },
-  "__llm_metadata": {
-    "logoSelection": {
-      "llmCalled": true,
-      "llmSucceeded": true,
-      "finalSource": "llm",
-      "rawLogoSelection": {
-        "selectedLogoIndex": 3,
-        "selectedLogoReasoning": "Selected #3 because it is visible, medium-sized, located in the header, and links to the homepage. The alt text matches the brand name 'Picadilly Tailors'.",
-        "confidence": 0.95
-      }
-    },
-    "buttonClassification": {
-      "llmCalled": true,
-      "llmSucceeded": true
-    }
-  }
-}
-
-
-You are a senior frontend engineer and creative director working on a luxury bespoke tailoring brand website.
-
-Your task is to redesign and regenerate the frontend only of an existing website using modern technologies (React / Next.js preferred). The goal is to create a high-end, cinematic, interactive digital experience — not a standard ecommerce UI.
-
-CONTEXT
-
-This is a bespoke suit company. The brand identity is:
-
-Ultra-premium
-Editorial fashion aesthetic
-Dark, cinematic, minimal
-Precision craftsmanship
-Inspired by luxury fashion campaigns and Apple-level product storytelling
-VISUAL DIRECTION
-
-Use this as the visual foundation:
-
-Full-body male model centered in frame
-Dark gradient background (charcoal → black)
-Dramatic directional lighting (top-left key light)
-Ultra-detailed textures (fabric realism)
-Minimal UI overlay
-Smooth, slow animations (no harsh motion)
-CORE EXPERIENCE
-
-The homepage should feel like an interactive fashion film + product configurator hybrid
-
-🔥 HERO SECTION (CRITICAL)
-
-Create an interactive “exploded suit” experience
-
-Model stands center-frame
-Suit components are separated and floating around him:
-Jacket panels
-Lapels
-Sleeves
-Lining
-Shirt
-Tie
-Trousers
-Buttons, stitching details
-Interaction:
-On scroll → suit assembles/disassembles
-On hover → highlight individual components
-On click → open detail panel (fabric, construction, customization options)
-Tech suggestion:
-Use Three.js / React Three Fiber OR layered parallax (if simpler)
-Smooth easing animations (GSAP or Framer Motion)
-🧵 CUSTOMIZATION SYSTEM
-
-Users must be able to build their own suit.
-
-Features:
-Fabric selection (visual swatches)
-Lapel style (peak, notch, shawl)
-Buttons (material + count)
-Lining (color/pattern)
-Fit (slim, tailored, relaxed)
-UX:
-Changes update the model in real-time
-Maintain photorealistic quality or simulate via layered assets
-🤖 AI COLOR ANALYSIS FEATURE (IMPORTANT)
-
-Implement a client-side AI integration (using OpenAI API):
-
-Flow:
-User uploads a photo OR uses webcam
-Extract dominant skin tone / undertones
-Recommend:
-Suit colors
-Shirt colors
-Tie combinations
-Output UI:
-Show recommended palettes
-Apply instantly to the model preview
-Notes:
-Use OpenAI API (assume API key provided)
-Keep logic modular
-Fallback if API fails
-🎯 ADDITIONAL HIGH-TECH FEATURES
-
-Include:
-
-1. “Exploded Craftsmanship Mode”
-Toggle to break suit into components
-Show tailoring details (canvas, stitching, etc.)
-2. Fabric Zoom
-Hover → macro zoom into fabric texture
-3. Lighting Mode Toggle
-Studio / Daylight / Evening
-4. Save Look
-Save configuration locally (or mock API)
-🧱 TECH STACK
-React or Next.js
-Tailwind CSS or styled system
-Framer Motion or GSAP for animation
-Optional: Three.js for 3D feel
-🧩 OUTPUT REQUIREMENTS
-Clean component structure
-Modular architecture
-Reusable components
-Focus ONLY on frontend (no backend needed)
-Include placeholder assets if needed
-Comment important sections
-🎨 DESIGN RULES
-No clutter
-Large typography
-Generous spacing
-Micro-interactions > static UI
-Everything should feel premium and intentional
-🧪 BONUS (IF POSSIBLE)
-Add subtle sound design hooks (hover, click)
-Add scroll-based storytelling transitions
-📦 INPUT
-
-I will provide my current website markdown after this.
-
-Use it as a base, but significantly upgrade the experience.
-
-🚀 OUTPUT FORMAT
-
-Provide:
-
-Folder structure
-Main page (Hero + sections)
-Key components
-Animation logic
-AI integration example (OpenAI call)
+# Picadilly Tailors — AI-Powered Personal Styling Platform
+
+## Project Context
+
+This is an **IS215 Digital Business Technologies and Transformation** group project at SMU. We are digitalising **Picadilly Tailors**, a luxury bespoke suit business in Singapore (est. 1930, Far East Plaza). The digital transformation proposition is an **AI-Powered Personal Styling Platform** with three integrated features forming one user journey:
+
+```
+Occasion Selection → AI Smart Stylist → Budget Optimiser
+```
+
+This is a **graded university project** — the prototype must be interactive, visually polished, and demonstrate an analytics/AI component via Python or API integration.
+
+---
+
+## Tech Stack
+
+- **Next.js 14** (App Router, TypeScript)
+- **React 18** (client components with `'use client'`)
+- **Tailwind CSS 3.4** (extended theme — see below)
+- **Framer Motion 11** (scroll animations, transitions)
+- **OpenAI API** (GPT for styling recommendations, DALL-E for image generation)
+
+---
+
+## Design System (MUST follow strictly)
+
+The site has an established **cinematic luxury aesthetic**. All new components MUST match this language exactly:
+
+### Colours
+| Token | Hex | Usage |
+|---|---|---|
+| `gold` | `#C5A230` | Primary accent, CTAs, borders |
+| `gold-light` | `#D4B84A` | Hover states |
+| `gold-pale` | `#F0E6C8` | Subtle highlights |
+| `gold-dark` | `#8A6E1A` | Pressed states |
+| `obsidian` | `#0A0A0A` | Primary background |
+| `obsidian-50` | `#1A1A1A` | Card backgrounds |
+| `obsidian-100` | `#141414` | Elevated surfaces |
+| `cream` | `#F5EFE0` | Primary text |
+| `cream-muted` | `#C8BEA8` | Secondary text |
+| `smoke` | `#252525` | Borders, dividers |
+
+### Typography
+- **Headings**: `font-cormorant` (Cormorant Garamond) — light weight, italic for emphasis
+- **Labels/Caps**: `font-josefin` (Josefin Sans) — ultra-wide tracking (`tracking-[0.3em]`), uppercase
+- **Body**: `font-dm` (DM Sans) — small, readable, light weight
+
+### Visual Rules
+- **NO rounded corners** — strict geometric design (`rounded-none` or omit)
+- **Gold borders** at low opacity: `border-gold/10` or `border-gold/20`
+- **Generous spacing**: `py-28`, `px-8`, `gap-20`
+- **Container**: `max-w-screen-xl mx-auto`
+- **Backdrop blur** on cards: `backdrop-blur-sm bg-obsidian-50/80`
+- **Animations**: Use Framer Motion for scroll-triggered reveals (fade-up pattern)
+- **No emojis** in UI copy — luxury tone throughout
+
+### Animation Pattern (follow for all new sections)
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, margin: '-100px' }}
+  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+>
+```
+
+---
+
+## Existing Components
+
+These components already exist and are working. Do NOT rewrite them from scratch — extend or modify as needed:
+
+| Component | File | Status |
+|---|---|---|
+| Navigation | `src/components/Navigation.tsx` | Complete |
+| Hero | `src/components/Hero.tsx` | Complete |
+| CustomCursor | `src/components/CustomCursor.tsx` | Complete |
+| Heritage | `src/components/Heritage.tsx` | Complete — needs real images |
+| CustomizationStudio | `src/components/CustomizationStudio.tsx` | Complete — visual suit builder |
+| AIColorAnalysis | `src/components/AIColorAnalysis.tsx` | Exists but uses MOCK data — needs real OpenAI Vision API |
+| CraftsmanshipSection | `src/components/CraftsmanshipSection.tsx` | Complete |
+| Gallery | `src/components/Gallery.tsx` | Complete — needs real images |
+| Testimonials | `src/components/Testimonials.tsx` | Complete |
+| Footer | `src/components/Footer.tsx` | Complete |
+
+Page composition: `src/app/page.tsx`
+
+---
+
+## Three Core Features to Build/Enhance
+
+### Feature 1: Occasion-Based Selection (Entry Point)
+
+**Purpose**: Guide users into the styling journey by selecting their occasion.
+
+**Implementation**:
+- Add a new section/component between Heritage and CustomizationStudio
+- Display occasion cards: **Wedding**, **Corporate/Interview**, **Black Tie**, **Casual/Smart Casual**, **Special Event**
+- Each card should have:
+  - A generated image (DALL-E — see Image Generation below)
+  - Occasion name + short tagline
+  - Hover effect with gold border reveal
+- Clicking an occasion navigates/scrolls to the AI Stylist with that occasion pre-selected
+- Use the existing card aesthetic (obsidian-50 bg, gold/10 borders, backdrop-blur)
+
+### Feature 2: AI Smart Stylist (Core Feature)
+
+**Purpose**: AI-powered outfit recommendations based on occasion, budget, and preferences.
+
+**Implementation**:
+- Create a new component `src/components/AIStylist.tsx`
+- **Chat-style UI** (luxury version — NOT a generic chatbot look):
+  - Left panel: conversation thread (user messages + AI responses)
+  - Right panel: outfit recommendation cards generated by AI
+- **User inputs** (can be a structured form or conversational):
+  - Occasion (pre-filled if coming from Occasion Selection)
+  - Budget range (slider)
+  - Style preferences (modern/classic/bold)
+  - Any specific requirements (free text)
+- **AI output** (displayed as styled cards, NOT raw text):
+  - Full outfit recommendation (suit, shirt, tie, shoes)
+  - Colour palette (show swatches)
+  - Style explanation ("Navy conveys professionalism...")
+  - Confidence/match score (percentage or rating)
+  - Price estimate within budget
+- **API**: Call OpenAI GPT via `/api/stylist` route (see API Routes below)
+- The response should be parsed into structured data and rendered as beautiful cards, NOT just a text blob
+
+### Feature 3: Budget Optimiser (Analytics Component)
+
+**Purpose**: Given a budget, recommend the optimal outfit combination maximising style score while staying within budget.
+
+**Implementation**:
+- Integrate into the AI Stylist flow OR as a standalone section
+- **Budget slider**: $200 — $5,000 range
+- **Output**:
+  - "Best Value" outfit (highest style score per dollar)
+  - "Premium Pick" outfit (best overall within budget)
+  - Price breakdown (suit, shirt, tie, shoes — bar chart or breakdown cards)
+  - Value meter / savings indicator
+- This demonstrates the **analytics** component required by the IS215 rubric
+- Can be computed client-side with a product dataset OR via the OpenAI API
+
+---
+
+## API Routes to Create
+
+### `/api/stylist` (POST)
+- Receives: occasion, budget, preferences, requirements
+- Calls OpenAI GPT (gpt-4o or gpt-4o-mini) with a structured prompt
+- System prompt should instruct GPT to return JSON with:
+  - outfit items (suit, shirt, tie, shoes) with descriptions and price estimates
+  - colour palette (hex codes)
+  - style explanation
+  - match score
+- Returns parsed JSON to frontend
+
+### `/api/color-analysis` (POST)
+- Receives: base64 image
+- Calls OpenAI Vision API to analyse skin tone and undertone
+- Returns: undertone classification + recommended suit/shirt/tie colours
+- **Replace the mock data** in `AIColorAnalysis.tsx` with this real API call
+
+### `/api/generate-image` (POST)
+- Receives: prompt description
+- Calls OpenAI DALL-E 3 API
+- Returns: image URL
+- Use this to generate images for:
+  - Gallery section (replace placeholders)
+  - Occasion cards
+  - Outfit recommendation visuals
+
+### Environment Variable
+```
+OPENAI_API_KEY=your-key-here
+```
+Store in `.env.local` (already in .gitignore). Access via `process.env.OPENAI_API_KEY` in API routes.
+
+---
+
+## Image Generation Tasks
+
+The site currently has placeholder/shimmer images in several sections. Use the DALL-E API to generate and save appropriate images:
+
+1. **Gallery section** — 7 images of men in bespoke suits, varied settings (wedding, corporate, evening, etc.). Cinematic lighting, editorial photography style.
+2. **Occasion cards** — 5 images matching each occasion type
+3. **Heritage section** — tailoring workshop, fabric close-ups, vintage Singapore
+4. **Craftsmanship section** — close-up tailoring details (hand stitching, lapels, buttonholes)
+
+**DALL-E prompt style**: "Editorial fashion photography of [subject], cinematic lighting, dark moody background, luxury bespoke tailoring, shot on medium format film, shallow depth of field"
+
+Save generated images to `public/images/` with descriptive filenames.
+
+---
+
+## UI/UX Guidelines
+
+When building new components or modifying existing ones, use these skills for high design quality:
+
+- Use `/ui-ux-pro-max` for design decisions — colour harmony, spacing, typography pairing, interaction states, animation patterns. The site uses a **dark luxury editorial** style. Reference this skill for layout decisions, hover states, micro-interactions, and ensuring the design feels premium and cohesive.
+
+- Use `/frontend-design` for building distinctive, production-grade components. Every new component should feel like it belongs in a luxury fashion house website — NOT like a generic SaaS dashboard. Reference this skill when creating the AI Stylist chat UI, occasion cards, budget optimiser, and any new interactive elements.
+
+**Specific UI patterns to follow:**
+- Section headers: small caps label (`font-josefin tracking-[0.3em] text-gold text-xs uppercase`) above a large serif heading (`font-cormorant text-4xl md:text-5xl font-light text-cream`)
+- CTAs: `bg-gold text-obsidian font-josefin tracking-wider uppercase text-xs py-4 px-8 hover:bg-gold-light transition-colors`
+- Cards: `bg-obsidian-50/80 backdrop-blur-sm border border-gold/10 p-8`
+- Dividers: `bg-gradient-to-r from-transparent via-gold/30 to-transparent h-px`
+
+---
+
+## Code Quality Rules
+
+- All components must be TypeScript with proper type definitions
+- Use `'use client'` directive for interactive components
+- Use Framer Motion for all animations (no CSS keyframe hacks for new code)
+- Keep API keys server-side only (in `/api/` routes, never in client components)
+- Use Next.js `Image` component for all images (with proper width/height/alt)
+- Destructure props, use meaningful variable names
+- No `any` types — define interfaces for all data structures
+- Error handling on all API calls with user-friendly fallback UI
+
+---
+
+## File Naming Convention
+
+- Components: `PascalCase.tsx` (e.g., `AIStylist.tsx`, `OccasionSelector.tsx`, `BudgetOptimiser.tsx`)
+- API routes: `src/app/api/[name]/route.ts`
+- Images: `kebab-case.jpg` (e.g., `gallery-wedding.jpg`, `occasion-corporate.jpg`)
+- Types: `src/types/index.ts` or co-located in component files
+
+---
+
+## Priority Order
+
+1. **Set up `.env.local`** with OpenAI API key
+2. **Create API routes** (`/api/stylist`, `/api/color-analysis`, `/api/generate-image`)
+3. **Generate images** via DALL-E and save to `public/images/` — fill all placeholder sections
+4. **Build Occasion Selector** component and add to page
+5. **Build AI Stylist** component (chat UI + recommendation cards)
+6. **Build Budget Optimiser** (integrate with stylist or standalone)
+7. **Connect AIColorAnalysis** to real OpenAI Vision API (replace mock)
+8. **Polish** — ensure all sections flow together, animations are consistent, responsive design works
+
+---
+
+## What NOT to Do
+
+- Do NOT change the existing design language (colours, typography, spacing)
+- Do NOT add rounded corners, shadows, or gradients that break the geometric luxury aesthetic
+- Do NOT use generic chatbot UI libraries — build custom to match the site
+- Do NOT hardcode the OpenAI API key anywhere in client code
+- Do NOT remove or rewrite working components — extend them
+- Do NOT add new dependencies without justification
+- Do NOT use emojis in the UI

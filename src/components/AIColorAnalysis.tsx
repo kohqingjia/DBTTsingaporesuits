@@ -13,25 +13,20 @@ interface Palette {
   notes: string;
 }
 
-/* ─── Mock palette generator (replace with real OpenAI call) ─ */
-function generatePalette(dominantColor: string): Palette {
-  // In production: call OpenAI Vision API with the image
-  // POST https://api.openai.com/v1/chat/completions
-  // model: "gpt-4o", messages: [{ role: "user", content: [{ type: "image_url", image_url: { url: imageDataUrl } }]}]
-  // Prompt: "Analyse the skin tone and undertone. Return JSON with suit/shirt/tie colour recommendations."
-
-  const warmPalette: Palette = {
+/* ─── Demo palette fallback ──────────────────────────────── */
+function getDemoPalette(): Palette {
+  return {
     skinTone: '#C68642',
     undertone: 'warm',
     suits: [
-      { color: 'bg-[#3D3523]', name: 'Tobacco Brown',   hex: '#3D3523' },
-      { color: 'bg-[#1B2A4A]', name: 'Deep Navy',       hex: '#1B2A4A' },
-      { color: 'bg-[#4A3728]', name: 'Dark Chocolate',  hex: '#4A3728' },
+      { color: 'bg-[#3D3523]', name: 'Tobacco Brown',  hex: '#3D3523' },
+      { color: 'bg-[#1B2A4A]', name: 'Deep Navy',      hex: '#1B2A4A' },
+      { color: 'bg-[#4A3728]', name: 'Dark Chocolate', hex: '#4A3728' },
     ],
     shirts: [
-      { color: 'bg-[#F5EFE0]', name: 'Ivory White',  hex: '#F5EFE0' },
-      { color: 'bg-[#D4B89A]', name: 'Warm Ecru',    hex: '#D4B89A' },
-      { color: 'bg-[#8FA8B0]', name: 'Slate Blue',   hex: '#8FA8B0' },
+      { color: 'bg-[#F5EFE0]', name: 'Ivory White', hex: '#F5EFE0' },
+      { color: 'bg-[#D4B89A]', name: 'Warm Ecru',   hex: '#D4B89A' },
+      { color: 'bg-[#8FA8B0]', name: 'Slate Blue',  hex: '#8FA8B0' },
     ],
     ties: [
       { color: 'bg-[#7A1F2E]', name: 'Burgundy Silk', hex: '#7A1F2E' },
@@ -40,8 +35,42 @@ function generatePalette(dominantColor: string): Palette {
     ],
     notes: 'Your warm undertones pair beautifully with earth-toned fabrics and rich jewel-toned accessories. Avoid cool greys and icy whites.',
   };
+}
 
-  return warmPalette;
+/* ─── Real OpenAI Vision API call ────────────────────────── */
+async function analyseWithAI(dataUrl: string): Promise<Palette> {
+  const res = await fetch('/api/color-analysis', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image: dataUrl }),
+  });
+
+  if (!res.ok) throw new Error(`Analysis failed: ${res.status}`);
+
+  const data = await res.json();
+  if (data.error) throw new Error(data.error);
+
+  // Map API response to Palette type
+  return {
+    skinTone: data.skinTone ?? '#C68642',
+    undertone: data.undertone ?? 'neutral',
+    suits: (data.suits ?? []).map((s: { name: string; hex: string }) => ({
+      name: s.name,
+      hex: s.hex,
+      color: `bg-[${s.hex}]`,
+    })),
+    shirts: (data.shirts ?? []).map((s: { name: string; hex: string }) => ({
+      name: s.name,
+      hex: s.hex,
+      color: `bg-[${s.hex}]`,
+    })),
+    ties: (data.ties ?? []).map((s: { name: string; hex: string }) => ({
+      name: s.name,
+      hex: s.hex,
+      color: `bg-[${s.hex}]`,
+    })),
+    notes: data.notes ?? '',
+  };
 }
 
 /* ─── Component ──────────────────────────────────────────── */
@@ -61,17 +90,19 @@ export default function AIColorAnalysis() {
     }
     setError(null);
     const reader = new FileReader();
-    reader.onloadend = () => {
+    reader.onloadend = async () => {
       const dataUrl = reader.result as string;
       setPreview(dataUrl);
       setStep('analysing');
 
-      // Simulate API call — replace with real OpenAI Vision call
-      setTimeout(() => {
-        const result = generatePalette(dataUrl);
+      try {
+        const result = await analyseWithAI(dataUrl);
         setPalette(result);
         setStep('result');
-      }, 2200);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Analysis failed. Please try again.');
+        setStep('idle');
+      }
     };
     reader.readAsDataURL(file);
     setStep('uploading');
@@ -175,7 +206,7 @@ export default function AIColorAnalysis() {
                   </p>
                   <button
                     data-cursor
-                    onClick={() => { setStep('analysing'); setTimeout(() => { setPalette(generatePalette('')); setStep('result'); }, 2000); }}
+                    onClick={() => { setStep('analysing'); setTimeout(() => { setPalette(getDemoPalette()); setStep('result'); }, 1800); }}
                     className="font-josefin text-[0.55rem] tracking-[0.25em] uppercase text-cream-muted/40 hover:text-gold/70 transition-colors duration-300"
                   >
                     Run Demo Analysis
@@ -300,7 +331,7 @@ export default function AIColorAnalysis() {
         <motion.p custom={0.6} variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
           className="text-center font-dm text-[0.5rem] text-cream-muted/20 mt-8 max-w-lg mx-auto"
         >
-          Powered by OpenAI Vision API · Your photos are processed client-side and never stored · Add your API key to enable full analysis
+          Powered by OpenAI Vision API · Your portrait is analysed securely and never stored · Results are personalised to your unique skin tone
         </motion.p>
       </div>
     </section>

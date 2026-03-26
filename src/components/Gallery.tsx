@@ -1,17 +1,18 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 
-/* ─── Gallery items — replace src with real images ── */
+/* ─── Gallery items ── */
 const galleryItems = [
-  { id: 1, ratio: '3/4',  label: 'Navy Double-Breasted',  tag: 'Wedding' },
-  { id: 2, ratio: '1/1',  label: 'Charcoal Business Suit', tag: 'Corporate' },
-  { id: 3, ratio: '16/9', label: 'White Tie Evening',       tag: 'Black Tie', wide: true },
-  { id: 4, ratio: '3/4',  label: 'Slim Tan Suit',           tag: 'Summer'    },
-  { id: 5, ratio: '1/1',  label: 'Tuxedo Lapel Close-Up',  tag: 'Detail'    },
-  { id: 6, ratio: '3/4',  label: 'Grey Herringbone',        tag: 'Business'  },
-  { id: 7, ratio: '16/9', label: 'Atelier Process',          tag: 'Behind the Seams', wide: true },
+  { id: 1, ratio: '3/4',  label: 'Navy Double-Breasted',  tag: 'Wedding',          src: '/images/gallery-wedding.jpg'   },
+  { id: 2, ratio: '1/1',  label: 'Charcoal Business Suit', tag: 'Corporate',        src: '/images/gallery-corporate.jpg' },
+  { id: 3, ratio: '16/9', label: 'Midnight Blue Evening',  tag: 'Black Tie', wide: true, src: '/images/gallery-evening.jpg'   },
+  { id: 4, ratio: '3/4',  label: 'Slim Tan Suit',          tag: 'Summer',           src: '/images/gallery-casual.jpg'    },
+  { id: 5, ratio: '1/1',  label: 'Tuxedo Lapel Close-Up', tag: 'Detail',           src: '/images/gallery-tuxedo.jpg'    },
+  { id: 6, ratio: '3/4',  label: 'Grey Herringbone',       tag: 'Business',         src: '/images/gallery-grey.jpg'      },
+  { id: 7, ratio: '16/9', label: 'Atelier Process',         tag: 'Behind the Seams', wide: true, src: '/images/gallery-atelier.jpg'  },
 ];
 
 function GalleryItem({ item, index, inView }: { item: typeof galleryItems[0]; index: number; inView: boolean }) {
@@ -28,17 +29,14 @@ function GalleryItem({ item, index, inView }: { item: typeof galleryItems[0]; in
       onMouseLeave={() => setHovered(false)}
       data-cursor
     >
-      {/* Placeholder */}
-      <div className="absolute inset-0 bg-gradient-to-br from-obsidian-50 to-obsidian border border-gold/10 flex flex-col items-center justify-center gap-3">
-        <div className="w-8 h-px bg-gold/25" />
-        <p className="font-josefin text-[0.5rem] tracking-[0.25em] uppercase text-gold/30">
-          {item.label}
-        </p>
-        <p className="font-dm text-[0.45rem] text-cream-muted/20">
-          {item.ratio === '16/9' ? '16:9' : item.ratio === '3/4' ? '3:4 Portrait' : '1:1'} — Please provide image
-        </p>
-        <div className="w-8 h-px bg-gold/25" />
-      </div>
+      {/* Image */}
+      <Image
+        src={item.src}
+        alt={item.label}
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 50vw, 33vw"
+      />
 
       {/* Hover overlay */}
       <motion.div

@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 
 const stats = [
@@ -140,25 +141,22 @@ export default function Heritage() {
             </motion.a>
           </div>
 
-          {/* Right: Image placeholder (16:9) */}
+          {/* Right: Heritage image */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full aspect-video overflow-hidden border border-gold/10"
           >
-            <div className="placeholder-16-9 w-full">
-              <div className="flex flex-col items-center gap-3 text-center">
-                <div className="w-12 h-px bg-gold/40" />
-                <p className="font-josefin text-[0.55rem] tracking-[0.3em] uppercase text-gold/40">
-                  Heritage Image
-                </p>
-                <p className="font-dm text-xs text-cream-muted/30">
-                  16:9 — Please provide your image
-                </p>
-                <div className="w-12 h-px bg-gold/40" />
-              </div>
-            </div>
+            <Image
+              src="/images/heritage-workshop.jpg"
+              alt="Picadilly Tailors atelier workshop"
+              fill
+              className="object-cover opacity-90"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-obsidian/40 to-transparent" />
           </motion.div>
         </div>
 
