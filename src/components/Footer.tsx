@@ -116,11 +116,15 @@ export default function Footer() {
               </div>
               <div className="w-8 h-px bg-gold/40" />
 
-              {/* Map placeholder */}
-              <div className="placeholder-16-9 w-full mt-4" style={{ aspectRatio: '16/7' }}>
-                <p className="font-josefin text-[0.5rem] tracking-[0.2em] uppercase text-gold/30">
-                  Map — Far East Plaza
-                </p>
+              {/* Map */}
+              <div className="relative w-full mt-4 overflow-hidden border border-gold/15" style={{ aspectRatio: '16/7' }}>
+                <Image
+                  src="/images/map-far-east-plaza.jpg"
+                  alt="Far East Plaza location map"
+                  fill
+                  className="object-cover"
+                  sizes="600px"
+                />
               </div>
             </motion.div>
           </div>

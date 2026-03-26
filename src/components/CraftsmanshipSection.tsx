@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const details = [
   {
@@ -158,16 +159,13 @@ export default function CraftsmanshipSection() {
               className="w-full overflow-hidden border border-gold/15 relative"
               style={{ aspectRatio: '3/4' }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-obsidian-50 to-obsidian flex flex-col items-center justify-center gap-3">
-                <div className="w-10 h-px bg-gold/30" />
-                <p className="font-josefin text-[0.5rem] tracking-[0.25em] uppercase text-gold/30">
-                  Craft Detail
-                </p>
-                <p className="font-dm text-[0.5rem] text-cream-muted/20">Close-up photography</p>
-                <div className="w-10 h-px bg-gold/30" />
-              </div>
-              {/* Shimmer */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-gold/3 to-transparent animate-pulse-slow" />
+              <Image
+                src="/images/craft-buttonhole.jpg"
+                alt="Surgeon's buttonhole — bespoke craft detail"
+                fill
+                className="object-cover"
+                sizes="380px"
+              />
             </div>
 
             {/* Small detail: currently active */}
@@ -196,17 +194,14 @@ export default function CraftsmanshipSection() {
         <motion.div custom={0.5} variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
           className="mt-20"
         >
-          <div className="placeholder-16-9 w-full">
-            <div className="flex flex-col items-center gap-3 text-center">
-              <div className="w-12 h-px bg-gold/40" />
-              <p className="font-josefin text-[0.55rem] tracking-[0.3em] uppercase text-gold/40">
-                Atelier Photograph
-              </p>
-              <p className="font-dm text-xs text-cream-muted/30">
-                16:9 — Workshop / Craft Photography
-              </p>
-              <div className="w-12 h-px bg-gold/40" />
-            </div>
+          <div className="w-full relative overflow-hidden border border-gold/15" style={{ aspectRatio: '16/9' }}>
+            <Image
+              src="/images/craft-stitching.jpg"
+              alt="Atelier workshop — bespoke tailoring craft"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
           </div>
         </motion.div>
       </div>
