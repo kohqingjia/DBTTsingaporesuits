@@ -473,6 +473,14 @@ export default function BodyScan3D() {
   const [activeDot, setActiveDot]       = useState<keyof Measurements | null>(null);
   const [revealedDots, setRevealedDots] = useState<Set<keyof Measurements>>(new Set());
   const [measurements, setMeasurements] = useState<Measurements | null>(null);
+  const [toast, setToast]               = useState<string | null>(null);
+  const toastTimer                      = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function showToast(msg: string) {
+    setToast(msg);
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(null), 3200);
+  }
 
   const phaseRef      = useRef(phase);
   const captureRef    = useRef(captureIdx);
@@ -865,7 +873,7 @@ export default function BodyScan3D() {
                 <div className="px-8 py-5 border-t border-gold/10 flex gap-3 flex-shrink-0">
                   <button
                     className="flex-1 py-3.5 bg-gold font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-obsidian hover:bg-gold-light transition-colors duration-300"
-                    onClick={() => alert('Measurements saved to your profile.')}
+                    onClick={() => showToast('Measurements saved to your profile.')}
                   >
                     Save to Profile
                   </button>
@@ -882,6 +890,32 @@ export default function BodyScan3D() {
           </div>
         </div>
       </div>
+
+      {/* ── Toast notification ── */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            key="scan-toast"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed bottom-8 right-8 z-[9999] flex items-center gap-3 px-5 py-4 border"
+            style={{
+              background: 'rgba(10,10,10,0.96)',
+              borderColor: 'rgba(197,162,48,0.4)',
+              backdropFilter: 'blur(12px)',
+              maxWidth: 340,
+              pointerEvents: 'none',
+            }}
+          >
+            <span className="w-5 h-5 border border-gold flex items-center justify-center flex-shrink-0"
+                  style={{ color: '#C5A230', fontSize: '0.55rem' }}>✓</span>
+            <p className="font-josefin text-[0.6rem] tracking-[0.2em] uppercase text-cream">{toast}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }

@@ -1047,12 +1047,20 @@ function StepConfirmed({
         <OrderTracker fulfilment={fulfilment} activeStageIdx={activeStage} />
       </div>
 
-      <button
-        onClick={onClose}
-        className="w-full py-4 border border-gold/40 font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-gold hover:bg-gold hover:text-obsidian transition-all duration-300"
-      >
-        Back to Site
-      </button>
+      <div className="flex flex-col gap-3 w-full">
+        <a
+          href={`/track-order.html?ref=${orderNumber}`}
+          className="w-full py-4 bg-gold font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-obsidian hover:bg-gold-light transition-colors duration-300 text-center block"
+        >
+          Track Your Order
+        </a>
+        <button
+          onClick={onClose}
+          className="w-full py-4 border border-gold/30 font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted hover:border-gold/60 hover:text-cream transition-all duration-300"
+        >
+          Back to Site
+        </button>
+      </div>
     </motion.div>
   );
 }
@@ -1094,9 +1102,32 @@ export default function CheckoutModal({ isOpen, onClose, config }: CheckoutModal
   function placeOrder() {
     setPlacing(true);
     setTimeout(() => {
-      /* Mark the voucher as used in localStorage */
       if (appliedVoucher) markVoucherUsed(appliedVoucher.voucherId);
-      setOrderNumber(generateOrderNumber());
+      const ref = generateOrderNumber();
+      setOrderNumber(ref);
+
+      /* Save to localStorage so track-order.html can look it up immediately */
+      try {
+        const fabric = FABRIC_INFO[config.fabric];
+        const existing = JSON.parse(localStorage.getItem('picadilly-orders') || '{}');
+        existing[ref] = {
+          ref,
+          stage:        'confirmed',
+          fulfilment:   details.fulfilment,
+          customer:     `${details.firstName} ${details.lastName}`,
+          email:        details.email,
+          placed:       new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+          fabric:       fabric?.name ?? config.fabric,
+          fit:          FIT_INFO[config.fit]?.name ?? config.fit,
+          total:        `SGD ${calcPrice(config, appliedVoucher).total.toLocaleString()}`,
+          address:      details.fulfilment === 'delivery'
+                          ? `${details.address}, ${details.city} ${details.postal}`
+                          : undefined,
+          preferredDate: details.fulfilment === 'collection' ? details.preferredDate : undefined,
+        };
+        localStorage.setItem('picadilly-orders', JSON.stringify(existing));
+      } catch { /* ignore storage errors */ }
+
       setStep('confirmed');
       setPlacing(false);
     }, 2000);

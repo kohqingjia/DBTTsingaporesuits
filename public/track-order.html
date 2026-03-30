@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Your Order — Picadilly Tailors</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gold:        #C5A230;
+      --gold-light:  #D4B84A;
+      --gold-pale:   #F0E6C8;
+      --obsidian:    #0A0A0A;
+      --obsidian-50: #1A1A1A;
+      --obsidian-100:#141414;
+      --cream:       #F5EFE0;
+      --cream-muted: #C8BEA8;
+      --smoke:       #252525;
+      --border:      rgba(197,162,48,0.15);
+      --green:       #4A9B6F;
+      --transition:  0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--obsidian);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,h2,h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+
+    /* ── NAV ── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar__logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .topbar__back {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .topbar__back:hover { color: var(--cream); }
+
+    /* ── PAGE WRAPPER ── */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    /* ── HEADER ── */
+    .page-header { margin-bottom: 48px; }
+    .section-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .page-title {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      color: var(--cream);
+      line-height: 1.15;
+    }
+    .page-subtitle {
+      font-size: 0.85rem;
+      color: var(--cream-muted);
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* ── SEARCH FORM ── */
+    .search-card {
+      background: var(--obsidian-50);
+      border: 1px solid var(--border);
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    .search-card__label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .search-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 200px;
+      background: var(--obsidian);
+      border: 1px solid var(--smoke);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 14px 18px;
+      outline: none;
+      letter-spacing: 0.08em;
+      transition: border-color var(--transition);
+    }
+    .search-input::placeholder { color: rgba(200,190,168,0.3); }
+    .search-input:focus { border-color: rgba(197,162,48,0.5); }
+    .search-btn {
+      padding: 14px 28px;
+      background: var(--gold);
+      border: none;
+      color: var(--obsidian);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition);
+      white-space: nowrap;
+    }
+    .search-btn:hover { background: var(--gold-light); }
+
+    /* hint */
+    .search-hint {
+      font-size: 0.75rem;
+      color: rgba(200,190,168,0.4);
+      margin-top: 10px;
+    }
+    .search-hint a {
+      color: rgba(197,162,48,0.5);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+    .search-hint a:hover { color: var(--gold); }
+
+    /* ── ERROR STATE ── */
+    .error-box {
+      border: 1px solid rgba(180,60,60,0.4);
+      background: rgba(180,60,60,0.06);
+      padding: 16px 20px;
+      font-size: 0.82rem;
+      color: #e08080;
+      margin-top: 16px;
+      display: none;
+    }
+    .error-box.visible { display: block; }
+
+    /* ── RESULT PANEL ── */
+    .result-panel { display: none; flex-direction: column; gap: 32px; }
+    .result-panel.visible { display: flex; }
+
+    /* ── ORDER META CARD ── */
+    .meta-card {
+      background: var(--obsidian-50);
+      border: 1px solid var(--border);
+    }
+    .meta-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--smoke);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .meta-ref {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .status-pill {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: rgba(197,162,48,0.07);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse-dot 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .meta-rows {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    @media(max-width:520px){ .meta-rows { grid-template-columns: 1fr; } }
+
+    .meta-row {
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--smoke);
+      border-right: 1px solid var(--smoke);
+    }
+    .meta-row:nth-child(even) { border-right: none; }
+    .meta-row:last-child, .meta-row:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+
+    .meta-row__label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      margin-bottom: 4px;
+    }
+    .meta-row__value {
+      font-size: 0.85rem;
+      color: var(--cream);
+    }
+    .meta-row__value--gold { color: var(--gold); }
+
+    /* ── TRACKER ── */
+    .tracker-card {
+      background: var(--obsidian-50);
+      border: 1px solid var(--border);
+      padding: 28px 28px 20px;
+    }
+    .tracker-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      margin-bottom: 28px;
+    }
+
+    .stage-list { display: flex; flex-direction: column; }
+
+    .stage {
+      display: flex;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    /* left column: node + line */
+    .stage__spine {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 20px;
+      flex-shrink: 0;
+    }
+    .stage__node {
+      width: 20px;
+      height: 20px;
+      border: 1px solid rgba(197,162,48,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      transition: all 0.4s;
+    }
+    .stage__node--done {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+    .stage__node--active {
+      border-color: var(--gold);
+      background: rgba(197,162,48,0.08);
+    }
+    .stage__node--pending { border-color: rgba(197,162,48,0.15); }
+
+    .stage__node-inner {
+      width: 6px; height: 6px;
+      background: rgba(197,162,48,0.2);
+    }
+    .stage__node--active .stage__node-inner {
+      background: var(--gold);
+      animation: pulse-dot 1.4s ease-in-out infinite;
+    }
+    .stage__node--done .stage__node-check {
+      color: var(--obsidian);
+      font-size: 0.5rem;
+      font-weight: 700;
+    }
+
+    .stage__line {
+      flex: 1;
+      width: 1px;
+      background: rgba(197,162,48,0.1);
+      margin: 2px 0;
+      min-height: 28px;
+      transition: background 0.4s;
+    }
+    .stage__line--done { background: var(--gold); }
+
+    /* right column: text */
+    .stage__content {
+      padding-bottom: 24px;
+      flex: 1;
+    }
+    .stage:last-child .stage__content { padding-bottom: 6px; }
+
+    .stage__name {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,190,168,0.25);
+      transition: color 0.3s;
+      line-height: 1.3;
+    }
+    .stage--done .stage__name    { color: rgba(197,162,48,0.55); }
+    .stage--active .stage__name  { color: var(--cream); }
+
+    .stage__sub {
+      font-size: 0.78rem;
+      color: rgba(200,190,168,0.2);
+      margin-top: 3px;
+      transition: color 0.3s;
+    }
+    .stage--done .stage__sub   { color: rgba(200,190,168,0.45); }
+    .stage--active .stage__sub { color: var(--gold); }
+
+    .stage__eta {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      color: rgba(200,190,168,0.18);
+      transition: color 0.3s;
+    }
+    .stage--done .stage__eta   { color: rgba(197,162,48,0.35); }
+    .stage--active .stage__eta { color: rgba(197,162,48,0.7); }
+
+    /* ── FULFILMENT INFO BOX ── */
+    .fulfilment-box {
+      background: var(--obsidian-50);
+      border: 1px solid var(--border);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .fulfilment-box__label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .fulfilment-box__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--cream);
+    }
+    .fulfilment-box__detail {
+      font-size: 0.8rem;
+      color: var(--cream-muted);
+      line-height: 1.5;
+    }
+    .fulfilment-box__hours {
+      font-size: 0.72rem;
+      color: rgba(200,190,168,0.45);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(197,162,48,0.2), transparent);
+    }
+
+    /* ── DEMO QUICK-FILLS ── */
+    .demo-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .demo-pill {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid rgba(197,162,48,0.25);
+      color: rgba(197,162,48,0.6);
+      background: transparent;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .demo-pill:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(197,162,48,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="topbar">
+    <a href="/" class="topbar__logo">Picadilly Tailors</a>
+    <a href="/" class="topbar__back">&larr; Back to site</a>
+  </nav>
+
+  <div class="page">
+
+    <!-- ── HEADER ── -->
+    <header class="page-header">
+      <p class="section-label">Order Management</p>
+      <h1 class="page-title">Track Your <em>Order</em></h1>
+      <p class="page-subtitle">
+        Enter your order reference number to view the live status of your bespoke suit —
+        from fabric cutting through to delivery or collection.
+      </p>
+    </header>
+
+    <!-- ── SEARCH FORM ── -->
+    <div class="search-card">
+      <label class="search-card__label" for="orderRef">Order Reference Number</label>
+      <div class="search-row">
+        <input
+          class="search-input"
+          id="orderRef"
+          type="text"
+          placeholder="e.g. PCT-AB1234"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button class="search-btn" onclick="lookupOrder()">Track Order</button>
+      </div>
+      <p class="search-hint">
+        Your reference number was emailed to you on confirmation.
+        <br>Try a demo order:
+      </p>
+
+      <!-- Demo quick-fill pills -->
+      <div class="demo-pills">
+        <button class="demo-pill" onclick="fillDemo('PCT-DEMO01', 'tailoring')">PCT-DEMO01 · Tailoring</button>
+        <button class="demo-pill" onclick="fillDemo('PCT-DEMO02', 'fitting')">PCT-DEMO02 · Fitting</button>
+        <button class="demo-pill" onclick="fillDemo('PCT-DEMO03', 'delivery')">PCT-DEMO03 · Out for Delivery</button>
+        <button class="demo-pill" onclick="fillDemo('PCT-DEMO04', 'collection')">PCT-DEMO04 · Ready to Collect</button>
+      </div>
+
+      <div class="error-box" id="errorBox">
+        No order found for that reference number. Please check and try again.
+      </div>
+    </div>
+
+    <!-- ── RESULT PANEL ── -->
+    <div class="result-panel" id="resultPanel">
+
+      <!-- Order meta -->
+      <div class="meta-card">
+        <div class="meta-card__header">
+          <div>
+            <p style="font-family:'Josefin Sans',sans-serif;font-size:0.52rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-muted);margin-bottom:4px;">
+              Order Reference
+            </p>
+            <p class="meta-ref" id="displayRef">—</p>
+          </div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span id="displayStatus">—</span>
+          </div>
+        </div>
+        <div class="meta-rows" id="metaRows">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- Tracker -->
+      <div class="tracker-card">
+        <p class="tracker-title">Live Progress</p>
+        <div class="stage-list" id="stageList">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- Fulfilment details -->
+      <div class="fulfilment-box" id="fulfilmentBox">
+        <!-- filled by JS -->
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* ──────────────────────────────────────────────────────────
+       STAGE DEFINITIONS
+    ────────────────────────────────────────────────────────── */
+    const STAGES_DELIVERY = [
+      { key: 'confirmed',  name: 'Order Confirmed',      sub: 'Payment received, order logged',       eta: 'Day 0'        },
+      { key: 'cutting',    name: 'Fabric Cutting',        sub: 'Your cloth is being cut & prepped',    eta: 'Days 1 – 3'   },
+      { key: 'tailoring',  name: 'Master Tailoring',      sub: 'Hand-basting & construction underway', eta: 'Days 4 – 14'  },
+      { key: 'fitting',    name: 'First Fitting',         sub: 'Adjustment session with your tailor',  eta: 'Days 15 – 18' },
+      { key: 'finishing',  name: 'Final Finishing',       sub: 'Pressing, buttons & lining complete',  eta: 'Days 19 – 22' },
+      { key: 'delivery',   name: 'Out for Delivery',      sub: 'White-glove courier en route',         eta: 'Days 23 – 28' },
+    ];
+
+    const STAGES_COLLECTION = [
+      { key: 'confirmed',   name: 'Order Confirmed',        sub: 'Payment received, order logged',       eta: 'Day 0'        },
+      { key: 'cutting',     name: 'Fabric Cutting',          sub: 'Your cloth is being cut & prepped',    eta: 'Days 1 – 3'   },
+      { key: 'tailoring',   name: 'Master Tailoring',        sub: 'Hand-basting & construction underway', eta: 'Days 4 – 14'  },
+      { key: 'fitting',     name: 'First Fitting',           sub: 'Adjustment session with your tailor',  eta: 'Days 15 – 18' },
+      { key: 'finishing',   name: 'Final Finishing',         sub: 'Pressing, buttons & lining complete',  eta: 'Days 19 – 22' },
+      { key: 'collection',  name: 'Ready for Collection',    sub: 'Your suit awaits at Far East Plaza',   eta: 'Days 23 – 28' },
+    ];
+
+    /* Status key → stage index (0-based, which stage is currently active) */
+    const ACTIVE_STAGE = {
+      confirmed:  0,
+      cutting:    1,
+      tailoring:  2,
+      fitting:    3,
+      finishing:  4,
+      delivery:   5,
+      collection: 5,
+    };
+
+    const STATUS_LABELS = {
+      confirmed:  'Order Confirmed',
+      cutting:    'Fabric Cutting',
+      tailoring:  'In Tailoring',
+      fitting:    'Fitting Stage',
+      finishing:  'Final Finishing',
+      delivery:   'Out for Delivery',
+      collection: 'Ready to Collect',
+    };
+
+    /* ──────────────────────────────────────────────────────────
+       MOCK ORDER DATABASE
+       In a real implementation this would come from an API.
+    ────────────────────────────────────────────────────────── */
+    const ORDERS = {
+      'PCT-DEMO01': {
+        ref:         'PCT-DEMO01',
+        stage:       'tailoring',
+        fulfilment:  'delivery',
+        customer:    'James Whitmore',
+        email:       'j.whitmore@example.com',
+        placed:      '12 Jun 2025',
+        fabric:      'Navy Herringbone',
+        fit:         'Tailored',
+        total:       'SGD 2,350',
+        address:     '42 Orchard Boulevard, Singapore 238879',
+      },
+      'PCT-DEMO02': {
+        ref:         'PCT-DEMO02',
+        stage:       'fitting',
+        fulfilment:  'delivery',
+        customer:    'Marcus Chen',
+        email:       'm.chen@example.com',
+        placed:      '01 Jun 2025',
+        fabric:      'Charcoal Wool',
+        fit:         'Slim',
+        total:       'SGD 1,800',
+        address:     '88 Marina Bay Drive, Singapore 018956',
+      },
+      'PCT-DEMO03': {
+        ref:         'PCT-DEMO03',
+        stage:       'delivery',
+        fulfilment:  'delivery',
+        customer:    'Raj Patel',
+        email:       'r.patel@example.com',
+        placed:      '20 May 2025',
+        fabric:      'Midnight Velvet',
+        fit:         'Tailored',
+        total:       'SGD 3,150',
+        address:     '9 Nassim Hill, Singapore 258456',
+      },
+      'PCT-DEMO04': {
+        ref:         'PCT-DEMO04',
+        stage:       'collection',
+        fulfilment:  'collection',
+        customer:    'Leon Hartmann',
+        email:       'l.hartmann@example.com',
+        placed:      '18 May 2025',
+        fabric:      'Slate Flannel',
+        fit:         'Relaxed',
+        total:       'SGD 1,900',
+        preferredDate: '30 Jun 2025',
+      },
+    };
+
+    /* ──────────────────────────────────────────────────────────
+       HELPERS
+    ────────────────────────────────────────────────────────── */
+    function $(id) { return document.getElementById(id); }
+
+    function fillDemo(ref, stage) {
+      $('orderRef').value = ref;
+      lookupOrder();
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       LOOK UP ORDER
+    ────────────────────────────────────────────────────────── */
+    function lookupOrder() {
+      const raw = $('orderRef').value.trim().toUpperCase();
+      $('errorBox').classList.remove('visible');
+      $('resultPanel').classList.remove('visible');
+
+      if (!raw) return;
+
+      /* Check localStorage for orders placed via checkout */
+      const localOrders = loadLocalOrders();
+      const order = ORDERS[raw] || localOrders[raw];
+
+      if (!order) {
+        $('errorBox').classList.add('visible');
+        return;
+      }
+
+      renderResult(order);
+    }
+
+    /* Try to read any orders saved by CheckoutModal into localStorage */
+    function loadLocalOrders() {
+      try {
+        return JSON.parse(localStorage.getItem('picadilly-orders') || '{}');
+      } catch { return {}; }
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       RENDER
+    ────────────────────────────────────────────────────────── */
+    function renderResult(order) {
+      const stages      = order.fulfilment === 'collection' ? STAGES_COLLECTION : STAGES_DELIVERY;
+      const activeIdx   = ACTIVE_STAGE[order.stage] ?? 0;
+      const statusLabel = STATUS_LABELS[order.stage] ?? order.stage;
+
+      /* Header */
+      $('displayRef').textContent    = order.ref;
+      $('displayStatus').textContent = statusLabel;
+
+      /* Meta rows */
+      const metaData = [
+        { label: 'Customer',    value: order.customer },
+        { label: 'Order Date',  value: order.placed   },
+        { label: 'Fabric',      value: order.fabric   },
+        { label: 'Fit',         value: order.fit      },
+        { label: 'Fulfilment',  value: order.fulfilment === 'delivery' ? 'White-Glove Delivery' : 'In-Store Collection' },
+        { label: 'Total',       value: order.total, gold: true },
+      ];
+      $('metaRows').innerHTML = metaData.map(r => `
+        <div class="meta-row">
+          <p class="meta-row__label">${r.label}</p>
+          <p class="meta-row__value ${r.gold ? 'meta-row__value--gold' : ''}">${r.value}</p>
+        </div>
+      `).join('');
+
+      /* Stage tracker */
+      $('stageList').innerHTML = stages.map((stage, i) => {
+        const done   = i < activeIdx;
+        const active = i === activeIdx;
+        const cls    = done ? 'stage--done' : active ? 'stage--active' : 'stage--pending';
+        const isLast = i === stages.length - 1;
+
+        return `
+          <div class="stage ${cls}">
+            <div class="stage__spine">
+              <div class="stage__node stage__node--${done ? 'done' : active ? 'active' : 'pending'}">
+                ${done
+                  ? '<span class="stage__node-check">✓</span>'
+                  : '<span class="stage__node-inner"></span>'
+                }
+              </div>
+              ${!isLast ? `<div class="stage__line ${done ? 'stage__line--done' : ''}"></div>` : ''}
+            </div>
+            <div class="stage__content">
+              <p class="stage__name">${stage.name}</p>
+              <p class="stage__sub">${active ? '⬤ ' + stage.sub : stage.sub}</p>
+              <p class="stage__eta">${stage.eta}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      /* Fulfilment box */
+      if (order.fulfilment === 'delivery') {
+        $('fulfilmentBox').innerHTML = `
+          <p class="fulfilment-box__label">Delivery Details</p>
+          <p class="fulfilment-box__title">White-Glove Delivery</p>
+          <p class="fulfilment-box__detail">${order.address || '—'}</p>
+          <p class="fulfilment-box__hours">
+            ${order.stage === 'delivery'
+              ? 'Your suit is on its way. Our courier will contact you 1 hour before arrival.'
+              : 'Delivery is scheduled once your suit passes final quality inspection.'}
+          </p>
+        `;
+      } else {
+        $('fulfilmentBox').innerHTML = `
+          <p class="fulfilment-box__label">Collection Details</p>
+          <p class="fulfilment-box__title">In-Store Collection</p>
+          <p class="fulfilment-box__detail">Far East Plaza, #04-13, 14 Scotts Road, Singapore 228213</p>
+          <p class="fulfilment-box__hours">Mon – Sat &nbsp;10:00 – 19:00 &nbsp;·&nbsp; Sun &nbsp;12:00 – 17:00</p>
+          ${order.preferredDate ? `<p class="fulfilment-box__hours" style="margin-top:4px;">Your preferred date: <strong style="color:var(--cream-muted)">${order.preferredDate}</strong></p>` : ''}
+          ${order.stage === 'collection' ? '<p class="fulfilment-box__detail" style="color:var(--gold);margin-top:6px;">Your suit is ready. Please bring this reference number when you collect.</p>' : ''}
+        `;
+      }
+
+      $('resultPanel').classList.add('visible');
+      $('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       ALLOW PRESSING ENTER IN INPUT
+    ────────────────────────────────────────────────────────── */
+    $('orderRef').addEventListener('keydown', e => {
+      if (e.key === 'Enter') lookupOrder();
+    });
+
+    /* ──────────────────────────────────────────────────────────
+       AUTO-LOAD IF ?ref= IN URL  (e.g. from confirmation email)
+    ────────────────────────────────────────────────────────── */
+    (function autoLoad() {
+      const params = new URLSearchParams(window.location.search);
+      const ref    = params.get('ref');
+      if (ref) {
+        $('orderRef').value = ref.toUpperCase();
+        lookupOrder();
+      }
+    })();
+  </script>
+
+</body>
+</html>
