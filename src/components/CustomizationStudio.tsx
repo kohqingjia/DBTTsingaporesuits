@@ -35,7 +35,7 @@ const linings = [
   { id: 'teal',    color: '#1A4A4A', name: 'Jade'      },
 ];
 
-interface SuitConfig {
+export interface SuitConfig {
   fabric: string;
   lapel: string;
   fit: string;
@@ -52,7 +52,7 @@ const DEFAULT_CONFIG: SuitConfig = {
 };
 
 /* ─── Component ──────────────────────────────────────────── */
-export default function CustomizationStudio() {
+export default function CustomizationStudio({ onCheckout }: { onCheckout?: (config: SuitConfig) => void }) {
   const [config, setConfig] = useState<SuitConfig>(DEFAULT_CONFIG);
   const [saved, setSaved] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -307,13 +307,21 @@ export default function CustomizationStudio() {
               </div>
             </div>
 
-            {/* Save + Consult */}
-            <div className="flex gap-4 pt-4 border-t border-gold/10">
+            {/* Save + Order */}
+            <div className="flex flex-col gap-3 pt-4 border-t border-gold/10">
+              <button
+                onClick={() => onCheckout?.(config)}
+                data-cursor
+                className="w-full py-4 bg-gold font-josefin text-[0.6rem] tracking-[0.3em] uppercase
+                  text-obsidian hover:bg-gold-light transition-colors duration-300"
+              >
+                Proceed to Order
+              </button>
               <button
                 onClick={saveLook}
                 data-cursor
-                className="flex-1 py-4 border border-gold/60 font-josefin text-[0.6rem] tracking-[0.3em] uppercase
-                  text-gold hover:bg-gold hover:text-obsidian transition-all duration-300"
+                className="w-full py-4 border border-gold/40 font-josefin text-[0.6rem] tracking-[0.3em] uppercase
+                  text-gold hover:border-gold/70 transition-all duration-300"
               >
                 <AnimatePresence mode="wait">
                   {saved ? (
@@ -327,14 +335,6 @@ export default function CustomizationStudio() {
                   )}
                 </AnimatePresence>
               </button>
-              <a
-                href="#contact"
-                data-cursor
-                className="flex-1 py-4 bg-gold font-josefin text-[0.6rem] tracking-[0.3em] uppercase
-                  text-obsidian hover:bg-gold-light transition-colors duration-300 text-center"
-              >
-                Book Fitting
-              </a>
             </div>
           </motion.div>
         </div>
