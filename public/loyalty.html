@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loyalty Programme — Picadilly Tailors</title>
+
+  <!-- Google Fonts — matches main site (Cormorant Garamond, Josefin Sans, DM Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────────
+       CSS CUSTOM PROPERTIES — matches globals.css
+    ───────────────────────────────────────────── */
+    :root {
+      --gold:        #C5A230;
+      --gold-light:  #D4B84A;
+      --gold-pale:   #F0E6C8;
+      --gold-dark:   #8A6E1A;
+      --obsidian:    #0A0A0A;
+      --obsidian-50: #1A1A1A;
+      --obsidian-100:#141414;
+      --cream:       #F5EFE0;
+      --cream-muted: #C8BEA8;
+      --smoke:       #252525;
+      --border:      rgba(197, 162, 48, 0.15);
+      --success:     #2D7A4F;
+      --error:       #8B2E2E;
+
+      --transition:  0.3s ease;
+    }
+
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--obsidian);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    /* ─────────────────────────────────────────────
+       LAYOUT
+    ───────────────────────────────────────────── */
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ─────────────────────────────────────────────
+       TOP NAV BAR
+       To link from the existing Next.js site, add
+       <a href="/loyalty.html"> in Navigation.tsx.
+    ───────────────────────────────────────────── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar__logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .topbar__back {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .topbar__back:hover { color: var(--cream); }
+
+    /* ─────────────────────────────────────────────
+       SECTION LABEL (small caps above headings)
+    ───────────────────────────────────────────── */
+    .section-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO / WELCOME HEADER
+    ───────────────────────────────────────────── */
+    .hero {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .hero__greeting { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream-muted); margin-bottom: 6px; }
+
+    .hero__name {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      color: var(--cream);
+    }
+
+    .hero__name span { color: var(--gold); font-style: italic; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border: 1px solid rgba(197, 162, 48, 0.6);
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .badge__dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ─────────────────────────────────────────────
+       POINTS BALANCE CARD
+    ───────────────────────────────────────────── */
+    .balance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 36px 0;
+    }
+
+    @media (max-width: 640px) { .balance-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--obsidian-50);
+      border: 1px solid var(--border);
+      padding: 32px;
+    }
+
+    .card--accent {
+      background: linear-gradient(135deg, var(--obsidian-100) 0%, var(--obsidian-50) 100%);
+      border-color: rgba(197, 162, 48, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle corner ornament */
+    .card--accent::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at top right, rgba(201,168,76,0.12), transparent 70%);
+    }
+
+    .balance__label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      margin-bottom: 12px;
+    }
+
+    .balance__value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6vw, 3.8rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .balance__unit {
+      font-size: 1rem;
+      color: var(--cream-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      margin-left: 4px;
+    }
+
+    /* ─────────────────────────────────────────────
+       PROGRESS BAR (tier progress)
+    ───────────────────────────────────────────── */
+    .progress-section { margin-top: 20px; }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--cream-muted);
+      margin-bottom: 10px;
+    }
+
+    .progress-meta strong { color: var(--gold-pale); }
+
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      background: var(--smoke);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      width: 0%; /* animated via JS */
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tier-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      margin-top: 8px;
+    }
+
+    /* member stats (right card) */
+    .stats-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+
+    .stats-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .stats-list__label { color: var(--cream-muted); font-family: 'DM Sans', sans-serif; }
+    .stats-list__value { color: var(--cream); font-weight: 500; }
+
+    /* ─────────────────────────────────────────────
+       SECTION HEADING
+    ───────────────────────────────────────────── */
+    .section-heading {
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      margin: 48px 0;
+    }
+
+    /* ─────────────────────────────────────────────
+       TRANSACTION HISTORY TABLE
+    ───────────────────────────────────────────── */
+    .table-wrapper { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    thead th {
+      text-align: left;
+      padding: 10px 14px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      font-weight: 400;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--smoke);
+      transition: background var(--transition);
+    }
+
+    tbody tr:hover { background: rgba(197, 162, 48, 0.03); }
+
+    tbody td {
+      padding: 14px 14px;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      vertical-align: middle;
+    }
+
+    .pts-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .pts-badge--earn { color: var(--gold); border: 1px solid rgba(201,168,76,0.35); }
+    .pts-badge--redeem { color: #e88; border: 1px solid rgba(220,80,80,0.3); }
+
+    .tx-type {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       REWARDS GRID
+    ───────────────────────────────────────────── */
+    .rewards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .reward-card {
+      background: var(--obsidian-50);
+      border: 1px solid var(--border);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color var(--transition), transform var(--transition);
+      position: relative;
+    }
+
+    .reward-card:hover {
+      border-color: rgba(197,162,48,0.5);
+      transform: translateY(-2px);
+    }
+
+    .reward-card--unavailable { opacity: 0.45; pointer-events: none; }
+
+    .reward-card__icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .reward-card__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+
+    .reward-card__desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      color: var(--cream-muted);
+      flex: 1;
+    }
+
+    .reward-card__cost {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .btn-redeem {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid rgba(197, 162, 48, 0.6);
+      color: var(--gold);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+
+    .btn-redeem:hover {
+      background: var(--gold);
+      color: var(--obsidian);
+      border-color: var(--gold);
+    }
+
+    .btn-redeem:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      border-color: var(--cream-muted);
+      color: var(--cream-muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       TOAST NOTIFICATION
+    ───────────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 36px;
+      right: 24px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+      max-width: 340px;
+    }
+
+    .toast--success {
+      background: var(--success);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+    }
+
+    .toast--error {
+      background: var(--error);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast__icon { font-size: 1rem; }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    .page-footer {
+      text-align: center;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--border);
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       UTILITY
+    ───────────────────────────────────────────── */
+    .mt-8  { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── TOP NAV ───────────────────────────────────
+       To link from Navigation.tsx add:
+         <a href="/loyalty.html">Loyalty Programme</a>
+  ─────────────────────────────────────────────── -->
+  <nav class="topbar">
+    <a href="/" class="topbar__logo">Picadilly Tailors</a>
+    <a href="/" class="topbar__back">&larr; Back to site</a>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- ── WELCOME HEADER ─────────────────────── -->
+    <header class="hero">
+      <div>
+        <p class="hero__greeting">Welcome back</p>
+        <h1 class="hero__name">James <span id="user-surname">Whitmore</span></h1>
+      </div>
+      <div class="badge">
+        <span class="badge__dot"></span>
+        <span id="member-tier">Gold Member</span>
+      </div>
+    </header>
+
+    <!-- ── BALANCE + STATS CARDS ──────────────── -->
+    <div class="balance-grid">
+
+      <!-- Points balance -->
+      <div class="card card--accent">
+        <p class="balance__label">Available Points</p>
+        <div>
+          <span class="balance__value" id="points-display">0</span>
+          <span class="balance__unit">pts</span>
+        </div>
+
+        <!-- Tier progress bar -->
+        <div class="progress-section mt-16">
+          <div class="progress-meta">
+            <span>Progress to <strong id="next-tier-name">Platinum</strong></span>
+            <span><strong id="points-needed">—</strong> pts needed</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="tier-labels">
+            <span id="current-tier-label">Gold</span>
+            <span id="next-tier-label">Platinum</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Member stats -->
+      <div class="card">
+        <p class="section-label">Member Summary</p>
+        <h2 class="section-heading" style="font-size:1.2rem; margin-bottom:20px;">Account Overview</h2>
+        <ul class="stats-list" id="stats-list">
+          <!-- populated by JS -->
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ── TRANSACTION HISTORY ─────────────────── -->
+    <section>
+      <p class="section-label">Points Activity</p>
+      <h2 class="section-heading">Transaction History</h2>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th style="text-align:right">Points</th>
+            </tr>
+          </thead>
+          <tbody id="tx-body">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── REDEEM REWARDS ─────────────────────── -->
+    <section>
+      <p class="section-label">Exclusive Benefits</p>
+      <h2 class="section-heading">Redeem Your Points</h2>
+
+      <div class="rewards-grid" id="rewards-grid">
+        <!-- populated by JS -->
+      </div>
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────── -->
+    <footer class="page-footer mt-16">
+      <p>&copy; 2025 Picadilly Tailors &mdash; Far East Plaza, Singapore</p>
+    </footer>
+
+  </div>
+
+  <!-- ── TOAST ─────────────────────────────────── -->
+  <div class="toast" id="toast" role="alert" aria-live="polite">
+    <span class="toast__icon" id="toast-icon"></span>
+    <span id="toast-msg"></span>
+  </div>
+
+
+  <script>
+    /* ─────────────────────────────────────────────────────────────
+       MOCK DATA
+       Replace with a real API call or localStorage when integrating
+       with the existing Next.js backend.
+    ───────────────────────────────────────────────────────────── */
+
+    const USER = {
+      firstName: 'James',
+      lastName:  'Whitmore',
+      tier:      'Gold',          // Silver | Gold | Platinum
+      points:    1250,
+      memberSince: 'March 2022',
+      totalSpend: 'SGD 4,800',
+      suitsOrdered: 3,
+    };
+
+    /* Tier thresholds (points required to reach next tier) */
+    const TIERS = [
+      { name: 'Silver',   min: 0,    max: 999  },
+      { name: 'Gold',     min: 1000, max: 2499 },
+      { name: 'Platinum', min: 2500, max: Infinity },
+    ];
+
+    /* Transaction history — most recent first */
+    const TRANSACTIONS = [
+      { date: '12 Jun 2025', description: 'Bespoke Navy Wool Suit',       type: 'earn',   points: +400 },
+      { date: '02 May 2025', description: 'Reward: 10% Off Suit',          type: 'redeem', points: -500 },
+      { date: '14 Mar 2025', description: 'Silk Pocket Square (x2)',       type: 'earn',   points: +60  },
+      { date: '28 Feb 2025', description: 'Bespoke Charcoal Suit',         type: 'earn',   points: +450 },
+      { date: '11 Jan 2025', description: 'Shirt Fitting — 3 shirts',      type: 'earn',   points: +150 },
+      { date: '05 Dec 2024', description: 'Reward: Complimentary Alteration', type: 'redeem', points: -200 },
+      { date: '18 Oct 2024', description: 'Bespoke Tuxedo',                type: 'earn',   points: +550 },
+      { date: '03 Aug 2024', description: 'Referral Bonus',                type: 'earn',   points: +100 },
+    ];
+
+    /* Available rewards catalogue
+       discountType: 'percent' | 'fixed' | 'service'
+       discountValue: number (% or SGD amount; 0 for service perks)
+    */
+    const REWARDS_CATALOGUE = [
+      {
+        id: 'disc10',
+        icon: '✦',
+        name: '10% Off Next Suit',
+        desc: 'Redeem against any full bespoke suit order. Valid for 90 days after redemption.',
+        cost: 500,
+        discountType: 'percent',
+        discountValue: 10,
+      },
+      {
+        id: 'alteration',
+        icon: '✂',
+        name: 'Complimentary Alteration',
+        desc: 'One complimentary alteration session — waist suppression, hemming, or sleeve shortening.',
+        cost: 200,
+        discountType: 'service',
+        discountValue: 0,
+      },
+      {
+        id: 'shirt',
+        icon: '◈',
+        name: 'Complimentary Shirt',
+        desc: 'A complimentary bespoke shirt with any new suit order. Choose from our standard cloth range.',
+        cost: 800,
+        discountType: 'service',
+        discountValue: 0,
+      },
+      {
+        id: 'disc20',
+        icon: '✦✦',
+        name: '20% Off Next Suit',
+        desc: 'Premium discount against any full bespoke suit order. Valid for 60 days after redemption.',
+        cost: 900,
+        discountType: 'percent',
+        discountValue: 20,
+      },
+      {
+        id: 'consultation',
+        icon: '◉',
+        name: 'Style Consultation',
+        desc: 'A private 60-minute styling consultation with our lead tailor — occasion dressing, wardrobe planning.',
+        cost: 350,
+        discountType: 'service',
+        discountValue: 0,
+      },
+      {
+        id: 'express',
+        icon: '◈◈',
+        name: 'Priority Express Tailoring',
+        desc: 'Jump the queue — your next suit completed in 10 working days instead of the standard 3–4 weeks.',
+        cost: 600,
+        discountType: 'service',
+        discountValue: 0,
+      },
+    ];
+
+
+    /* ─────────────────────────────────────────────────────────────
+       STATE
+    ───────────────────────────────────────────────────────────── */
+    let currentPoints = USER.points;
+
+
+    /* ─────────────────────────────────────────────────────────────
+       HELPERS
+    ───────────────────────────────────────────────────────────── */
+
+    /** Format number with thousands comma */
+    function fmtPoints(n) {
+      return n.toLocaleString('en-SG');
+    }
+
+    /** Determine tier object for a given point total */
+    function getTierFor(pts) {
+      return TIERS.find(t => pts >= t.min && pts <= t.max) || TIERS[0];
+    }
+
+    /** Show a toast notification */
+    let toastTimer;
+    function showToast(message, type = 'success') {
+      const toast   = document.getElementById('toast');
+      const msgEl   = document.getElementById('toast-msg');
+      const iconEl  = document.getElementById('toast-icon');
+
+      toast.classList.remove('toast--success', 'toast--error', 'is-visible');
+      msgEl.textContent  = message;
+      iconEl.textContent = type === 'success' ? '✓' : '✕';
+      toast.classList.add(type === 'success' ? 'toast--success' : 'toast--error');
+
+      /* Force reflow so transition fires even on rapid calls */
+      void toast.offsetWidth;
+      toast.classList.add('is-visible');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 3500);
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       RENDER FUNCTIONS
+    ───────────────────────────────────────────────────────────── */
+
+    /** Update points balance display + progress bar + tier badge */
+    function renderBalance() {
+      const tier     = getTierFor(currentPoints);
+      const tierIdx  = TIERS.indexOf(tier);
+      const nextTier = TIERS[tierIdx + 1] || null;
+
+      /* Big number */
+      document.getElementById('points-display').textContent = fmtPoints(currentPoints);
+
+      /* Tier badge */
+      document.getElementById('member-tier').textContent = tier.name + ' Member';
+
+      /* Progress bar */
+      if (nextTier) {
+        const range    = nextTier.min - tier.min;
+        const progress = currentPoints - tier.min;
+        const pct      = Math.min(100, Math.round((progress / range) * 100));
+        const needed   = nextTier.min - currentPoints;
+
+        document.getElementById('next-tier-name').textContent   = nextTier.name;
+        document.getElementById('points-needed').textContent    = fmtPoints(needed);
+        document.getElementById('current-tier-label').textContent = tier.name;
+        document.getElementById('next-tier-label').textContent    = nextTier.name;
+
+        /* Slight delay so CSS transition is visible on page load */
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.getElementById('progress-fill').style.width = pct + '%';
+          });
+        });
+      } else {
+        /* Already at highest tier */
+        document.getElementById('next-tier-name').textContent   = 'Max Tier';
+        document.getElementById('points-needed').textContent    = '—';
+        document.getElementById('progress-fill').style.width   = '100%';
+        document.getElementById('current-tier-label').textContent = 'Platinum';
+        document.getElementById('next-tier-label').textContent    = '';
+      }
+    }
+
+    /** Render member stats sidebar */
+    function renderStats() {
+      const statsEl = document.getElementById('stats-list');
+      const rows = [
+        { label: 'Member Since',   value: USER.memberSince },
+        { label: 'Total Spend',    value: USER.totalSpend },
+        { label: 'Suits Ordered',  value: USER.suitsOrdered },
+        { label: 'Current Tier',   value: getTierFor(currentPoints).name },
+      ];
+
+      statsEl.innerHTML = rows.map(r => `
+        <li>
+          <span class="stats-list__label">${r.label}</span>
+          <span class="stats-list__value">${r.value}</span>
+        </li>
+      `).join('');
+    }
+
+    /** Render transaction history table */
+    function renderTransactions() {
+      const tbody = document.getElementById('tx-body');
+      tbody.innerHTML = TRANSACTIONS.map(tx => {
+        const isEarn  = tx.type === 'earn';
+        const sign    = isEarn ? '+' : '−';
+        const badgeCls = isEarn ? 'pts-badge--earn' : 'pts-badge--redeem';
+        return `
+          <tr>
+            <td>${tx.date}</td>
+            <td>${tx.description}</td>
+            <td><span class="tx-type">${isEarn ? 'Purchase' : 'Redemption'}</span></td>
+            <td style="text-align:right">
+              <span class="pts-badge ${badgeCls}">${sign}${Math.abs(tx.points)}</span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    /** Render rewards grid — re-run after each redemption to refresh disabled states */
+    function renderRewards() {
+      const grid = document.getElementById('rewards-grid');
+      grid.innerHTML = REWARDS_CATALOGUE.map(reward => {
+        const canAfford   = currentPoints >= reward.cost;
+        const disabledAttr = canAfford ? '' : 'disabled';
+        const unavailCls   = canAfford ? '' : ' reward-card--unavailable';
+        return `
+          <div class="reward-card${unavailCls}" id="card-${reward.id}">
+            <div class="reward-card__icon">${reward.icon}</div>
+            <div class="reward-card__name">${reward.name}</div>
+            <div class="reward-card__desc">${reward.desc}</div>
+            <div class="reward-card__cost">${fmtPoints(reward.cost)} pts required</div>
+            <button
+              class="btn-redeem"
+              ${disabledAttr}
+              onclick="redeemReward('${reward.id}', ${reward.cost}, '${reward.name}')"
+              aria-label="Redeem ${reward.name} for ${reward.cost} points"
+            >
+              Redeem
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       REDEMPTION LOGIC
+    ───────────────────────────────────────────────────────────── */
+
+    /**
+     * Attempt to redeem a reward.
+     * @param {string} rewardId   - ID from REWARDS_CATALOGUE
+     * @param {number} cost       - Points cost
+     * @param {string} rewardName - Display name for toast message
+     */
+    function redeemReward(rewardId, cost, rewardName) {
+      if (currentPoints < cost) {
+        showToast(`Insufficient points to redeem "${rewardName}".`, 'error');
+        return;
+      }
+
+      /* Deduct points */
+      currentPoints -= cost;
+
+      /* Add redemption to transaction history (prepend to top) */
+      TRANSACTIONS.unshift({
+        date:        new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+        description: `Reward: ${rewardName}`,
+        type:        'redeem',
+        points:      -cost,
+      });
+
+      /* ── Save voucher to localStorage so checkout can read it ── */
+      const reward = REWARDS_CATALOGUE.find(r => r.id === rewardId);
+      if (reward) {
+        const existing = JSON.parse(localStorage.getItem('picadilly-vouchers') || '[]');
+        existing.push({
+          voucherId:     'VCH-' + Math.random().toString(36).toUpperCase().slice(2, 8),
+          rewardId:      reward.id,
+          name:          reward.name,
+          icon:          reward.icon,
+          discountType:  reward.discountType,
+          discountValue: reward.discountValue,
+          redeemedAt:    new Date().toISOString(),
+          used:          false,
+        });
+        localStorage.setItem('picadilly-vouchers', JSON.stringify(existing));
+      }
+
+      /* Re-render everything that depends on point balance */
+      renderBalance();
+      renderStats();
+      renderTransactions();
+      renderRewards();
+
+      const checkoutHint = reward && reward.discountType !== 'service'
+        ? ' Apply it at checkout to save on your next order.'
+        : ' Our team will confirm this perk with your next order.';
+
+      showToast(`"${rewardName}" redeemed successfully.${checkoutHint}`, 'success');
+    }
+
+
+    /* ─────────────────────────────────────────────────────────────
+       INITIALISE
+    ───────────────────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderBalance();
+      renderStats();
+      renderTransactions();
+      renderRewards();
+    });
+  </script>
+
+</body>
+</html>

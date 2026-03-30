@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navLinks = [
   { label: 'Heritage', href: '#heritage' },
   { label: 'Bespoke', href: '#customization' },
+  { label: 'Body Scan', href: '#body-scan' },
   { label: 'Atelier', href: '#craftsmanship' },
   { label: 'Gallery', href: '#gallery' },
 ];
@@ -77,6 +78,12 @@ export default function Navigation() {
               </button>
             ))}
             <a
+              href="/loyalty.html"
+              className="hover-underline font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted hover:text-cream transition-colors duration-300"
+            >
+              Loyalty
+            </a>
+            <a
               href="#contact"
               className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase px-5 py-2.5 border border-gold/60 text-gold hover:bg-gold hover:text-obsidian transition-all duration-300"
             >
@@ -119,6 +126,15 @@ export default function Navigation() {
                 {link.label}
               </motion.button>
             ))}
+            <motion.a
+              href="/loyalty.html"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: (navLinks.length + 1) * 0.08, duration: 0.5 }}
+              className="font-cormorant text-4xl font-light text-gold hover:text-gold-light transition-colors duration-300"
+            >
+              Loyalty
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>
