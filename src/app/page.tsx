@@ -14,12 +14,14 @@ import Gallery from '@/components/Gallery';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
+import BookingSection from '@/components/BookingSection';
 import CheckoutModal from '@/components/CheckoutModal';
 
 export default function Home() {
   const [selectedOccasion, setSelectedOccasion] = useState<string>('');
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [checkoutConfig, setCheckoutConfig] = useState<SuitConfig | null>(null);
+  const [stylistConfig, setStylistConfig] = useState<Partial<SuitConfig> | undefined>(undefined);
 
   function handleCheckout(config: SuitConfig) {
     setCheckoutConfig(config);
@@ -39,15 +41,23 @@ export default function Home() {
 
       {/* Main content */}
       <main>
+        {/* ── Discovery ── */}
         <Hero />
         <Heritage />
-        <OccasionSelector onSelect={setSelectedOccasion} />
-        <AIStylist selectedOccasion={selectedOccasion} />
-        <CustomizationStudio onCheckout={handleCheckout} />
-        <BodyScan3D />
-        <AIColorAnalysis />
-        <CraftsmanshipSection />
         <Gallery />
+        <CraftsmanshipSection />
+
+        {/* ── Personalisation ── */}
+        <AIColorAnalysis />
+        <OccasionSelector onSelect={setSelectedOccasion} />
+        <AIStylist selectedOccasion={selectedOccasion} onApplyToStudio={setStylistConfig} />
+
+        {/* ── Configuration & Order ── */}
+        <CustomizationStudio onCheckout={handleCheckout} initialConfig={stylistConfig} />
+        <BodyScan3D />
+
+        {/* ── Reassurance ── */}
+        <BookingSection />
         <Testimonials />
       </main>
 

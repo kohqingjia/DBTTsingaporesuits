@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { SuitConfig } from './CustomizationStudio';
 
 /* ─── Types ──────────────────────────────────────────────── */
 interface OutfitItem {
@@ -35,6 +36,52 @@ interface Message {
 
 interface AIStylistProps {
   selectedOccasion?: string;
+  onApplyToStudio?: (config: SuitConfig) => void;
+}
+
+/* ─── Map AI recommendation → SuitConfig ─────────────────── */
+function mapRecommendationToConfig(rec: StyleRecommendation): SuitConfig {
+  const colour = (rec.recommendation.suit.colour ?? '').toLowerCase();
+  const fabric = (rec.recommendation.suit.fabric ?? '').toLowerCase();
+  const combined = colour + ' ' + fabric;
+
+  // Fabric mapping
+  let fabricId: SuitConfig['fabric'] = 'navy-herringbone';
+  if (combined.includes('charcoal'))                                    fabricId = 'charcoal-wool';
+  else if (combined.includes('navy') || combined.includes('blue'))      fabricId = 'navy-herringbone';
+  else if (combined.includes('midnight') || combined.includes('black') || combined.includes('velvet')) fabricId = 'midnight-velvet';
+  else if (combined.includes('slate') || combined.includes('grey') || combined.includes('gray') || combined.includes('flannel')) fabricId = 'slate-flannel';
+  else if (combined.includes('ivory') || combined.includes('cream') || combined.includes('beige') || combined.includes('linen')) fabricId = 'ivory-linen';
+  else if (combined.includes('burgundy') || combined.includes('wine') || combined.includes('maroon') || combined.includes('red')) fabricId = 'burgundy-wool';
+
+  // Lapel — infer from occasion via the stylist note / fabric
+  let lapel: SuitConfig['lapel'] = 'notch';
+  const note = (rec.stylistNote ?? '').toLowerCase();
+  const explanation = (rec.styleExplanation ?? '').toLowerCase();
+  const context = note + ' ' + explanation;
+  if (fabricId === 'midnight-velvet' || context.includes('black tie') || context.includes('evening')) lapel = 'shawl';
+  else if (context.includes('wedding') || context.includes('formal') || context.includes('corporate') || context.includes('interview')) lapel = 'peak';
+
+  // Fit
+  let fit: SuitConfig['fit'] = 'tailored';
+  if (context.includes('slim') || context.includes('modern')) fit = 'slim';
+  else if (context.includes('relaxed') || context.includes('comfort') || context.includes('casual')) fit = 'relaxed';
+
+  // Lining — pick from colour palette
+  let lining: SuitConfig['lining'] = 'black';
+  if (rec.palette && rec.palette.length > 0) {
+    const paletteNames = rec.palette.map(p => p.name.toLowerCase()).join(' ');
+    if (paletteNames.includes('gold') || paletteNames.includes('amber'))        lining = 'gold';
+    else if (paletteNames.includes('navy') || paletteNames.includes('blue'))    lining = 'navy';
+    else if (paletteNames.includes('burgundy') || paletteNames.includes('red') || paletteNames.includes('wine')) lining = 'red';
+    else if (paletteNames.includes('teal') || paletteNames.includes('green'))   lining = 'teal';
+    else if (paletteNames.includes('ivory') || paletteNames.includes('cream'))  lining = 'ivory';
+  }
+
+  // Buttons
+  const buttons: number = lapel === 'shawl' ? 1 : 2;
+
+  return { fabric: fabricId, lapel, fit, lining, buttons };
 }
 
 /* ─── Budget Optimiser Types ─────────────────────────────── */
@@ -101,7 +148,7 @@ const OCCASIONS = ['Wedding', 'Corporate', 'Black Tie', 'Smart Casual', 'Special
 const STYLES = ['Classic', 'Modern', 'Bold'];
 
 /* ─── Component ──────────────────────────────────────────── */
-export default function AIStylist({ selectedOccasion }: AIStylistProps) {
+export default function AIStylist({ selectedOccasion, onApplyToStudio }: AIStylistProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<'stylist' | 'budget'>('stylist');
@@ -370,7 +417,7 @@ export default function AIStylist({ selectedOccasion }: AIStylistProps) {
 
                           {/* Recommendation cards */}
                           {msg.recommendation && (
-                            <RecommendationCard rec={msg.recommendation} />
+                            <RecommendationCard rec={msg.recommendation} onApplyToStudio={onApplyToStudio} />
                           )}
                         </motion.div>
                       )}
@@ -467,7 +514,7 @@ export default function AIStylist({ selectedOccasion }: AIStylistProps) {
 }
 
 /* ─── Recommendation Card ────────────────────────────────── */
-function RecommendationCard({ rec }: { rec: StyleRecommendation }) {
+function RecommendationCard({ rec, onApplyToStudio }: { rec: StyleRecommendation; onApplyToStudio?: (config: SuitConfig) => void }) {
   const items = [
     { label: 'Suit', item: rec.recommendation.suit },
     { label: 'Shirt', item: rec.recommendation.shirt },
@@ -546,11 +593,25 @@ function RecommendationCard({ rec }: { rec: StyleRecommendation }) {
       )}
 
       {/* CTA */}
-      <div className="flex gap-3 pt-2">
+      <div className="flex flex-col gap-3 pt-2">
+        {onApplyToStudio && (
+          <button
+            data-cursor
+            onClick={() => {
+              const config = mapRecommendationToConfig(rec);
+              onApplyToStudio(config);
+              document.querySelector('#customization')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="w-full py-4 bg-gold font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-obsidian hover:bg-gold-light transition-colors duration-300"
+          >
+            Build This Suit
+          </button>
+        )}
         <a
-          href="#contact"
+          href="#booking"
+          onClick={e => { e.preventDefault(); document.querySelector('#booking')?.scrollIntoView({ behavior: 'smooth' }); }}
           data-cursor
-          className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase px-6 py-3 bg-gold text-obsidian hover:bg-gold-light transition-colors duration-300"
+          className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase px-6 py-3 border border-gold/40 text-gold hover:border-gold/70 transition-all duration-300 text-center"
         >
           Book a Fitting
         </a>

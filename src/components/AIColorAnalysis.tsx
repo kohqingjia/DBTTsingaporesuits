@@ -132,7 +132,7 @@ export default function AIColorAnalysis() {
   };
 
   return (
-    <section ref={sectionRef} className="relative bg-obsidian py-28 overflow-hidden">
+    <section ref={sectionRef} id="color-analysis" className="relative bg-obsidian py-28 overflow-hidden">
       {/* Radial accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
 

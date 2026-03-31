@@ -676,6 +676,8 @@ function StepDetails({
 /* ─────────────────────────────────────────────────────────────
    STEP 3 — PAYMENT
 ───────────────────────────────────────────────────────────── */
+type PaymentMethod = 'card' | 'paynow' | 'applepay' | 'googlepay';
+
 interface PaymentForm {
   cardName: string;
   cardNumber: string;
@@ -692,6 +694,13 @@ function formatExpiry(raw: string): string {
   if (digits.length > 2) return digits.slice(0, 2) + ' / ' + digits.slice(2);
   return digits;
 }
+
+const PAYMENT_METHODS: { key: PaymentMethod; label: string; sublabel: string }[] = [
+  { key: 'card',      label: 'Credit / Debit Card', sublabel: 'Visa, Mastercard, Amex' },
+  { key: 'paynow',    label: 'PayNow',               sublabel: 'Scan QR with your banking app' },
+  { key: 'applepay',  label: 'Apple Pay',             sublabel: 'Pay with Face ID or Touch ID' },
+  { key: 'googlepay', label: 'Google Pay',            sublabel: 'Pay with your Google account' },
+];
 
 function StepPayment({
   config,
@@ -710,9 +719,11 @@ function StepPayment({
   onBack: () => void;
   placing: boolean;
 }) {
+  const [method, setMethod] = useState<PaymentMethod>('card');
   const set = (k: keyof PaymentForm) => (v: string) => onChange({ ...form, [k]: v });
   const pricing = calcPrice(config, appliedVoucher);
-  const valid = form.cardName && form.cardNumber.replace(/\s/g, '').length === 16 && form.expiry.length >= 7 && form.cvv.length >= 3;
+  const cardValid = form.cardName && form.cardNumber.replace(/\s/g, '').length === 16 && form.expiry.length >= 7 && form.cvv.length >= 3;
+  const valid = method === 'card' ? !!cardValid : true;
 
   return (
     <div className="flex flex-col gap-8">
@@ -744,65 +755,171 @@ function StepPayment({
         </div>
       </div>
 
+      {/* Payment method selector */}
+      <div>
+        <p className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted mb-3">
+          Payment Method
+        </p>
+        <div className="flex flex-col gap-2">
+          {PAYMENT_METHODS.map(({ key, label, sublabel }) => (
+            <button
+              key={key}
+              onClick={() => setMethod(key)}
+              className={`w-full flex items-center justify-between px-5 py-4 border transition-all duration-200
+                ${method === key
+                  ? 'border-gold/60 bg-gold/5'
+                  : 'border-smoke hover:border-gold/30 bg-transparent'}`}
+            >
+              <div className="flex flex-col items-start gap-0.5">
+                <span className={`font-josefin text-[0.6rem] tracking-[0.2em] uppercase transition-colors duration-200
+                  ${method === key ? 'text-gold' : 'text-cream-muted'}`}>
+                  {label}
+                </span>
+                <span className="font-dm text-[0.68rem] text-cream-muted/50">{sublabel}</span>
+              </div>
+              {/* Selection indicator */}
+              <span className={`w-3.5 h-3.5 border flex-shrink-0 flex items-center justify-center transition-all duration-200
+                ${method === key ? 'border-gold bg-gold' : 'border-cream-muted/30'}`}>
+                {method === key && (
+                  <span className="w-1.5 h-1.5 bg-obsidian block" />
+                )}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Card form */}
-      <Field
-        label="Name on Card" id="cardName"
-        value={form.cardName} onChange={set('cardName')} required
-        placeholder="James Whitmore"
-      />
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="cardNumber" className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted">
-          Card Number <span className="text-gold">*</span>
-        </label>
-        <div className="relative">
-          <input
-            id="cardNumber"
-            type="text"
-            inputMode="numeric"
-            value={form.cardNumber}
-            onChange={e => set('cardNumber')(formatCard(e.target.value))}
-            placeholder="0000 0000 0000 0000"
-            className="w-full bg-obsidian border border-smoke font-dm text-sm text-cream px-4 py-3 outline-none
-              placeholder:text-cream-muted/30 focus:border-gold/50 transition-colors duration-200 tracking-widest"
+      {method === 'card' && (
+        <div className="flex flex-col gap-6">
+          <Field
+            label="Name on Card" id="cardName"
+            value={form.cardName} onChange={set('cardName')} required
+            placeholder="James Whitmore"
           />
-          {/* Card type hint */}
-          <span className="absolute right-4 top-1/2 -translate-y-1/2 font-josefin text-[0.5rem] tracking-widest uppercase text-cream-muted/40">
-            {form.cardNumber.startsWith('4') ? 'VISA' : form.cardNumber.startsWith('5') ? 'MC' : 'CARD'}
-          </span>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="cardNumber" className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted">
+              Card Number <span className="text-gold">*</span>
+            </label>
+            <div className="relative">
+              <input
+                id="cardNumber"
+                type="text"
+                inputMode="numeric"
+                value={form.cardNumber}
+                onChange={e => set('cardNumber')(formatCard(e.target.value))}
+                placeholder="0000 0000 0000 0000"
+                className="w-full bg-obsidian border border-smoke font-dm text-sm text-cream px-4 py-3 outline-none
+                  placeholder:text-cream-muted/30 focus:border-gold/50 transition-colors duration-200 tracking-widest"
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 font-josefin text-[0.5rem] tracking-widest uppercase text-cream-muted/40">
+                {form.cardNumber.startsWith('4') ? 'VISA' : form.cardNumber.startsWith('5') ? 'MC' : form.cardNumber.startsWith('3') ? 'AMEX' : 'CARD'}
+              </span>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="expiry" className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted">
+                Expiry <span className="text-gold">*</span>
+              </label>
+              <input
+                id="expiry"
+                type="text"
+                inputMode="numeric"
+                value={form.expiry}
+                onChange={e => set('expiry')(formatExpiry(e.target.value))}
+                placeholder="MM / YY"
+                className="bg-obsidian border border-smoke font-dm text-sm text-cream px-4 py-3 outline-none
+                  placeholder:text-cream-muted/30 focus:border-gold/50 transition-colors duration-200"
+              />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="cvv" className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted">
+                CVV <span className="text-gold">*</span>
+              </label>
+              <input
+                id="cvv"
+                type="password"
+                inputMode="numeric"
+                value={form.cvv}
+                onChange={e => set('cvv')(e.target.value.replace(/\D/g, '').slice(0, 4))}
+                placeholder="•••"
+                className="bg-obsidian border border-smoke font-dm text-sm text-cream px-4 py-3 outline-none
+                  placeholder:text-cream-muted/30 focus:border-gold/50 transition-colors duration-200"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="expiry" className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted">
-            Expiry <span className="text-gold">*</span>
-          </label>
-          <input
-            id="expiry"
-            type="text"
-            inputMode="numeric"
-            value={form.expiry}
-            onChange={e => set('expiry')(formatExpiry(e.target.value))}
-            placeholder="MM / YY"
-            className="bg-obsidian border border-smoke font-dm text-sm text-cream px-4 py-3 outline-none
-              placeholder:text-cream-muted/30 focus:border-gold/50 transition-colors duration-200"
-          />
+      )}
+
+      {/* PayNow QR */}
+      {method === 'paynow' && (
+        <div className="flex flex-col items-center gap-5 border border-gold/10 bg-obsidian-50 py-8 px-6">
+          <p className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted">Scan to Pay</p>
+          {/* QR placeholder */}
+          <div className="w-36 h-36 bg-cream flex items-center justify-center">
+            <svg viewBox="0 0 80 80" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+              {/* QR corners */}
+              <rect x="4" y="4" width="28" height="28" fill="none" stroke="#0A0A0A" strokeWidth="4"/>
+              <rect x="10" y="10" width="16" height="16" fill="#0A0A0A"/>
+              <rect x="48" y="4" width="28" height="28" fill="none" stroke="#0A0A0A" strokeWidth="4"/>
+              <rect x="54" y="10" width="16" height="16" fill="#0A0A0A"/>
+              <rect x="4" y="48" width="28" height="28" fill="none" stroke="#0A0A0A" strokeWidth="4"/>
+              <rect x="10" y="54" width="16" height="16" fill="#0A0A0A"/>
+              {/* QR body dots */}
+              <rect x="40" y="40" width="6" height="6" fill="#0A0A0A"/>
+              <rect x="50" y="40" width="6" height="6" fill="#0A0A0A"/>
+              <rect x="60" y="40" width="14" height="6" fill="#0A0A0A"/>
+              <rect x="40" y="50" width="14" height="6" fill="#0A0A0A"/>
+              <rect x="60" y="50" width="6" height="6" fill="#0A0A0A"/>
+              <rect x="40" y="60" width="6" height="14" fill="#0A0A0A"/>
+              <rect x="50" y="62" width="6" height="6" fill="#0A0A0A"/>
+              <rect x="60" y="58" width="14" height="6" fill="#0A0A0A"/>
+            </svg>
+          </div>
+          <div className="text-center">
+            <p className="font-cormorant text-lg font-light text-cream">Picadilly Tailors Pte Ltd</p>
+            <p className="font-dm text-xs text-cream-muted/60 mt-1">UEN: 197300123K</p>
+          </div>
+          <p className="font-dm text-xs text-cream-muted/50 text-center leading-relaxed max-w-xs">
+            Open your banking app, select PayNow, and scan the QR code above. The payment reference will be sent to your email upon confirmation.
+          </p>
         </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="cvv" className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted">
-            CVV <span className="text-gold">*</span>
-          </label>
-          <input
-            id="cvv"
-            type="password"
-            inputMode="numeric"
-            value={form.cvv}
-            onChange={e => set('cvv')(e.target.value.replace(/\D/g, '').slice(0, 4))}
-            placeholder="•••"
-            className="bg-obsidian border border-smoke font-dm text-sm text-cream px-4 py-3 outline-none
-              placeholder:text-cream-muted/30 focus:border-gold/50 transition-colors duration-200"
-          />
+      )}
+
+      {/* Apple Pay */}
+      {method === 'applepay' && (
+        <div className="flex flex-col items-center gap-5 border border-gold/10 bg-obsidian-50 py-8 px-6">
+          <svg viewBox="0 0 64 24" width="80" height="30" xmlns="http://www.w3.org/2000/svg" aria-label="Apple Pay">
+            <text x="0" y="20" fontFamily="sans-serif" fontSize="20" fontWeight="600" fill="#F5EFE0"></text>
+            <path d="M11.5 3.5c1-.1 2 .4 2.7 1.1-.7.8-1.8 1.4-2.8 1.3C10.4 6 9.4 5.4 8.8 4.7c.7-.8 1.7-1.2 2.7-1.2zm3.6 2.9c1.5.9 2.5 2.5 2.5 4.2 0 .5-.1 1-.2 1.4-.4 1.4-1.3 2.6-2.4 3.5-.7.5-1.4.8-2.1.8-.8 0-1.3-.3-2-.3s-1.3.3-2 .3c-.7 0-1.4-.3-2.1-.8-1-.8-1.9-2-2.3-3.4C4.3 11.4 4 10.5 4 9.5c0-1.6.6-3 1.6-4 .9-.9 2.1-1.4 3.3-1.4.8 0 1.6.3 2.3.3.6 0 1.4-.3 2.2-.3.5 0 1 .1 1.7.3z" fill="#F5EFE0"/>
+            <text x="22" y="18" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="13" fontWeight="500" fill="#F5EFE0">Pay</text>
+          </svg>
+          <p className="font-dm text-sm text-cream-muted/70 text-center leading-relaxed max-w-xs">
+            You will be prompted to confirm payment with Face ID or Touch ID on your Apple device.
+          </p>
+          <p className="font-dm text-xs text-cream-muted/40 text-center">
+            Apple Pay is available on Safari on iOS and macOS.
+          </p>
         </div>
-      </div>
+      )}
+
+      {/* Google Pay */}
+      {method === 'googlepay' && (
+        <div className="flex flex-col items-center gap-5 border border-gold/10 bg-obsidian-50 py-8 px-6">
+          <div className="flex items-center gap-1">
+            <span style={{ fontFamily: 'sans-serif', fontSize: 22, fontWeight: 400, color: '#4285F4' }}>G</span>
+            <span style={{ fontFamily: 'sans-serif', fontSize: 22, fontWeight: 400, color: '#F5EFE0' }}>oogle</span>
+            <span style={{ fontFamily: 'sans-serif', fontSize: 22, fontWeight: 400, color: '#F5EFE0', marginLeft: 6 }}>Pay</span>
+          </div>
+          <p className="font-dm text-sm text-cream-muted/70 text-center leading-relaxed max-w-xs">
+            You will be redirected to Google Pay to complete your payment securely using your saved Google account.
+          </p>
+          <p className="font-dm text-xs text-cream-muted/40 text-center">
+            Ensure you are signed in to your Google account on this device.
+          </p>
+        </div>
+      )}
 
       {/* Security note */}
       <p className="font-dm text-xs text-cream-muted/50 leading-relaxed">

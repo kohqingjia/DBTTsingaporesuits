@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 
@@ -52,11 +52,27 @@ const DEFAULT_CONFIG: SuitConfig = {
 };
 
 /* ─── Component ──────────────────────────────────────────── */
-export default function CustomizationStudio({ onCheckout }: { onCheckout?: (config: SuitConfig) => void }) {
+export default function CustomizationStudio({
+  onCheckout,
+  initialConfig,
+}: {
+  onCheckout?: (config: SuitConfig) => void;
+  initialConfig?: Partial<SuitConfig>;
+}) {
   const [config, setConfig] = useState<SuitConfig>(DEFAULT_CONFIG);
   const [saved, setSaved] = useState(false);
+  const [appliedFromStylist, setAppliedFromStylist] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: '-80px' });
+
+  // Sync initialConfig from AI Stylist whenever it changes
+  useEffect(() => {
+    if (!initialConfig) return;
+    setConfig(prev => ({ ...prev, ...initialConfig }));
+    setAppliedFromStylist(true);
+    const t = setTimeout(() => setAppliedFromStylist(false), 3000);
+    return () => clearTimeout(t);
+  }, [initialConfig]);
 
   const activeFabric = fabrics.find(f => f.id === config.fabric) ?? fabrics[0];
 
@@ -96,6 +112,27 @@ export default function CustomizationStudio({ onCheckout }: { onCheckout?: (conf
             className="w-16 h-px bg-gold mx-auto"
           />
         </div>
+
+        {/* ── AI Stylist applied banner ── */}
+        <AnimatePresence>
+          {appliedFromStylist && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4 }}
+              className="mb-8 border border-gold/30 bg-gold/5 px-6 py-4 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-4">
+                <span className="w-1.5 h-1.5 bg-gold block flex-shrink-0" />
+                <p className="font-josefin text-[0.6rem] tracking-[0.25em] uppercase text-gold">
+                  Your AI Stylist selection has been applied
+                </p>
+              </div>
+              <p className="font-dm text-xs text-cream-muted/50">Adjust any option below to personalise further</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="grid lg:grid-cols-[1fr_420px] gap-12 items-start">
 
@@ -335,6 +372,21 @@ export default function CustomizationStudio({ onCheckout }: { onCheckout?: (conf
                   )}
                 </AnimatePresence>
               </button>
+
+              {/* 3D Body Scan prompt */}
+              <p className="font-dm text-[0.72rem] text-cream-muted/50 text-center pt-1">
+                Unsure of your measurements?{' '}
+                <a
+                  href="#body-scan"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector('#body-scan')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="text-gold/70 hover:text-gold underline underline-offset-2 transition-colors duration-200 cursor-pointer"
+                >
+                  Use our 3D Body Scanning service
+                </a>
+              </p>
             </div>
           </motion.div>
         </div>

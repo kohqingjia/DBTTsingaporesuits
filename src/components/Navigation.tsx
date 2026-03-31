@@ -6,10 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
   { label: 'Heritage', href: '#heritage' },
-  { label: 'Bespoke', href: '#customization' },
-  { label: 'Body Scan', href: '#body-scan' },
-  { label: 'Atelier', href: '#craftsmanship' },
-  { label: 'Gallery', href: '#gallery' },
+  { label: 'Gallery',  href: '#gallery' },
+  { label: 'Atelier',  href: '#craftsmanship' },
+  { label: 'Bespoke',  href: '#customization' },
+  { label: 'Body Scan',href: '#body-scan' },
+  { label: 'Book',     href: '#booking' },
 ];
 
 export default function Navigation() {

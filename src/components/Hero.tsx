@@ -110,6 +110,13 @@ export default function Hero() {
           >
             Build Your Suit
           </a>
+          <a
+            href="#color-analysis"
+            onClick={(e) => { e.preventDefault(); document.querySelector('#color-analysis')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase px-7 py-3 border border-gold/60 text-gold hover:bg-gold/10 transition-colors duration-300"
+          >
+            Discover Your Colours
+          </a>
         </motion.div>
       </motion.div>
 

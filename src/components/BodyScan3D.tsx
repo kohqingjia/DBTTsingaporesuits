@@ -460,8 +460,18 @@ function OrbitalRing({ displayAngle, phase }: { displayAngle: number; phase: Pha
 /* ─────────────────────────────────────────────────────────────
    MAIN COMPONENT
 ───────────────────────────────────────────────────────────── */
+const EMPTY_MANUAL: Measurements = {
+  chest: 0, waist: 0, hips: 0, shoulder: 0,
+  sleeveLength: 0, jacketLength: 0, inseam: 0, neck: 0, thigh: 0,
+};
+
 export default function BodyScan3D() {
   const sectionRef = useRef<HTMLElement>(null);
+
+  // Mode toggle
+  const [mode, setMode] = useState<'scan' | 'manual'>('scan');
+  const [manualMeasurements, setManualMeasurements] = useState<Measurements>(EMPTY_MANUAL);
+  const [manualSaved, setManualSaved] = useState(false);
 
   const [phase, setPhase]               = useState<Phase>('idle');
   const [displayAngle, setDisplayAngle] = useState(0);
@@ -475,6 +485,19 @@ export default function BodyScan3D() {
   const [measurements, setMeasurements] = useState<Measurements | null>(null);
   const [toast, setToast]               = useState<string | null>(null);
   const toastTimer                      = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const manualValid = MEASUREMENT_LABELS.every(({ key }) => (manualMeasurements[key] ?? 0) > 0);
+
+  function setManualField(key: keyof Measurements, raw: string) {
+    const val = parseFloat(raw);
+    setManualMeasurements(prev => ({ ...prev, [key]: isNaN(val) ? 0 : val }));
+  }
+
+  function saveManual() {
+    setManualSaved(true);
+    showToast('Measurements saved to your profile.');
+    setTimeout(() => setManualSaved(false), 2500);
+  }
 
   function showToast(msg: string) {
     setToast(msg);
@@ -612,6 +635,25 @@ export default function BodyScan3D() {
               extracting nine bespoke measurements with sub-millimetre precision.
             </p>
           </div>
+
+          {/* Mode toggle */}
+          <div className="mt-8 flex gap-0 border border-gold/20 self-start inline-flex">
+            {([
+              { key: 'scan',   label: '3D Body Scan' },
+              { key: 'manual', label: 'Enter Manually' },
+            ] as const).map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => setMode(key)}
+                className={`px-7 py-3 font-josefin text-[0.58rem] tracking-[0.25em] uppercase transition-all duration-200
+                  ${mode === key
+                    ? 'bg-gold text-obsidian'
+                    : 'text-cream-muted hover:text-cream'}`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* ── Main panel ── */}
@@ -687,8 +729,85 @@ export default function BodyScan3D() {
           {/* ── RIGHT: Controls / Results ── */}
           <div className="flex flex-col">
 
+            {/* ── MANUAL ENTRY MODE ── */}
+            {mode === 'manual' && (
+              <motion.div
+                key="manual"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col h-full"
+              >
+                {/* Header */}
+                <div className="px-8 py-5 border-b border-gold/10">
+                  <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-gold mb-0.5">Manual Entry</p>
+                  <p className="font-cormorant text-xl font-light text-cream">Enter Your Measurements</p>
+                </div>
+
+                {/* Form */}
+                <div className="flex-1 overflow-y-auto px-8 py-6">
+                  <p className="font-dm text-xs text-cream-muted/60 leading-relaxed mb-6">
+                    All measurements in inches. If you have a recent tailor measurement sheet, enter the values below. Fields marked with an asterisk are required.
+                  </p>
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-5">
+                    {MEASUREMENT_LABELS.map(({ key, label, unit }) => (
+                      <div key={key} className="flex flex-col gap-1.5">
+                        <label
+                          htmlFor={`manual-${key}`}
+                          className="font-josefin text-[0.55rem] tracking-[0.2em] uppercase text-cream-muted"
+                        >
+                          {label} <span className="text-gold">*</span>
+                        </label>
+                        <div className="relative">
+                          <input
+                            id={`manual-${key}`}
+                            type="number"
+                            inputMode="decimal"
+                            step="0.5"
+                            min="0"
+                            placeholder="0.0"
+                            value={manualMeasurements[key] || ''}
+                            onChange={e => setManualField(key, e.target.value)}
+                            className="w-full bg-obsidian border border-smoke font-dm text-sm text-cream px-4 py-2.5 pr-10 outline-none
+                              placeholder:text-cream-muted/25 focus:border-gold/50 transition-colors duration-200
+                              [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          />
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 font-josefin text-[0.5rem] tracking-widest uppercase text-cream-muted/40">
+                            {unit}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 border-t border-gold/10 pt-4">
+                    <p className="font-dm text-[0.68rem] text-cream-muted/40 leading-relaxed">
+                      Need help measuring? Visit us at Far East Plaza for a complimentary fitting consultation with our master tailor.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="px-8 py-5 border-t border-gold/10 flex gap-3 flex-shrink-0">
+                  <button
+                    disabled={!manualValid}
+                    onClick={saveManual}
+                    className="flex-1 py-3.5 bg-gold font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-obsidian hover:bg-gold-light transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    {manualSaved ? 'Saved ✓' : 'Save to Profile'}
+                  </button>
+                  <button
+                    onClick={() => setManualMeasurements(EMPTY_MANUAL)}
+                    className="flex-1 py-3.5 border border-gold/30 font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted hover:text-cream hover:border-gold/60 transition-all duration-300"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
             {/* IDLE */}
-            {phase === 'idle' && (
+            {mode === 'scan' && phase === 'idle' && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 className="flex flex-col justify-center h-full px-10 py-12 gap-8">
                 <div>
@@ -730,7 +849,7 @@ export default function BodyScan3D() {
             )}
 
             {/* SCANNING (rotating + sweeping) */}
-            {(phase === 'rotating' || phase === 'sweeping') && (
+            {mode === 'scan' && (phase === 'rotating' || phase === 'sweeping') && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 className="flex flex-col h-full px-10 py-10 gap-6">
                 <div>
@@ -797,7 +916,7 @@ export default function BodyScan3D() {
             )}
 
             {/* PROCESSING */}
-            {phase === 'processing' && (
+            {mode === 'scan' && phase === 'processing' && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 className="flex flex-col justify-center h-full px-10 py-12 gap-6">
                 <p className="font-cormorant text-2xl font-light text-cream">Resolving measurements…</p>
@@ -819,7 +938,7 @@ export default function BodyScan3D() {
             )}
 
             {/* COMPLETE */}
-            {phase === 'complete' && measurements && (
+            {mode === 'scan' && phase === 'complete' && measurements && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}
                 className="flex flex-col h-full">
 
