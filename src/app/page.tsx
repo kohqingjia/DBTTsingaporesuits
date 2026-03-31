@@ -7,7 +7,6 @@ import Heritage from '@/components/Heritage';
 import OccasionSelector from '@/components/OccasionSelector';
 import AIStylist from '@/components/AIStylist';
 import CustomizationStudio, { SuitConfig } from '@/components/CustomizationStudio';
-import BodyScan3D from '@/components/BodyScan3D';
 import AIColorAnalysis from '@/components/AIColorAnalysis';
 import CraftsmanshipSection from '@/components/CraftsmanshipSection';
 import Gallery from '@/components/Gallery';
@@ -54,8 +53,6 @@ export default function Home() {
 
         {/* ── Configuration & Order ── */}
         <CustomizationStudio onCheckout={handleCheckout} initialConfig={stylistConfig} />
-        <BodyScan3D />
-
         {/* ── Reassurance ── */}
         <BookingSection />
         <Testimonials />

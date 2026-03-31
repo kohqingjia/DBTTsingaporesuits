@@ -295,9 +295,6 @@ function StepReview({
             </div>
           ))}
         </div>
-        <p className="font-dm text-xs text-cream-muted/50 mt-2">
-          Captured via 3D body scan · Confidence 98.4%
-        </p>
       </div>
 
       {/* ── LOYALTY VOUCHERS ── */}

@@ -373,20 +373,6 @@ export default function CustomizationStudio({
                 </AnimatePresence>
               </button>
 
-              {/* 3D Body Scan prompt */}
-              <p className="font-dm text-[0.72rem] text-cream-muted/50 text-center pt-1">
-                Unsure of your measurements?{' '}
-                <a
-                  href="#body-scan"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#body-scan')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="text-gold/70 hover:text-gold underline underline-offset-2 transition-colors duration-200 cursor-pointer"
-                >
-                  Use our 3D Body Scanning service
-                </a>
-              </p>
             </div>
           </motion.div>
         </div>
