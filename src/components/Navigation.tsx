@@ -40,7 +40,7 @@ export default function Navigation() {
         <div className="max-w-screen-xl mx-auto flex items-center">
           {/* Left nav links */}
           <div className="hidden md:flex items-center gap-10 flex-1">
-            {navLinks.slice(0, 2).map((link) => (
+            {navLinks.slice(0, 4).map((link) => (
               <button
                 key={link.label}
                 onClick={() => handleNav(link.href)}
@@ -68,7 +68,7 @@ export default function Navigation() {
 
           {/* Right nav links + CTA */}
           <div className="hidden md:flex items-center gap-10 flex-1 justify-end">
-            {navLinks.slice(2).map((link) => (
+            {navLinks.slice(4).map((link) => (
               <button
                 key={link.label}
                 onClick={() => handleNav(link.href)}
