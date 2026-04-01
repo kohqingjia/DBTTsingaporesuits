@@ -11,6 +11,7 @@ import AIColorAnalysis from '@/components/AIColorAnalysis';
 import CraftsmanshipSection from '@/components/CraftsmanshipSection';
 import Gallery from '@/components/Gallery';
 import Testimonials from '@/components/Testimonials';
+import SentimentAnalytics from '@/components/SentimentAnalytics';
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import BookingSection from '@/components/BookingSection';
@@ -29,9 +30,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Film grain overlay */}
-      <div className="grain-overlay" aria-hidden="true" />
-
       {/* Custom cursor */}
       <CustomCursor />
 
@@ -56,6 +54,7 @@ export default function Home() {
         {/* ── Reassurance ── */}
         <BookingSection />
         <Testimonials />
+        <SentimentAnalytics />
       </main>
 
       <Footer />
