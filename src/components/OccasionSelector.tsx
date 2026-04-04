@@ -10,6 +10,8 @@ interface Occasion {
   tagline: string;
   image: string;
   alt: string;
+  imgPos: string;
+  imgClass?: string;
 }
 
 interface OccasionSelectorProps {
@@ -24,6 +26,7 @@ const occasions: Occasion[] = [
     tagline: 'Timeless elegance for your most important day',
     image: '/images/occasion-wedding.jpg',
     alt: 'Man in bespoke wedding suit',
+    imgPos: 'center 0%',
   },
   {
     id: 'corporate',
@@ -31,6 +34,7 @@ const occasions: Occasion[] = [
     tagline: 'Command the boardroom with quiet authority',
     image: '/images/occasion-corporate.jpg',
     alt: 'Man in tailored corporate suit',
+    imgPos: 'center 0%',
   },
   {
     id: 'black-tie',
@@ -38,6 +42,7 @@ const occasions: Occasion[] = [
     tagline: 'The pinnacle of formal evening dress',
     image: '/images/occasion-black-tie.jpg',
     alt: 'Man in black tie bespoke tuxedo',
+    imgPos: 'center 0%',
   },
   {
     id: 'smart-casual',
@@ -45,6 +50,7 @@ const occasions: Occasion[] = [
     tagline: 'Effortless refinement for everyday occasions',
     image: '/images/occasion-smart-casual.jpg',
     alt: 'Man in smart casual bespoke attire',
+    imgPos: 'center 0%',
   },
   {
     id: 'special-event',
@@ -52,6 +58,7 @@ const occasions: Occasion[] = [
     tagline: 'Make an impression that lingers long after',
     image: '/images/occasion-special-event.jpg',
     alt: 'Man in distinctive special event suit',
+    imgPos: 'center 0%',
   },
 ];
 
@@ -119,12 +126,12 @@ export default function OccasionSelector({ onSelect }: OccasionSelectorProps) {
             >
               {/* Image */}
               <div className="relative w-full aspect-[3/4] overflow-hidden">
-                <div className="absolute inset-0 bg-obsidian/60 group-hover:bg-obsidian/30 transition-all duration-500 z-10" />
+                <div className="absolute inset-0 bg-obsidian/20 group-hover:bg-obsidian/10 transition-all duration-500 z-10" />
 
                 {/* Placeholder shimmer if no image */}
                 <div className="absolute inset-0 bg-gradient-to-b from-obsidian-50/30 to-obsidian/80 z-0" />
                 <div className="w-full h-full bg-obsidian-50 flex items-center justify-center">
-                  <OccasionImage src={occasion.image} alt={occasion.alt} />
+                  <OccasionImage src={occasion.image} alt={occasion.alt} imgPos={occasion.imgPos} imgClass={occasion.imgClass} />
                 </div>
 
                 {/* Gold corner accent on hover */}
@@ -137,7 +144,7 @@ export default function OccasionSelector({ onSelect }: OccasionSelectorProps) {
                 <p className="font-josefin text-[0.6rem] tracking-[0.25em] uppercase text-gold mb-2">
                   {occasion.name}
                 </p>
-                <p className="font-dm text-[0.7rem] text-cream-muted/50 group-hover:text-cream-muted/80 transition-colors duration-300 leading-relaxed">
+                <p className="font-dm text-[0.7rem] text-cream-muted/80 group-hover:text-cream-muted transition-colors duration-300 leading-relaxed">
                   {occasion.tagline}
                 </p>
               </div>
@@ -163,14 +170,15 @@ export default function OccasionSelector({ onSelect }: OccasionSelectorProps) {
 }
 
 /* ─── OccasionImage — graceful fallback ─────────────────── */
-function OccasionImage({ src, alt }: { src: string; alt: string }) {
+function OccasionImage({ src, alt, imgPos, imgClass }: { src: string; alt: string; imgPos: string; imgClass?: string }) {
   return (
     <div className="relative w-full h-full">
       <Image
         src={src}
         alt={alt}
         fill
-        className="object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+        className={`object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ${imgClass ?? ''}`}
+        style={{ objectPosition: imgPos }}
         sizes="(max-width: 768px) 50vw, 20vw"
         onError={() => {/* silently fail — placeholder already shown */}}
       />

@@ -117,12 +117,12 @@ export default function Footer() {
               <div className="w-8 h-px bg-gold/40" />
 
               {/* Map */}
-              <div className="relative w-full mt-4 overflow-hidden border border-gold/15" style={{ aspectRatio: '16/7' }}>
+              <div className="relative w-full mt-4 overflow-hidden border border-gold/15" style={{ aspectRatio: '4/3' }}>
                 <Image
                   src="/images/map-far-east-plaza.jpg"
                   alt="Far East Plaza location map"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="600px"
                 />
               </div>

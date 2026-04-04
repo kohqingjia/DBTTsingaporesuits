@@ -4,15 +4,20 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 
-/* ─── Gallery items ── */
+/* ─── Gallery items ──
+   Grid order (3-col):
+   Row 1: wedding | corporate | casual
+   Row 2: evening (wide ×2) | grey
+   Row 3: tuxedo | atelier (wide ×2)
+── */
 const galleryItems = [
-  { id: 1, ratio: '3/4',  label: 'Navy Double-Breasted',  tag: 'Wedding',          src: '/images/gallery-wedding.jpg'   },
-  { id: 2, ratio: '1/1',  label: 'Charcoal Business Suit', tag: 'Corporate',        src: '/images/gallery-corporate.jpg' },
-  { id: 3, ratio: '16/9', label: 'Midnight Blue Evening',  tag: 'Black Tie', wide: true, src: '/images/gallery-evening.jpg'   },
-  { id: 4, ratio: '3/4',  label: 'Slim Tan Suit',          tag: 'Summer',           src: '/images/gallery-casual.jpg'    },
-  { id: 5, ratio: '1/1',  label: 'Tuxedo Lapel Close-Up', tag: 'Detail',           src: '/images/gallery-tuxedo.jpg'    },
-  { id: 6, ratio: '3/4',  label: 'Grey Herringbone',       tag: 'Business',         src: '/images/gallery-grey.jpg'      },
-  { id: 7, ratio: '16/9', label: 'Atelier Process',         tag: 'Behind the Seams', wide: true, src: '/images/gallery-atelier.jpg'  },
+  { id: 1, ratio: '3/4',  label: 'Navy Double-Breasted',   tag: 'Wedding',          pos: 'object-top',    src: '/images/gallery-wedding.jpg'   },
+  { id: 2, ratio: '3/4',  label: 'Charcoal Business Suit', tag: 'Corporate',        pos: 'object-top',    src: '/images/gallery-corporate.jpg' },
+  { id: 3, ratio: '3/4',  label: 'Slim Tan Suit',          tag: 'Summer',           pos: 'object-top',    src: '/images/gallery-casual.jpg'    },
+  { id: 4, ratio: '3/2',  label: 'Midnight Blue Evening',  tag: 'Black Tie', wide: true, pos: 'object-top',    src: '/images/gallery-evening.jpg'   },
+  { id: 5, ratio: '3/4',  label: 'Grey Herringbone',       tag: 'Business',         pos: 'object-top',    src: '/images/gallery-grey.jpg'      },
+  { id: 6, ratio: '3/4',  label: 'Tuxedo Lapel Close-Up', tag: 'Detail',           pos: 'object-center', fit: 'object-contain', src: '/images/gallery-tuxedo.jpg'    },
+  { id: 7, ratio: '3/2',  label: 'Atelier Process',        tag: 'Behind the Seams', wide: true, pos: 'object-center', src: '/images/gallery-atelier.jpg'  },
 ];
 
 function GalleryItem({ item, index, inView }: { item: typeof galleryItems[0]; index: number; inView: boolean }) {
@@ -34,7 +39,7 @@ function GalleryItem({ item, index, inView }: { item: typeof galleryItems[0]; in
         src={item.src}
         alt={item.label}
         fill
-        className="object-cover"
+        className={`${item.fit ?? 'object-cover'} ${item.pos}`}
         sizes="(max-width: 768px) 50vw, 33vw"
       />
 

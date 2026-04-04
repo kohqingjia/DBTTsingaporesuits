@@ -2,17 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-/* ─────────────────────────────────────────────────────────────
-   TYPES
-───────────────────────────────────────────────────────────── */
-export interface SuitConfig {
-  fabric: string;
-  lapel: string;
-  fit: string;
-  lining: string;
-  buttons: number;
-}
+import { SuitConfig, Voucher } from '@/types';
+import { calcPrice } from '@/lib/pricing';
+import { FABRIC_OPTIONS, LAPEL_OPTIONS, FIT_OPTIONS, LINING_OPTIONS } from '@/lib/suit-options';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -25,16 +17,6 @@ type Step = 'review' | 'details' | 'payment' | 'confirmed';
 /* ─────────────────────────────────────────────────────────────
    VOUCHER  (saved by loyalty.html into localStorage)
 ───────────────────────────────────────────────────────────── */
-interface Voucher {
-  voucherId:     string;
-  rewardId:      string;
-  name:          string;
-  icon:          string;
-  discountType:  'percent' | 'fixed' | 'service';
-  discountValue: number;
-  redeemedAt:    string;
-  used:          boolean;
-}
 
 function loadVouchers(): Voucher[] {
   if (typeof window === 'undefined') return [];
@@ -53,77 +35,32 @@ function markVoucherUsed(voucherId: string) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   STATIC DATA  (mirrors CustomizationStudio)
-───────────────────────────────────────────────────────────── */
-const FABRIC_INFO: Record<string, { name: string; color: string; texture: string; origin: string; basePrice: number }> = {
-  'charcoal-wool':    { name: 'Charcoal Wool',    color: '#3D3D3D', texture: 'Fine Worsted',     origin: 'Loro Piana, Italy', basePrice: 1800 },
-  'navy-herringbone': { name: 'Navy Herringbone',  color: '#1B2A4A', texture: 'Herringbone Twill', origin: 'Scabal, Belgium',   basePrice: 2200 },
-  'midnight-velvet':  { name: 'Midnight Velvet',   color: '#0D1117', texture: 'Velvet Finish',    origin: 'Dormeuil, France',  basePrice: 2800 },
-  'slate-flannel':    { name: 'Slate Flannel',     color: '#5A6472', texture: 'Brushed Flannel',  origin: 'Holland & Sherry',  basePrice: 1900 },
-  'ivory-linen':      { name: 'Ivory Linen',       color: '#E8DCC8', texture: 'Summer Linen',     origin: 'Solbiati, Italy',   basePrice: 1600 },
-  'burgundy-wool':    { name: 'Burgundy Wool',     color: '#5C1A2A', texture: 'Smooth Worsted',   origin: 'Loro Piana, Italy', basePrice: 2000 },
-};
-
-const LAPEL_INFO: Record<string, { name: string; surcharge: number }> = {
-  peak:  { name: 'Peak Lapel',   surcharge: 0   },
-  notch: { name: 'Notch Lapel',  surcharge: 0   },
-  shawl: { name: 'Shawl Collar', surcharge: 200 },
-};
-
-const FIT_INFO: Record<string, { name: string; surcharge: number }> = {
-  slim:     { name: 'Slim',     surcharge: 0   },
-  tailored: { name: 'Tailored', surcharge: 150 },
-  relaxed:  { name: 'Relaxed',  surcharge: 0   },
-};
-
-const LINING_INFO: Record<string, { name: string; color: string }> = {
-  black: { name: 'Obsidian', color: '#0A0A0A' },
-  gold:  { name: 'Aurum',    color: '#C5A230' },
-  navy:  { name: 'Midnight', color: '#1B2A4A' },
-  red:   { name: 'Claret',   color: '#7A1F2E' },
-  ivory: { name: 'Ivory',    color: '#F5EFE0' },
-  teal:  { name: 'Jade',     color: '#1A4A4A' },
-};
-
-/* ─────────────────────────────────────────────────────────────
-   HARDCODED BODY SCAN MEASUREMENTS  (from BodyScan3D)
-───────────────────────────────────────────────────────────── */
-const MEASUREMENTS = [
-  { label: 'Chest',          value: '38.5 in' },
-  { label: 'Waist',          value: '32.0 in' },
-  { label: 'Hips',           value: '39.0 in' },
-  { label: 'Shoulder Width', value: '17.5 in' },
-  { label: 'Sleeve Length',  value: '25.0 in' },
-  { label: 'Jacket Length',  value: '30.5 in' },
-  { label: 'Inseam',         value: '31.0 in' },
-  { label: 'Neck',           value: '15.5 in' },
-  { label: 'Thigh',          value: '22.0 in' },
-];
-
-/* ─────────────────────────────────────────────────────────────
    HELPERS
 ───────────────────────────────────────────────────────────── */
-function calcPrice(config: SuitConfig, voucher?: Voucher | null): {
-  base: number; lapelSurcharge: number; fitSurcharge: number;
-  subtotal: number; discount: number; total: number;
-} {
-  const base           = FABRIC_INFO[config.fabric]?.basePrice ?? 1800;
-  const lapelSurcharge = LAPEL_INFO[config.lapel]?.surcharge   ?? 0;
-  const fitSurcharge   = FIT_INFO[config.fit]?.surcharge        ?? 0;
-  const subtotal       = base + lapelSurcharge + fitSurcharge;
-
-  let discount = 0;
-  if (voucher && voucher.discountType === 'percent') {
-    discount = Math.round(subtotal * voucher.discountValue / 100);
-  } else if (voucher && voucher.discountType === 'fixed') {
-    discount = Math.min(voucher.discountValue, subtotal);
-  }
-
-  return { base, lapelSurcharge, fitSurcharge, subtotal, discount, total: subtotal - discount };
-}
-
 function generateOrderNumber(): string {
   return 'PCT-' + Math.random().toString(36).toUpperCase().slice(2, 8);
+}
+
+/**
+ * Helper to get fabric metadata by id
+ */
+function getFabricInfo(id: string) {
+  return FABRIC_OPTIONS.find(f => f.id === id) || FABRIC_OPTIONS[0];
+}
+
+/**
+ * Helper to calculate discount amount from a voucher
+ */
+function calculateDiscount(subtotal: number, voucher: Voucher | null): number {
+  if (!voucher) return 0;
+  
+  if (voucher.discountType === 'percent') {
+    return Math.round(subtotal * voucher.discountValue / 100);
+  } else if (voucher.discountType === 'fixed') {
+    return Math.min(voucher.discountValue, subtotal);
+  }
+  
+  return 0;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -239,11 +176,16 @@ function StepReview({
   onVoucherChange: (v: Voucher | null) => void;
   onNext: () => void;
 }) {
-  const fabric   = FABRIC_INFO[config.fabric];
-  const lapel    = LAPEL_INFO[config.lapel];
-  const fit      = FIT_INFO[config.fit];
-  const lining   = LINING_INFO[config.lining];
-  const pricing  = calcPrice(config, appliedVoucher);
+  const fabric   = getFabricInfo(config.fabric);
+  const lapel    = LAPEL_OPTIONS.find(l => l.id === config.lapel);
+  const fit      = FIT_OPTIONS.find(f => f.id === config.fit);
+  const lining   = LINING_OPTIONS.find(l => l.id === config.lining);
+  
+  // Calculate pricing: first get subtotal, then compute discount, then final price
+  const pricingNoDiscount = calcPrice(config, 0);
+  const discountAmount = calculateDiscount(pricingNoDiscount.subtotal, appliedVoucher);
+  const pricing = calcPrice(config, discountAmount);
+  
   const vouchers = loadVouchers();
 
   return (
@@ -256,45 +198,30 @@ function StepReview({
       {/* Suit spec */}
       <div className="border border-gold/10">
         <div className="flex items-center gap-4 px-6 py-4 border-b border-gold/10">
-          <div className="w-10 h-10 border border-gold/20 flex-shrink-0" style={{ background: fabric.color }} />
+          <div className="w-10 h-10 border border-gold/20 flex-shrink-0" style={{ background: (fabric as any).color }} />
           <div>
-            <p className="font-cormorant text-lg text-cream">{fabric.name}</p>
+            <p className="font-cormorant text-lg text-cream">{(fabric as any).name}</p>
             <p className="font-josefin text-[0.5rem] tracking-[0.2em] uppercase text-cream-muted">
-              {fabric.texture} · {fabric.origin}
+              {(fabric as any).texture} · {(fabric as any).origin}
             </p>
           </div>
         </div>
         {[
-          { label: 'Lapel Style', value: lapel.name },
-          { label: 'Fit',         value: fit.name   },
-          { label: 'Lining',      value: lining.name },
+          { label: 'Lapel Style', value: lapel?.name || 'Unknown' },
+          { label: 'Fit',         value: fit?.name || 'Unknown' },
+          { label: 'Lining',      value: lining?.name || 'Unknown' },
           { label: 'Buttons',     value: `${config.buttons} Button` },
         ].map(row => (
           <div key={row.label} className="flex justify-between items-center px-6 py-3 border-b border-smoke last:border-b-0">
             <span className="font-josefin text-[0.58rem] tracking-[0.2em] uppercase text-cream-muted">{row.label}</span>
             <div className="flex items-center gap-2">
               {row.label === 'Lining' && (
-                <span className="w-3 h-3 border border-gold/20" style={{ background: lining.color }} />
+                <span className="w-3 h-3 border border-gold/20" style={{ background: (lining as any)?.hex }} />
               )}
               <span className="font-dm text-sm text-cream">{row.value}</span>
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Measurements */}
-      <div>
-        <p className="font-josefin text-[0.58rem] tracking-[0.25em] uppercase text-cream-muted mb-3">
-          Body Scan Measurements
-        </p>
-        <div className="grid grid-cols-3 gap-px border border-gold/10 bg-smoke">
-          {MEASUREMENTS.map(m => (
-            <div key={m.label} className="bg-obsidian-50 px-4 py-3">
-              <p className="font-josefin text-[0.48rem] tracking-[0.15em] uppercase text-cream-muted mb-0.5">{m.label}</p>
-              <p className="font-cormorant text-base text-gold">{m.value}</p>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* ── LOYALTY VOUCHERS ── */}
@@ -417,7 +344,7 @@ function StepReview({
       <div className="border border-gold/10 px-6 py-5 flex flex-col gap-2">
         <div className="flex justify-between font-dm text-sm text-cream-muted">
           <span>Base fabric</span>
-          <span>SGD {pricing.base.toLocaleString()}</span>
+          <span>SGD {pricing.basePrice.toLocaleString()}</span>
         </div>
         {pricing.lapelSurcharge > 0 && (
           <div className="flex justify-between font-dm text-sm text-cream-muted">
@@ -433,7 +360,7 @@ function StepReview({
         )}
 
         {/* Subtotal (only shown when discount applied) */}
-        {pricing.discount > 0 && (
+        {pricing.discount && pricing.discount > 0 && (
           <>
             <div className="flex justify-between font-dm text-sm text-cream-muted pt-2 border-t border-smoke">
               <span>Subtotal</span>
@@ -471,7 +398,7 @@ function StepReview({
         <div className="flex justify-between pt-3 border-t border-gold/10">
           <span className="font-josefin text-[0.6rem] tracking-[0.25em] uppercase text-cream">Total</span>
           <div className="text-right">
-            {pricing.discount > 0 && (
+            {pricing.discount && pricing.discount > 0 && (
               <p className="font-dm text-xs text-cream-muted/50 line-through mb-0.5">
                 SGD {pricing.subtotal.toLocaleString()}
               </p>
@@ -718,7 +645,12 @@ function StepPayment({
 }) {
   const [method, setMethod] = useState<PaymentMethod>('card');
   const set = (k: keyof PaymentForm) => (v: string) => onChange({ ...form, [k]: v });
-  const pricing = calcPrice(config, appliedVoucher);
+  
+  // Calculate pricing with discount
+  const pricingNoDiscount = calcPrice(config, 0);
+  const discountAmount = calculateDiscount(pricingNoDiscount.subtotal, appliedVoucher);
+  const pricing = calcPrice(config, discountAmount);
+  
   const cardValid = form.cardName && form.cardNumber.replace(/\s/g, '').length === 16 && form.expiry.length >= 7 && form.cvv.length >= 3;
   const valid = method === 'card' ? !!cardValid : true;
 
@@ -731,7 +663,7 @@ function StepPayment({
 
       {/* Amount reminder */}
       <div className="border border-gold/20 bg-obsidian-50 px-6 py-4 flex flex-col gap-2">
-        {appliedVoucher && pricing.discount > 0 && (
+        {appliedVoucher && pricing.discount && pricing.discount > 0 && (
           <div className="flex justify-between font-dm text-xs pb-2 border-b border-smoke"
                style={{ color: '#6DB87A' }}>
             <span className="flex items-center gap-1.5">
@@ -936,7 +868,7 @@ function StepPayment({
           disabled={!valid || placing}
           className="flex-[2] py-4 bg-gold font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-obsidian hover:bg-gold-light transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          {placing ? 'Processing…' : `Place Order · SGD ${pricing.total.toLocaleString()}${pricing.discount > 0 ? ` (saved SGD ${pricing.discount.toLocaleString()})` : ''}`}
+          {placing ? 'Processing…' : `Place Order · SGD ${pricing.total.toLocaleString()}${pricing.discount && pricing.discount > 0 ? ` (saved SGD ${pricing.discount.toLocaleString()})` : ''}`}
         </button>
       </div>
     </div>
@@ -1190,7 +1122,8 @@ export default function CheckoutModal({ isOpen, onClose, config }: CheckoutModal
 
   const [details, setDetails] = useState<DetailsForm>({
     firstName: '', lastName: '', email: '', phone: '',
-    address: '', city: '', postal: '', notes: '',
+    fulfilment: 'delivery',
+    address: '', city: '', postal: '', preferredDate: '', notes: '',
   });
 
   const [payment, setPayment] = useState<PaymentForm>({
@@ -1222,7 +1155,14 @@ export default function CheckoutModal({ isOpen, onClose, config }: CheckoutModal
 
       /* Save to localStorage so track-order.html can look it up immediately */
       try {
-        const fabric = FABRIC_INFO[config.fabric];
+        const fabric = getFabricInfo(config.fabric);
+        const fit = FIT_OPTIONS.find(f => f.id === config.fit);
+        
+        // Calculate pricing with discount
+        const pricingNoDiscount = calcPrice(config, 0);
+        const discountAmountLocal = calculateDiscount(pricingNoDiscount.subtotal, appliedVoucher);
+        const pricingForOrder = calcPrice(config, discountAmountLocal);
+        
         const existing = JSON.parse(localStorage.getItem('picadilly-orders') || '{}');
         existing[ref] = {
           ref,
@@ -1231,9 +1171,9 @@ export default function CheckoutModal({ isOpen, onClose, config }: CheckoutModal
           customer:     `${details.firstName} ${details.lastName}`,
           email:        details.email,
           placed:       new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
-          fabric:       fabric?.name ?? config.fabric,
-          fit:          FIT_INFO[config.fit]?.name ?? config.fit,
-          total:        `SGD ${calcPrice(config, appliedVoucher).total.toLocaleString()}`,
+          fabric:       (fabric as any)?.name ?? config.fabric,
+          fit:          fit?.name ?? config.fit,
+          total:        `SGD ${pricingForOrder.total.toLocaleString()}`,
           address:      details.fulfilment === 'delivery'
                           ? `${details.address}, ${details.city} ${details.postal}`
                           : undefined,
@@ -1276,7 +1216,7 @@ export default function CheckoutModal({ isOpen, onClose, config }: CheckoutModal
       />
     ),
     confirmed: (
-      <StepConfirmed orderNumber={orderNumber} email={details.email} appliedVoucher={appliedVoucher} onClose={onClose} />
+      <StepConfirmed orderNumber={orderNumber} email={details.email} appliedVoucher={appliedVoucher} fulfilment={details.fulfilment} onClose={onClose} />
     ),
   };
 

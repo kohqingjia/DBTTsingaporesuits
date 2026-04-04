@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { SuitConfig } from '@/types';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Heritage from '@/components/Heritage';
 import OccasionSelector from '@/components/OccasionSelector';
 import AIStylist from '@/components/AIStylist';
-import CustomizationStudio, { SuitConfig } from '@/components/CustomizationStudio';
+import CustomizationStudio from '@/components/CustomizationStudio';
 import AIColorAnalysis from '@/components/AIColorAnalysis';
 import CraftsmanshipSection from '@/components/CraftsmanshipSection';
 import Gallery from '@/components/Gallery';

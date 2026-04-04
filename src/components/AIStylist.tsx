@@ -2,31 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { SuitConfig } from './CustomizationStudio';
-
-/* ─── Types ──────────────────────────────────────────────── */
-interface OutfitItem {
-  description: string;
-  colour: string;
-  hex: string;
-  price: number;
-  fabric?: string;
-  material?: string;
-}
-
-interface StyleRecommendation {
-  recommendation: {
-    suit: OutfitItem & { fabric: string };
-    shirt: OutfitItem;
-    tie: OutfitItem & { material: string };
-    shoes: OutfitItem;
-  };
-  palette: { name: string; hex: string; role: string }[];
-  styleExplanation: string;
-  matchScore: number;
-  totalPrice: number;
-  stylistNote: string;
-}
+import { SuitConfig, StyleRecommendation, OutfitItem } from '@/types';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -97,45 +73,52 @@ interface OutfitOption {
 
 /* ─── Budget Optimiser Logic ─────────────────────────────── */
 function computeBudgetOptions(budget: number): { bestValue: OutfitOption; premiumPick: OutfitOption } {
-  // Proportional allocation tiers
+  // Tiers spend different proportions of the total budget
+  // Essential: 65% spend — best style-per-dollar ratio
+  // Distinguished: 82% spend — balanced mid-tier
+  // Masterwork: 100% spend — maximum quality
+  const e = budget * 0.65;
+  const d = budget * 0.82;
+  const m = budget * 1.00;
+
   const tiers: OutfitOption[] = [
     {
       label: 'Essential',
-      suit: Math.round(budget * 0.58),
-      shirt: Math.round(budget * 0.16),
-      tie: Math.round(budget * 0.10),
-      shoes: Math.round(budget * 0.16),
+      suit: Math.round(e * 0.58),
+      shirt: Math.round(e * 0.16),
+      tie: Math.round(e * 0.10),
+      shoes: Math.round(e * 0.16),
       styleScore: 72,
       description: 'Clean, classic cuts in quality wool. Ideal for entry-level bespoke.',
     },
     {
       label: 'Distinguished',
-      suit: Math.round(budget * 0.62),
-      shirt: Math.round(budget * 0.15),
-      tie: Math.round(budget * 0.09),
-      shoes: Math.round(budget * 0.14),
+      suit: Math.round(d * 0.62),
+      shirt: Math.round(d * 0.15),
+      tie: Math.round(d * 0.09),
+      shoes: Math.round(d * 0.14),
       styleScore: 86,
       description: 'Elevated fabrics — Italian wool blends, hand-finishing on lapels.',
     },
     {
       label: 'Masterwork',
-      suit: Math.round(budget * 0.66),
-      shirt: Math.round(budget * 0.14),
-      tie: Math.round(budget * 0.08),
-      shoes: Math.round(budget * 0.12),
+      suit: Math.round(m * 0.66),
+      shirt: Math.round(m * 0.14),
+      tie: Math.round(m * 0.08),
+      shoes: Math.round(m * 0.12),
       styleScore: 96,
       description: 'Full canvas construction, Loro Piana cloths, surgeon\'s buttonholes.',
     },
   ];
 
-  // Best value = highest style score per dollar
+  // Best value = highest style score per dollar spent
   const bestValue = tiers.reduce((prev, curr) => {
-    const prevRatio = prev.styleScore / budget;
-    const currRatio = curr.styleScore / budget;
-    return currRatio > prevRatio ? curr : prev;
+    const prevSpent = prev.suit + prev.shirt + prev.tie + prev.shoes;
+    const currSpent = curr.suit + curr.shirt + curr.tie + curr.shoes;
+    return (curr.styleScore / currSpent) > (prev.styleScore / prevSpent) ? curr : prev;
   });
 
-  // Premium pick = overall highest style score within budget
+  // Premium pick = highest style score overall
   const premiumPick = tiers.reduce((prev, curr) =>
     curr.styleScore > prev.styleScore ? curr : prev
   );
@@ -169,9 +152,6 @@ export default function AIStylist({ selectedOccasion, onApplyToStudio }: AIStyli
     if (selectedOccasion) setOccasion(selectedOccasion);
   }, [selectedOccasion]);
 
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
 
   const handleSubmit = async () => {
     if (!occasion || loading) return;
@@ -454,18 +434,20 @@ export default function AIStylist({ selectedOccasion, onApplyToStudio }: AIStyli
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="max-w-3xl">
-                {/* Budget slider */}
-                <div className="border border-gold/10 bg-obsidian-50/80 p-10 mb-8">
-                  <p className="font-josefin text-[0.55rem] tracking-[0.3em] uppercase text-gold/70 mb-3">
+              {/* Budget slider — horizontal bar */}
+              <div className="border border-gold/10 bg-obsidian-50/80 px-10 py-6 mb-6 flex items-center gap-10">
+                <div className="flex-shrink-0">
+                  <p className="font-josefin text-[0.55rem] tracking-[0.3em] uppercase text-gold/70 mb-1">
                     Your Budget
                   </p>
-                  <div className="flex items-baseline gap-3 mb-6">
-                    <span className="font-cormorant text-5xl text-cream font-light">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-cormorant text-4xl text-cream font-light">
                       SGD {budget.toLocaleString()}
                     </span>
-                    <span className="font-dm text-xs text-cream-muted/40">total budget</span>
+                    <span className="font-dm text-xs text-cream-muted/40">total</span>
                   </div>
+                </div>
+                <div className="flex-1">
                   <input
                     type="range"
                     min={200}
@@ -480,30 +462,37 @@ export default function AIStylist({ selectedOccasion, onApplyToStudio }: AIStyli
                     <span className="font-dm text-[0.5rem] text-cream-muted/30">SGD 5,000</span>
                   </div>
                 </div>
+              </div>
 
-                {/* Two outfit options */}
-                <div className="grid md:grid-cols-2 gap-6 mb-10">
-                  <BudgetCard
-                    option={budgetOptions.bestValue}
-                    badge="Best Value"
-                    accentClass="border-gold/40"
-                    badgeClass="bg-gold text-obsidian"
-                  />
-                  <BudgetCard
-                    option={budgetOptions.premiumPick}
-                    badge="Premium Pick"
-                    accentClass="border-cream/20"
-                    badgeClass="bg-obsidian border border-cream/20 text-cream"
-                  />
-                </div>
-
-                {/* Price breakdown bar chart */}
-                <div className="border border-gold/10 bg-obsidian-50/80 p-10">
-                  <p className="font-josefin text-[0.55rem] tracking-[0.3em] uppercase text-gold/70 mb-8">
-                    Budget Allocation — {budgetOptions.premiumPick.label} Tier
+              {/* 3-column: bestValue | breakdown chart | premiumPick */}
+              <div className="grid grid-cols-3 gap-6">
+                <BudgetCard
+                  option={budgetOptions.bestValue}
+                  badge="Best Value"
+                  accentClass="border-gold/40"
+                  badgeClass="bg-gold text-obsidian"
+                />
+                <div className="border border-gold/10 bg-obsidian-50/80 p-8">
+                  <p className="font-josefin text-[0.55rem] tracking-[0.3em] uppercase text-gold/70 mb-6">
+                    Budget Allocation
                   </p>
-                  <BreakdownChart option={budgetOptions.premiumPick} total={budget} />
+                  <p className="font-josefin text-[0.45rem] tracking-[0.2em] uppercase text-cream-muted/30 mb-3">
+                    Best Value — {budgetOptions.bestValue.label}
+                  </p>
+                  <BreakdownChart option={budgetOptions.bestValue} total={budget} />
+                  <div className="mt-6 border-t border-gold/10 pt-6">
+                    <p className="font-josefin text-[0.45rem] tracking-[0.2em] uppercase text-cream-muted/30 mb-3">
+                      Premium Pick — {budgetOptions.premiumPick.label}
+                    </p>
+                    <BreakdownChart option={budgetOptions.premiumPick} total={budget} />
+                  </div>
                 </div>
+                <BudgetCard
+                  option={budgetOptions.premiumPick}
+                  badge="Premium Pick"
+                  accentClass="border-cream/20"
+                  badgeClass="bg-obsidian border border-cream/20 text-cream"
+                />
               </div>
             </motion.div>
           )}

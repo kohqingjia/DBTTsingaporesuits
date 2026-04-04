@@ -3,9 +3,15 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { SuitConfig, JacketDetails, PantsDetails, PersonalizationDetails } from '@/types';
+import { DEFAULT_SUIT_CONFIG, mergeWithDefaults } from '@/lib/suit-defaults';
+import { validateConfig, autoFixConfig } from '@/lib/suit-constraints';
+import JacketDetailsSection from './JacketDetailsSection';
+import TrousersSection from './TrousersSection';
+import PersonalisationSection from './PersonalisationSection';
 
 /* ─── Data ───────────────────────────────────────────────── */
-const fabrics = [
+const fabricMetadata = [
   { id: 'charcoal-wool',    name: 'Charcoal Wool',        color: '#3D3D3D', texture: 'Fine Worsted',     origin: 'Loro Piana, Italy' },
   { id: 'navy-herringbone', name: 'Navy Herringbone',      color: '#1B2A4A', texture: 'Herringbone Twill', origin: 'Scabal, Belgium'   },
   { id: 'midnight-velvet',  name: 'Midnight Velvet',       color: '#0D1117', texture: 'Velvet Finish',    origin: 'Dormeuil, France'  },
@@ -14,19 +20,19 @@ const fabrics = [
   { id: 'burgundy-wool',    name: 'Burgundy Wool',         color: '#5C1A2A', texture: 'Smooth Worsted',   origin: 'Loro Piana, Italy' },
 ];
 
-const lapels = [
+const lapelMetadata = [
   { id: 'peak',  name: 'Peak Lapel',  desc: 'Bold, formal authority' },
   { id: 'notch', name: 'Notch Lapel', desc: 'Versatile, timeless'    },
   { id: 'shawl', name: 'Shawl Collar',desc: 'Evening elegance'       },
 ];
 
-const fits = [
+const fitMetadata = [
   { id: 'slim',     name: 'Slim',     desc: 'Close to body, modern' },
   { id: 'tailored', name: 'Tailored', desc: 'Classic bespoke shape' },
   { id: 'relaxed',  name: 'Relaxed',  desc: 'Ease and comfort'      },
 ];
 
-const linings = [
+const liningMetadata = [
   { id: 'black',   color: '#0A0A0A', name: 'Obsidian'  },
   { id: 'gold',    color: '#C5A230', name: 'Aurum'     },
   { id: 'navy',    color: '#1B2A4A', name: 'Midnight'  },
@@ -35,23 +41,6 @@ const linings = [
   { id: 'teal',    color: '#1A4A4A', name: 'Jade'      },
 ];
 
-export interface SuitConfig {
-  fabric: string;
-  lapel: string;
-  fit: string;
-  lining: string;
-  buttons: number;
-}
-
-const DEFAULT_CONFIG: SuitConfig = {
-  fabric: 'navy-herringbone',
-  lapel: 'peak',
-  fit: 'tailored',
-  lining: 'black',
-  buttons: 2,
-};
-
-/* ─── Component ──────────────────────────────────────────── */
 export default function CustomizationStudio({
   onCheckout,
   initialConfig,
@@ -59,22 +48,25 @@ export default function CustomizationStudio({
   onCheckout?: (config: SuitConfig) => void;
   initialConfig?: Partial<SuitConfig>;
 }) {
-  const [config, setConfig] = useState<SuitConfig>(DEFAULT_CONFIG);
+  const [config, setConfig] = useState<SuitConfig>(DEFAULT_SUIT_CONFIG);
   const [saved, setSaved] = useState(false);
   const [appliedFromStylist, setAppliedFromStylist] = useState(false);
+  const [essentialsExpanded, setEssentialsExpanded] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   // Sync initialConfig from AI Stylist whenever it changes
   useEffect(() => {
     if (!initialConfig) return;
-    setConfig(prev => ({ ...prev, ...initialConfig }));
+    const merged = mergeWithDefaults(initialConfig);
+    const fixed = autoFixConfig(merged);
+    setConfig(fixed);
     setAppliedFromStylist(true);
     const t = setTimeout(() => setAppliedFromStylist(false), 3000);
     return () => clearTimeout(t);
   }, [initialConfig]);
 
-  const activeFabric = fabrics.find(f => f.id === config.fabric) ?? fabrics[0];
+  const activeFabric = fabricMetadata.find(f => f.id === config.fabric) ?? fabricMetadata[0];
 
   const saveLook = () => {
     localStorage.setItem('picadilly-look', JSON.stringify(config));
@@ -198,7 +190,7 @@ export default function CustomizationStudio({
               <div className="absolute top-6 left-6">
                 <div className="bg-obsidian/70 backdrop-blur-sm px-3 py-1.5 border border-gold/15">
                   <p className="font-josefin text-[0.5rem] tracking-[0.2em] uppercase text-gold/80">
-                    {lapels.find(l => l.id === config.lapel)?.name}
+                    {lapelMetadata.find(l => l.id === config.lapel)?.name}
                   </p>
                 </div>
               </div>
@@ -207,7 +199,7 @@ export default function CustomizationStudio({
               <div className="absolute top-6 right-6">
                 <div className="bg-obsidian/70 backdrop-blur-sm px-3 py-1.5 border border-gold/15">
                   <p className="font-josefin text-[0.5rem] tracking-[0.2em] uppercase text-gold/80">
-                    {fits.find(f => f.id === config.fit)?.name} Fit
+                    {fitMetadata.find(f => f.id === config.fit)?.name} Fit
                   </p>
                 </div>
               </div>
@@ -220,132 +212,194 @@ export default function CustomizationStudio({
             variants={fadeUp}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="space-y-10"
+            className="space-y-0"
           >
 
-            {/* Fabric */}
-            <div>
-              <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
-                01 &nbsp; Fabric
-              </p>
-              <div className="grid grid-cols-3 gap-3">
-                {fabrics.map((f) => (
-                  <button
-                    key={f.id}
-                    data-cursor
-                    onClick={() => setConfig(c => ({ ...c, fabric: f.id }))}
-                    className={`group relative p-3 border transition-all duration-300 text-left
-                      ${config.fabric === f.id ? 'border-gold' : 'border-cream/10 hover:border-gold/40'}`}
+            {/* ─── ESSENTIALS Section (Fields 01–05 Collapsible) ─── */}
+            <div className="border border-gold/10">
+              <button
+                onClick={() => setEssentialsExpanded(!essentialsExpanded)}
+                className="w-full px-6 py-4 flex items-center justify-between hover:bg-obsidian-50/50 transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <motion.span
+                    animate={{ rotate: essentialsExpanded ? 90 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-gold text-lg"
                   >
-                    <div className="w-full h-6 mb-2 rounded-none" style={{ backgroundColor: f.color }} />
-                    <p className={`font-josefin text-[0.48rem] tracking-[0.15em] uppercase leading-tight
-                      ${config.fabric === f.id ? 'text-gold' : 'text-cream-muted/50 group-hover:text-cream-muted'}`}>
-                      {f.name}
-                    </p>
-                  </button>
-                ))}
-              </div>
+                    ▸
+                  </motion.span>
+                  <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream">
+                    Essentials
+                  </p>
+                </div>
+              </button>
+
+              <AnimatePresence>
+                {essentialsExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden border-t border-gold/10"
+                  >
+                    <div className="px-6 py-5 space-y-10">
+                      {/* Fabric */}
+                      <div>
+                        <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
+                          01 &nbsp; Fabric
+                        </p>
+                        <div className="grid grid-cols-3 gap-3">
+                          {fabricMetadata.map((f) => (
+                            <button
+                              key={f.id}
+                              data-cursor
+                              onClick={() => setConfig(c => ({ ...c, fabric: f.id }))}
+                              className={`group relative p-3 border transition-all duration-300 text-left
+                                ${config.fabric === f.id ? 'border-gold' : 'border-cream/10 hover:border-gold/40'}`}
+                            >
+                              <div className="w-full h-6 mb-2 rounded-none" style={{ backgroundColor: f.color }} />
+                              <p className={`font-josefin text-[0.48rem] tracking-[0.15em] uppercase leading-tight
+                                ${config.fabric === f.id ? 'text-gold' : 'text-cream-muted/50 group-hover:text-cream-muted'}`}>
+                                {f.name}
+                              </p>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Lapel */}
+                      <div>
+                        <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
+                          02 &nbsp; Lapel Style
+                        </p>
+                        <div className="grid grid-cols-3 gap-3">
+                          {lapelMetadata.map((l) => (
+                            <button
+                              key={l.id}
+                              data-cursor
+                              onClick={() => setConfig(c => ({ ...c, lapel: l.id }))}
+                              className={`p-4 border transition-all duration-300 text-center
+                                ${config.lapel === l.id ? 'border-gold bg-gold/5' : 'border-cream/10 hover:border-gold/40'}`}
+                            >
+                              <p className={`font-josefin text-[0.5rem] tracking-[0.15em] uppercase leading-none mb-1
+                                ${config.lapel === l.id ? 'text-gold' : 'text-cream-muted/60'}`}>
+                                {l.name}
+                              </p>
+                              <p className="font-dm text-[0.45rem] text-cream-muted/30">{l.desc}</p>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Fit */}
+                      <div>
+                        <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
+                          03 &nbsp; Fit
+                        </p>
+                        <div className="grid grid-cols-3 gap-3">
+                          {fitMetadata.map((f) => (
+                            <button
+                              key={f.id}
+                              data-cursor
+                              onClick={() => setConfig(c => ({ ...c, fit: f.id }))}
+                              className={`p-4 border transition-all duration-300 text-center
+                                ${config.fit === f.id ? 'border-gold bg-gold/5' : 'border-cream/10 hover:border-gold/40'}`}
+                            >
+                              <p className={`font-josefin text-[0.5rem] tracking-[0.15em] uppercase leading-none mb-1
+                                ${config.fit === f.id ? 'text-gold' : 'text-cream-muted/60'}`}>
+                                {f.name}
+                              </p>
+                              <p className="font-dm text-[0.45rem] text-cream-muted/30">{f.desc}</p>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Lining */}
+                      <div>
+                        <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
+                          04 &nbsp; Lining Colour
+                        </p>
+                        <div className="flex gap-3 flex-wrap">
+                          {liningMetadata.map((l) => (
+                            <button
+                              key={l.id}
+                              data-cursor
+                              title={l.name}
+                              onClick={() => setConfig(c => ({ ...c, lining: l.id }))}
+                              className={`relative w-9 h-9 transition-all duration-300 border
+                                ${config.lining === l.id ? 'border-gold scale-110' : 'border-cream/10 hover:border-gold/40'}`}
+                              style={{ backgroundColor: l.color }}
+                            >
+                              {config.lining === l.id && (
+                                <span className="absolute inset-0 flex items-center justify-center">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+                                </span>
+                              )}
+                            </button>
+                          ))}
+                        </div>
+                        <p className="font-dm text-[0.5rem] text-cream-muted/30 mt-2">
+                          {liningMetadata.find(l => l.id === config.lining)?.name}
+                        </p>
+                      </div>
+
+                      {/* Buttons */}
+                      <div>
+                        <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
+                          05 &nbsp; Button Count
+                        </p>
+                        <div className="flex gap-3">
+                          {[1, 2, 3].map((n) => (
+                            <button
+                              key={n}
+                              data-cursor
+                              onClick={() => setConfig(c => ({ ...c, buttons: n }))}
+                              className={`w-12 h-12 border font-cormorant text-xl transition-all duration-300
+                                ${config.buttons === n ? 'border-gold text-gold bg-gold/5' : 'border-cream/10 text-cream-muted/50 hover:border-gold/40'}`}
+                            >
+                              {n}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            {/* Lapel */}
-            <div>
-              <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
-                02 &nbsp; Lapel Style
-              </p>
-              <div className="grid grid-cols-3 gap-3">
-                {lapels.map((l) => (
-                  <button
-                    key={l.id}
-                    data-cursor
-                    onClick={() => setConfig(c => ({ ...c, lapel: l.id }))}
-                    className={`p-4 border transition-all duration-300 text-center
-                      ${config.lapel === l.id ? 'border-gold bg-gold/5' : 'border-cream/10 hover:border-gold/40'}`}
-                  >
-                    <p className={`font-josefin text-[0.5rem] tracking-[0.15em] uppercase leading-none mb-1
-                      ${config.lapel === l.id ? 'text-gold' : 'text-cream-muted/60'}`}>
-                      {l.name}
-                    </p>
-                    <p className="font-dm text-[0.45rem] text-cream-muted/30">{l.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
+            {/* ─── Jacket Details Section (Fields 06–16) ─── */}
+            <JacketDetailsSection
+              config={config}
+              onUpdate={(jacket) => setConfig(c => {
+                const updated = { ...c, jacket: { ...c.jacket, ...jacket } };
+                return mergeWithDefaults(updated as Partial<SuitConfig>);
+              })}
+            />
 
-            {/* Fit */}
-            <div>
-              <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
-                03 &nbsp; Fit
-              </p>
-              <div className="grid grid-cols-3 gap-3">
-                {fits.map((f) => (
-                  <button
-                    key={f.id}
-                    data-cursor
-                    onClick={() => setConfig(c => ({ ...c, fit: f.id }))}
-                    className={`p-4 border transition-all duration-300 text-center
-                      ${config.fit === f.id ? 'border-gold bg-gold/5' : 'border-cream/10 hover:border-gold/40'}`}
-                  >
-                    <p className={`font-josefin text-[0.5rem] tracking-[0.15em] uppercase leading-none mb-1
-                      ${config.fit === f.id ? 'text-gold' : 'text-cream-muted/60'}`}>
-                      {f.name}
-                    </p>
-                    <p className="font-dm text-[0.45rem] text-cream-muted/30">{f.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
+            {/* ─── Trousers Section (Fields 17–21) ─── */}
+            <TrousersSection
+              config={config}
+              onUpdate={(pants) => setConfig(c => {
+                const updated = { ...c, pants: { ...c.pants, ...pants } };
+                return mergeWithDefaults(updated as Partial<SuitConfig>);
+              })}
+            />
 
-            {/* Lining */}
-            <div>
-              <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
-                04 &nbsp; Lining Colour
-              </p>
-              <div className="flex gap-3 flex-wrap">
-                {linings.map((l) => (
-                  <button
-                    key={l.id}
-                    data-cursor
-                    title={l.name}
-                    onClick={() => setConfig(c => ({ ...c, lining: l.id }))}
-                    className={`relative w-9 h-9 transition-all duration-300 border
-                      ${config.lining === l.id ? 'border-gold scale-110' : 'border-cream/10 hover:border-gold/40'}`}
-                    style={{ backgroundColor: l.color }}
-                  >
-                    {config.lining === l.id && (
-                      <span className="absolute inset-0 flex items-center justify-center">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                      </span>
-                    )}
-                  </button>
-                ))}
-              </div>
-              <p className="font-dm text-[0.5rem] text-cream-muted/30 mt-2">
-                {linings.find(l => l.id === config.lining)?.name}
-              </p>
-            </div>
-
-            {/* Buttons */}
-            <div>
-              <p className="font-josefin text-[0.6rem] tracking-[0.3em] uppercase text-cream-muted/60 mb-5">
-                05 &nbsp; Button Count
-              </p>
-              <div className="flex gap-3">
-                {[1, 2, 3].map((n) => (
-                  <button
-                    key={n}
-                    data-cursor
-                    onClick={() => setConfig(c => ({ ...c, buttons: n }))}
-                    className={`w-12 h-12 border font-cormorant text-xl transition-all duration-300
-                      ${config.buttons === n ? 'border-gold text-gold bg-gold/5' : 'border-cream/10 text-cream-muted/50 hover:border-gold/40'}`}
-                  >
-                    {n}
-                  </button>
-                ))}
-              </div>
-            </div>
+            {/* ─── Personalisation Section (Fields 22–24) ─── */}
+            <PersonalisationSection
+              config={config}
+              onUpdate={(personalization) => setConfig(c => {
+                const updated = { ...c, personalization: { ...c.personalization, ...personalization } };
+                return mergeWithDefaults(updated as Partial<SuitConfig>);
+              })}
+            />
 
             {/* Save + Order */}
-            <div className="flex flex-col gap-3 pt-4 border-t border-gold/10">
+            <div className="flex flex-col gap-3 pt-6 border-t border-gold/10 mt-4">
               <button
                 onClick={() => onCheckout?.(config)}
                 data-cursor
