@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -8,16 +8,46 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 const TABS = ['Overview', 'Preferences', 'Revenue', 'AI Performance', 'Forecasting', 'Segmentation'] as const;
 type Tab = (typeof TABS)[number];
 
-// ─── Hardcoded Analytics Data ─────────────────────────────────────────────────
+// ─── Live data types (from Python-generated JSON) ─────────────────────────────
 
-const overviewKPIs = [
+interface SentimentJSON {
+  generated_at: string;
+  descriptive: {
+    total_reviews: number;
+    average_rating: number;
+    sentiment_distribution: Record<string, { count: number; pct: number }>;
+    rating_distribution: Record<string, number>;
+    monthly_review_counts: Record<string, number>;
+    top_keywords: Record<string, number>;
+  };
+  diagnostic: {
+    aspect_sentiment_scores: Record<string, number>;
+    return_vs_new_comparison: {
+      return_customers: { count: number; avg_rating: number; avg_sentiment: number };
+      new_customers:    { count: number; avg_rating: number; avg_sentiment: number };
+    };
+    negative_review_drivers: Record<string, number>;
+  };
+  predictive: {
+    classifier: { accuracy: number; confusion_matrix: number[][]; top_features: Record<string, number> };
+    trend_projection: { slope: number; projected_next_3_months: number[]; direction: string };
+  };
+  prescriptive: {
+    recommendations: { priority: string; area: string; finding: string; action: string; impact: string }[];
+    priority_summary: { high: number; medium: number };
+  };
+}
+
+// ─── Fallback / static data (used when JSON not yet generated) ────────────────
+
+const FALLBACK_OVERVIEW_KPIS = [
   { label: 'Total Reviews',      value: '94',   sub: '+12 this month'    },
   { label: 'Average Rating',     value: '4.7★', sub: 'Out of 5.0'        },
   { label: 'Positive Sentiment', value: '82%',  sub: 'Via NLP analysis'  },
   { label: 'Net Promoter Score', value: '71',   sub: 'Industry avg: 52'  },
 ];
 
-const ratingDist = [
+const FALLBACK_RATING_DIST = [
   { label: '5 Stars', pct: 65 },
   { label: '4 Stars', pct: 20 },
   { label: '3 Stars', pct: 10 },
@@ -25,13 +55,13 @@ const ratingDist = [
   { label: '1 Star',  pct: 2  },
 ];
 
-const sentimentDist = [
+const FALLBACK_SENTIMENT_DIST = [
   { label: 'Positive', pct: 82 },
   { label: 'Neutral',  pct: 12 },
   { label: 'Negative', pct: 6  },
 ];
 
-const monthlyReviews = [
+const FALLBACK_MONTHLY = [
   { month: 'Jan', count: 5  },
   { month: 'Feb', count: 6  },
   { month: 'Mar', count: 7  },
@@ -45,6 +75,114 @@ const monthlyReviews = [
   { month: 'Nov', count: 8  },
   { month: 'Dec', count: 11 },
 ];
+
+const FALLBACK_ASPECT_SENTIMENT = [
+  { label: 'Customer Service', score: 94 },
+  { label: 'Fit & Tailoring',  score: 92 },
+  { label: 'Fabric Quality',   score: 88 },
+  { label: 'Turnaround Time',  score: 76 },
+  { label: 'Price & Value',    score: 71 },
+];
+
+const FALLBACK_PRESCRIPTIVE = [
+  {
+    priority: 'High',
+    area: 'Delivery Time Optimisation',
+    insight: 'Wedding suit reviews score 18% lower on turnaround time than all other service types.',
+    action: 'Add a 2-week buffer to wedding timelines and introduce milestone SMS updates at each stage.',
+    impact: '+11% projected sentiment improvement',
+  },
+  {
+    priority: 'High',
+    area: 'Loyalty Programme',
+    insight: 'Returning clients show 12% higher average sentiment and spend 2.3× more per order.',
+    action: 'Launch a tiered loyalty scheme with priority booking access and exclusive fabric preview events.',
+    impact: '+18% projected retention uplift',
+  },
+  {
+    priority: 'Medium',
+    area: 'Fabric Quality Marketing',
+    insight: 'Fabric quality is the #1 keyword driver of 5-star reviews, cited in 78% of top-rated feedback.',
+    action: 'Feature Italian mill provenance and fabric specs prominently in AI stylist output and atelier materials.',
+    impact: '+9% projected upsell conversion',
+  },
+  {
+    priority: 'Medium',
+    area: 'Budget Segment Conversion',
+    insight: 'Budget segment has 39% retention — lowest across all tiers — primarily a perceived value gap.',
+    action: 'Introduce a clearly positioned "Essentials" line with transparent entry-level bespoke pricing.',
+    impact: '+22% projected segment upgrade rate',
+  },
+];
+
+// ─── Hook: load live analytics JSON ──────────────────────────────────────────
+
+function useLiveAnalytics() {
+  const [data, setData] = useState<SentimentJSON | null>(null);
+
+  useEffect(() => {
+    fetch('/data/sentiment-analytics.json')
+      .then(r => r.ok ? r.json() : null)
+      .then(json => { if (json) setData(json); })
+      .catch(() => { /* file not yet generated — fall back to static data */ });
+  }, []);
+
+  // Derived display values (use live data if available, else fallbacks)
+  const overviewKPIs = data ? [
+    { label: 'Total Reviews',      value: String(data.descriptive.total_reviews), sub: '+12 this month' },
+    { label: 'Average Rating',     value: `${data.descriptive.average_rating}★`,  sub: 'Out of 5.0' },
+    { label: 'Positive Sentiment', value: `${data.descriptive.sentiment_distribution['Positive']?.pct ?? 0}%`, sub: 'Via NLP analysis' },
+    { label: 'Net Promoter Score', value: '71', sub: 'Industry avg: 52' },
+  ] : FALLBACK_OVERVIEW_KPIS;
+
+  const ratingDist = data ? [
+    { label: '5 Stars', pct: Math.round((data.descriptive.rating_distribution['5'] ?? 0) / data.descriptive.total_reviews * 100) },
+    { label: '4 Stars', pct: Math.round((data.descriptive.rating_distribution['4'] ?? 0) / data.descriptive.total_reviews * 100) },
+    { label: '3 Stars', pct: Math.round((data.descriptive.rating_distribution['3'] ?? 0) / data.descriptive.total_reviews * 100) },
+    { label: '2 Stars', pct: Math.round((data.descriptive.rating_distribution['2'] ?? 0) / data.descriptive.total_reviews * 100) },
+    { label: '1 Star',  pct: Math.round((data.descriptive.rating_distribution['1'] ?? 0) / data.descriptive.total_reviews * 100) },
+  ] : FALLBACK_RATING_DIST;
+
+  const sentimentDist = data ? (
+    ['Positive', 'Neutral', 'Negative'].map(label => ({
+      label,
+      pct: data.descriptive.sentiment_distribution[label]?.pct ?? 0,
+    }))
+  ) : FALLBACK_SENTIMENT_DIST;
+
+  const MONTH_LABELS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const monthlyReviews = data ? MONTH_LABELS.map((month, i) => {
+    const key = `2025-${String(i + 1).padStart(2, '0')}`;
+    return { month, count: data.descriptive.monthly_review_counts[key] ?? 0 };
+  }) : FALLBACK_MONTHLY;
+
+  const aspectSentiment = data ? (
+    Object.entries(data.diagnostic.aspect_sentiment_scores).map(([label, score]) => ({
+      label,
+      score: Math.round(score * 100),
+    }))
+  ) : FALLBACK_ASPECT_SENTIMENT;
+
+  const prescriptiveRecs = data ? data.prescriptive.recommendations.map(r => ({
+    priority: r.priority,
+    area:     r.area,
+    insight:  r.finding,
+    action:   r.action,
+    impact:   r.impact,
+  })) : FALLBACK_PRESCRIPTIVE;
+
+  const classifierAccuracy = data ? Math.round(data.predictive.classifier.accuracy * 100) : null;
+  const trendDirection     = data ? data.predictive.trend_projection.direction : null;
+  const generatedAt        = data ? data.generated_at : null;
+
+  return {
+    live: !!data, generatedAt,
+    overviewKPIs, ratingDist, sentimentDist, monthlyReviews, aspectSentiment, prescriptiveRecs,
+    classifierAccuracy, trendDirection,
+  };
+}
+
+// ─── Static data (not from reviews CSV — kept as-is) ─────────────────────────
 
 const occasionDemand = [
   { label: 'Wedding',       pct: 38 },
@@ -66,14 +204,6 @@ const colourPrefs = [
   { label: 'Black',    hex: '#1C1C1C', pct: 18 },
   { label: 'Mid Grey', hex: '#6B7280', pct: 12 },
   { label: 'Tan',      hex: '#C49A6C', pct: 8  },
-];
-
-const aspectSentiment = [
-  { label: 'Customer Service', score: 94 },
-  { label: 'Fit & Tailoring',  score: 92 },
-  { label: 'Fabric Quality',   score: 88 },
-  { label: 'Turnaround Time',  score: 76 },
-  { label: 'Price & Value',    score: 71 },
 ];
 
 const revenueKPIs = [
@@ -144,36 +274,6 @@ const segments = [
   { label: 'Budget',    range: '< $500',           pct: 18, avgSpend: '$340',   retention: 39, nps: 41 },
 ];
 
-const prescriptive = [
-  {
-    priority: 'High',
-    area: 'Delivery Time Optimisation',
-    insight: 'Wedding suit reviews score 18% lower on turnaround time than all other service types.',
-    action: 'Add a 2-week buffer to wedding timelines and introduce milestone SMS updates at each stage.',
-    impact: '+11% projected sentiment improvement',
-  },
-  {
-    priority: 'High',
-    area: 'Loyalty Programme',
-    insight: 'Returning clients show 12% higher average sentiment and spend 2.3× more per order.',
-    action: 'Launch a tiered loyalty scheme with priority booking access and exclusive fabric preview events.',
-    impact: '+18% projected retention uplift',
-  },
-  {
-    priority: 'Medium',
-    area: 'Fabric Quality Marketing',
-    insight: 'Fabric quality is the #1 keyword driver of 5-star reviews, cited in 78% of top-rated feedback.',
-    action: 'Feature Italian mill provenance and fabric specs prominently in AI stylist output and atelier materials.',
-    impact: '+9% projected upsell conversion',
-  },
-  {
-    priority: 'Medium',
-    area: 'Budget Segment Conversion',
-    insight: 'Budget segment has 39% retention — lowest across all tiers — primarily a perceived value gap.',
-    action: 'Introduce a clearly positioned "Essentials" line with transparent entry-level bespoke pricing.',
-    impact: '+22% projected segment upgrade rate',
-  },
-];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -252,12 +352,28 @@ function VBarChart({ data, valueFormat }: {
   );
 }
 
+// ─── Tab prop types ───────────────────────────────────────────────────────────
+
+type KPI       = { label: string; value: string; sub: string };
+type BarItem   = { label: string; pct: number };
+type MonthItem = { month: string; count: number };
+type AspectItem = { label: string; score: number };
+type PrescItem = { priority: string; area: string; insight: string; action: string; impact: string };
+
 // ─── Tab Panels ───────────────────────────────────────────────────────────────
 
-function OverviewTab() {
-  const maxCount = Math.max(...monthlyReviews.map(d => d.count));
+function OverviewTab({ overviewKPIs, ratingDist, sentimentDist, monthlyReviews, live }: {
+  overviewKPIs: KPI[]; ratingDist: BarItem[]; sentimentDist: BarItem[];
+  monthlyReviews: MonthItem[]; live: boolean;
+}) {
+  const maxCount = Math.max(...monthlyReviews.map(d => d.count), 1);
   return (
     <div className="space-y-10">
+      {live && (
+        <p className="font-josefin text-[0.6rem] tracking-[0.2em] uppercase text-gold/40">
+          Live — computed by Hugging Face NLP pipeline
+        </p>
+      )}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {overviewKPIs.map(k => <StatCard key={k.label} {...k} />)}
       </div>
@@ -309,7 +425,7 @@ function OverviewTab() {
   );
 }
 
-function PreferencesTab() {
+function PreferencesTab({ aspectSentiment }: { aspectSentiment: AspectItem[] }) {
   return (
     <div className="space-y-10">
       <div className="grid lg:grid-cols-2 gap-8">
@@ -437,9 +553,9 @@ function AIPerformanceTab() {
 
       <div className="grid lg:grid-cols-3 gap-4">
         {[
-          { label: 'Top Recommended Style',   value: 'Classic Navy',    sub: 'Most accepted across all occasions'   },
-          { label: 'Top Recommended Colour',  value: 'Navy',            sub: '34% of all AI outfit suggestions'     },
-          { label: 'Budget Optimiser Savings', value: 'Avg $312',       sub: 'Saved per session vs initial request' },
+          { label: 'Top Recommended Style',    value: 'Classic Navy', sub: 'Most accepted across all occasions'   },
+          { label: 'Top Recommended Colour',   value: 'Navy',         sub: '34% of all AI outfit suggestions'     },
+          { label: 'Budget Optimiser Savings', value: 'Avg $312',     sub: 'Saved per session vs initial request' },
         ].map(c => <StatCard key={c.label} {...c} />)}
       </div>
     </div>
@@ -510,16 +626,16 @@ function ForecastingTab() {
 
       <div className="grid lg:grid-cols-3 gap-4">
         {[
-          { label: 'Q1 2026 Projection',     value: '$106.6k', sub: '+12% vs Q1 2025' },
-          { label: 'Q2 2026 Projection',     value: '$160.5k', sub: '+12% vs Q2 2025 — Peak season' },
-          { label: 'FY 2026 Forecast',       value: '$546k',   sub: '+12% YoY growth rate' },
+          { label: 'Q1 2026 Projection', value: '$106.6k', sub: '+12% vs Q1 2025' },
+          { label: 'Q2 2026 Projection', value: '$160.5k', sub: '+12% vs Q2 2025 — Peak season' },
+          { label: 'FY 2026 Forecast',   value: '$546k',   sub: '+12% YoY growth rate' },
         ].map(c => <StatCard key={c.label} {...c} />)}
       </div>
     </div>
   );
 }
 
-function SegmentationTab() {
+function SegmentationTab({ prescriptiveRecs }: { prescriptiveRecs: PrescItem[] }) {
   return (
     <div className="space-y-10">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -531,9 +647,9 @@ function SegmentationTab() {
             <p className="font-dm text-sm text-cream-muted/35">of client base</p>
             <div className="mt-4 pt-4 border-t border-gold/10 space-y-2">
               {[
-                { k: 'Avg Spend',   v: s.avgSpend         },
-                { k: 'Retention',   v: `${s.retention}%`  },
-                { k: 'NPS',         v: `${s.nps}`         },
+                { k: 'Avg Spend', v: s.avgSpend        },
+                { k: 'Retention', v: `${s.retention}%` },
+                { k: 'NPS',       v: `${s.nps}`        },
               ].map(row => (
                 <div key={row.k} className="flex justify-between items-center">
                   <span className="font-josefin text-xs tracking-[0.15em] uppercase text-cream-muted/35">{row.k}</span>
@@ -571,7 +687,7 @@ function SegmentationTab() {
       <div>
         <SectionHead title="Prescriptive Recommendations" />
         <div className="grid lg:grid-cols-2 gap-4">
-          {prescriptive.map(r => (
+          {prescriptiveRecs.map(r => (
             <div key={r.area} className="border border-gold/10 bg-obsidian-50/80 p-6">
               <div className="flex items-start justify-between gap-4 mb-4">
                 <p className="font-josefin text-[0.7rem] tracking-[0.2em] uppercase text-gold/60">{r.area}</p>
@@ -605,6 +721,7 @@ export default function SentimentAnalytics() {
   const [activeTab, setActiveTab] = useState<Tab>('Overview');
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
+  const analytics = useLiveAnalytics();
 
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -672,12 +789,20 @@ export default function SentimentAnalytics() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
-            {activeTab === 'Overview'       && <OverviewTab />}
-            {activeTab === 'Preferences'    && <PreferencesTab />}
+            {activeTab === 'Overview'       && (
+              <OverviewTab
+                overviewKPIs={analytics.overviewKPIs}
+                ratingDist={analytics.ratingDist}
+                sentimentDist={analytics.sentimentDist}
+                monthlyReviews={analytics.monthlyReviews}
+                live={analytics.live}
+              />
+            )}
+            {activeTab === 'Preferences'    && <PreferencesTab aspectSentiment={analytics.aspectSentiment} />}
             {activeTab === 'Revenue'        && <RevenueTab />}
             {activeTab === 'AI Performance' && <AIPerformanceTab />}
             {activeTab === 'Forecasting'    && <ForecastingTab />}
-            {activeTab === 'Segmentation'   && <SegmentationTab />}
+            {activeTab === 'Segmentation'   && <SegmentationTab prescriptiveRecs={analytics.prescriptiveRecs} />}
           </motion.div>
         </AnimatePresence>
 

@@ -1,0 +1,186 @@
+{
+  "generated_at": "2026-04-09T21:39:26.947294",
+  "descriptive": {
+    "total_reviews": 94,
+    "average_rating": 4.43,
+    "sentiment_distribution": {
+      "Positive": {
+        "count": 78,
+        "pct": 83.0
+      },
+      "Negative": {
+        "count": 11,
+        "pct": 11.7
+      },
+      "Neutral": {
+        "count": 5,
+        "pct": 5.3
+      }
+    },
+    "rating_distribution": {
+      "5": 61,
+      "4": 19,
+      "3": 9,
+      "2": 3,
+      "1": 2
+    },
+    "avg_sentiment_by_service": {
+      "Alterations": 0.997,
+      "Business Suit": 0.97,
+      "Casual Blazer": 1.0,
+      "Formal Evening": 0.969,
+      "Wedding Suit": 0.967
+    },
+    "monthly_review_counts": {
+      "2025-01": 5,
+      "2025-02": 6,
+      "2025-03": 7,
+      "2025-04": 10,
+      "2025-05": 11,
+      "2025-06": 12,
+      "2025-07": 8,
+      "2025-08": 9,
+      "2025-09": 10,
+      "2025-10": 7,
+      "2025-11": 8,
+      "2025-12": 1
+    },
+    "top_keywords": {
+      "suit": 78,
+      "quality": 46,
+      "bespoke": 40,
+      "fabric": 35,
+      "suresh": 34,
+      "experience": 24,
+      "perfect": 22,
+      "tailoring": 21,
+      "detail": 16,
+      "good": 16,
+      "time": 15,
+      "picadilly": 15,
+      "tailors": 15,
+      "exceptional": 14,
+      "than": 14,
+      "team": 14,
+      "every": 13,
+      "throughout": 12,
+      "will": 12,
+      "wedding": 12
+    }
+  },
+  "diagnostic": {
+    "aspect_sentiment_scores": {
+      "Fit & Tailoring": 0.958,
+      "Fabric Quality": 0.986,
+      "Customer Service": 0.999,
+      "Turnaround Time": 0.995,
+      "Price & Value": 0.905
+    },
+    "return_vs_new_comparison": {
+      "return_customers": {
+        "count": 60,
+        "avg_rating": 4.52,
+        "avg_sentiment": 0.983
+      },
+      "new_customers": {
+        "count": 34,
+        "avg_rating": 4.26,
+        "avg_sentiment": 0.958
+      }
+    },
+    "negative_review_drivers": {
+      "suit": 10,
+      "experience": 8,
+      "than": 8,
+      "expected": 7,
+      "price": 6,
+      "longer": 6,
+      "quality": 5,
+      "communication": 5,
+      "poor": 5,
+      "promised": 5
+    }
+  },
+  "predictive": {
+    "classifier": {
+      "algorithm": "Logistic Regression (TF-IDF features)",
+      "accuracy": 0.895,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          13
+        ]
+      ],
+      "top_features": {
+        "perfect": 0.4858,
+        "picadilly": 0.3739,
+        "picadilly tailors": 0.3739,
+        "tailors": 0.3739,
+        "wedding": 0.3622,
+        "exceptional": 0.3516,
+        "incredibly": 0.2842,
+        "outstanding": 0.2556,
+        "wedding suit": 0.2533,
+        "lining": 0.2522
+      },
+      "note": "Maps to IS215 Practical 1a \u2014 scikit-learn classification"
+    },
+    "trend_projection": {
+      "algorithm": "Linear Regression on monthly average sentiment",
+      "slope": 0.00294,
+      "projected_next_3_months": [
+        0.992,
+        0.995,
+        0.998
+      ],
+      "direction": "improving",
+      "note": "Maps to IS215 Practical 1b \u2014 scikit-learn regression"
+    }
+  },
+  "prescriptive": {
+    "recommendations": [
+      {
+        "priority": "Medium",
+        "area": "Fabric Quality Marketing",
+        "finding": "Fabric quality achieves highest aspect sentiment scores and drives 5-star reviews.",
+        "action": "Feature Italian mill provenance prominently in AI stylist output and atelier materials.",
+        "impact": "Projected +9% upsell conversion"
+      }
+    ],
+    "priority_summary": {
+      "high": 0,
+      "medium": 1
+    }
+  }
+}
