@@ -17,6 +17,7 @@ import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import BookingSection from '@/components/BookingSection';
 import CheckoutModal from '@/components/CheckoutModal';
+import ChatWidget from '@/components/ChatWidget';
 
 export default function Home() {
   const [selectedOccasion, setSelectedOccasion] = useState<string>('');
@@ -68,6 +69,9 @@ export default function Home() {
           config={checkoutConfig}
         />
       )}
+
+      {/* Floating chat concierge — rendered above everything */}
+      <ChatWidget />
     </>
   );
 }
