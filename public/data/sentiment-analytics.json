@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T21:39:26.947294",
+  "generated_at": "2026-04-10T00:28:25.126978",
   "descriptive": {
     "total_reviews": 94,
     "average_rating": 4.43,
@@ -75,6 +75,2010 @@
       "Customer Service": 0.999,
       "Turnaround Time": 0.995,
       "Price & Value": 0.905
+    },
+    "aspect_reviews": {
+      "Fit & Tailoring": [
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-01-10"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-01-13"
+        },
+        {
+          "text": "Great tailoring work. The suit fits well and draws compliments. My only minor note is that the initial consultation could cover more style options. Final result is really good.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-01-23"
+        },
+        {
+          "text": "Reasonable quality tailoring but I found the pricing high for what was delivered. The suit is good but I expected more precision in the fit given the bespoke price point.",
+          "rating": 3,
+          "sentiment": "Neutral",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-01-25"
+        },
+        {
+          "text": "Excellent from consultation to collection. Suresh has a remarkable eye for proportion and fit. My slim-fit business suit is exactly what I envisioned. Truly bespoke tailoring.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-01-28"
+        },
+        {
+          "text": "Exceptional bespoke tailoring that has made me rethink everything I knew about suits. The fit is transformative, the fabric divine. An experience I will treasure and repeat.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-02-03"
+        },
+        {
+          "text": "Exceptional bespoke tailoring that has made me rethink everything I knew about suits. The fit is transformative, the fabric divine. An experience I will treasure and repeat.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-02-12"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-02-20"
+        },
+        {
+          "text": "The quality is okay but not worth the price or the wait. Communication was poor throughout and I had to chase for updates multiple times. The fit was also not as precise as expected.",
+          "rating": 2,
+          "sentiment": "Negative",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-02-20"
+        },
+        {
+          "text": "Outstanding quality and attention to detail. Suresh took the time to understand exactly what I needed for my wedding. The final suit exceeded all expectations. Truly bespoke.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-02-23"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-03-05"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-17"
+        },
+        {
+          "text": "The finest bespoke tailoring in Singapore. My black tie tuxedo is a work of art. The shawl lapel, the silk lining, the perfect drape \u2014 nothing comes close at this price point.",
+          "rating": 5,
+          "sentiment": "Neutral",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-03-17"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-23"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-01"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-02"
+        },
+        {
+          "text": "The finest bespoke tailoring in Singapore. My black tie tuxedo is a work of art. The shawl lapel, the silk lining, the perfect drape \u2014 nothing comes close at this price point.",
+          "rating": 5,
+          "sentiment": "Neutral",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-04-02"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-07"
+        },
+        {
+          "text": "Excellent from consultation to collection. Suresh has a remarkable eye for proportion and fit. My slim-fit business suit is exactly what I envisioned. Truly bespoke tailoring.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-04-22"
+        },
+        {
+          "text": "Came here for a special event suit and left with the best piece of clothing I have ever owned. The bespoke fit, the quality lining, the hand-finished details \u2014 absolutely exceptional.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-04-24"
+        },
+        {
+          "text": "Good bespoke service. My suit is well made and I have received several compliments. The final fitting took one small adjustment. Suresh handled it with skill and good humour.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-04-26"
+        },
+        {
+          "text": "Solid bespoke tailoring. The suit construction is excellent and the fabric is quality wool. Suresh's expertise is clear. The experience was slightly less personal than I expected.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-04-26"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-04-27"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-07"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-05-09"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-05-10"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-05-20"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-05-22"
+        },
+        {
+          "text": "Some good and some not so good. The fabric quality is decent and Suresh is knowledgeable. But the suit needed three fittings to get right which is unusual for bespoke tailoring.",
+          "rating": 3,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-05-24"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Great service from a knowledgeable team. My business suit fits well and looks sharp. The process was longer than expected but the quality justifies the time. Will return.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Outstanding quality and attention to detail. Suresh took the time to understand exactly what I needed for my wedding. The final suit exceeded all expectations. Truly bespoke.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-27"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-08"
+        },
+        {
+          "text": "I ordered a bespoke wedding suit and was blown away by the quality. The fit is perfect, the fabric beautiful, and Suresh's expertise is unmatched. Highly recommend to anyone.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-12"
+        },
+        {
+          "text": "Very good experience. The fabric quality is excellent and the fit is precise. Suresh took great care with the measurements. Delivery was slightly delayed but worth it for the quality.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-18"
+        },
+        {
+          "text": "Disappointed. My bespoke suit was delivered with visible stitching issues and required substantial rework. The delay and quality problems made this a very poor investment.",
+          "rating": 1,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-06-22"
+        },
+        {
+          "text": "Excellent quality suit overall. Suresh was helpful and knowledgeable throughout. The bespoke fit is noticeably better than anything I have worn before. Will be back for another.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-06-24"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-06-26"
+        },
+        {
+          "text": "The finest bespoke tailoring in Singapore. My black tie tuxedo is a work of art. The shawl lapel, the silk lining, the perfect drape \u2014 nothing comes close at this price point.",
+          "rating": 5,
+          "sentiment": "Neutral",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-26"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-07-01"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-07-19"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-07-20"
+        },
+        {
+          "text": "Good bespoke service. My suit is well made and I have received several compliments. The final fitting took one small adjustment. Suresh handled it with skill and good humour.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": false,
+          "date": "2025-07-20"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-07-28"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-09"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-08-13"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-14"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-08-16"
+        },
+        {
+          "text": "Very happy with my bespoke suit overall. The fabric quality and fit are excellent. One minor adjustment was needed after collection but Suresh sorted it quickly and professionally.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-08-18"
+        },
+        {
+          "text": "Excellent quality suit overall. Suresh was helpful and knowledgeable throughout. The bespoke fit is noticeably better than anything I have worn before. Will be back for another.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-08-21"
+        },
+        {
+          "text": "The best tailoring experience in Singapore without question. My bespoke suit for the black tie event drew so many compliments. The fabric drape and silhouette are perfection.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-08-22"
+        },
+        {
+          "text": "Happy with the results. The suit looks smart and fits much better than off-the-rack. Suresh knows his craft. Communication during the wait period could be improved.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-28"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-01"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-09-05"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-08"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-14"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-18"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-09-18"
+        },
+        {
+          "text": "Really pleased with the quality and fit. The consultation was thorough and Suresh offered helpful advice. Communication could be a bit more regular during the waiting period.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-09-20"
+        },
+        {
+          "text": "Mixed experience overall. The fabric and construction are fine but the fit required more adjustments than expected for a bespoke suit. Staff were helpful in sorting it eventually.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-09-26"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-10-08"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-10-17"
+        },
+        {
+          "text": "The finest bespoke tailoring in Singapore. My black tie tuxedo is a work of art. The shawl lapel, the silk lining, the perfect drape \u2014 nothing comes close at this price point.",
+          "rating": 5,
+          "sentiment": "Neutral",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-10-21"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-05"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-05"
+        },
+        {
+          "text": "I have been a loyal customer for six years and the quality never wavers. The wool fabric is luxurious, the fit is flawless, and the staff are always knowledgeable and professional.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-08"
+        },
+        {
+          "text": "I have been a loyal customer for six years and the quality never wavers. The wool fabric is luxurious, the fit is flawless, and the staff are always knowledgeable and professional.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-10"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-11-25"
+        },
+        {
+          "text": "Really pleased with the quality and fit. The consultation was thorough and Suresh offered helpful advice. Communication could be a bit more regular during the waiting period.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-27"
+        }
+      ],
+      "Fabric Quality": [
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-01-13"
+        },
+        {
+          "text": "Reasonable quality tailoring but I found the pricing high for what was delivered. The suit is good but I expected more precision in the fit given the bespoke price point.",
+          "rating": 3,
+          "sentiment": "Neutral",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-01-25"
+        },
+        {
+          "text": "Exceptional bespoke tailoring that has made me rethink everything I knew about suits. The fit is transformative, the fabric divine. An experience I will treasure and repeat.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-02-03"
+        },
+        {
+          "text": "Exceptional bespoke tailoring that has made me rethink everything I knew about suits. The fit is transformative, the fabric divine. An experience I will treasure and repeat.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-02-12"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-02-20"
+        },
+        {
+          "text": "The quality is okay but not worth the price or the wait. Communication was poor throughout and I had to chase for updates multiple times. The fit was also not as precise as expected.",
+          "rating": 2,
+          "sentiment": "Negative",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-02-20"
+        },
+        {
+          "text": "Outstanding quality and attention to detail. Suresh took the time to understand exactly what I needed for my wedding. The final suit exceeded all expectations. Truly bespoke.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-02-23"
+        },
+        {
+          "text": "The quality of the wool fabric is extraordinary. Suresh recommended an Italian cloth that has proven incredibly durable and elegant. My suit looks as good as the day I collected it.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": true,
+          "date": "2025-03-02"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-03-05"
+        },
+        {
+          "text": "Decent quality but disappointing given the price and reputation. My suit took much longer than promised and needed two rounds of alterations. Service needs to be more consistent.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-15"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-17"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-23"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-01"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-02"
+        },
+        {
+          "text": "Five-star service and product. The staff are incredibly knowledgeable about fabrics and styles. My evening tuxedo was completed to the highest standard. I will return without hesitation.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-04-06"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-07"
+        },
+        {
+          "text": "Came here for a special event suit and left with the best piece of clothing I have ever owned. The bespoke fit, the quality lining, the hand-finished details \u2014 absolutely exceptional.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-04-24"
+        },
+        {
+          "text": "Solid bespoke tailoring. The suit construction is excellent and the fabric is quality wool. Suresh's expertise is clear. The experience was slightly less personal than I expected.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-04-26"
+        },
+        {
+          "text": "Returned for my third suit and the standard remains impeccable. The staff remember my preferences and the quality is consistent. This is what loyalty to a tailor feels like.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-05-07"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-07"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-05-09"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-05-10"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-05-22"
+        },
+        {
+          "text": "Some good and some not so good. The fabric quality is decent and Suresh is knowledgeable. But the suit needed three fittings to get right which is unusual for bespoke tailoring.",
+          "rating": 3,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-05-24"
+        },
+        {
+          "text": "Very poor experience. The suit took six weeks longer than promised and the quality did not justify the premium price. Communication was minimal and I had to chase constantly for updates.",
+          "rating": 1,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Great service from a knowledgeable team. My business suit fits well and looks sharp. The process was longer than expected but the quality justifies the time. Will return.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Outstanding quality and attention to detail. Suresh took the time to understand exactly what I needed for my wedding. The final suit exceeded all expectations. Truly bespoke.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-27"
+        },
+        {
+          "text": "Suresh's knowledge of fabrics is encyclopaedic. He helped me choose the perfect weight wool for Singapore's climate. The suit is comfortable, sharp, and beautifully constructed.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-06-08"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-08"
+        },
+        {
+          "text": "I ordered a bespoke wedding suit and was blown away by the quality. The fit is perfect, the fabric beautiful, and Suresh's expertise is unmatched. Highly recommend to anyone.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-12"
+        },
+        {
+          "text": "Very good experience. The fabric quality is excellent and the fit is precise. Suresh took great care with the measurements. Delivery was slightly delayed but worth it for the quality.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-18"
+        },
+        {
+          "text": "Disappointed. My bespoke suit was delivered with visible stitching issues and required substantial rework. The delay and quality problems made this a very poor investment.",
+          "rating": 1,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-06-22"
+        },
+        {
+          "text": "Excellent quality suit overall. Suresh was helpful and knowledgeable throughout. The bespoke fit is noticeably better than anything I have worn before. Will be back for another.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-06-24"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-06-26"
+        },
+        {
+          "text": "My wedding suit from Picadilly Tailors was everything I dreamed of. The ivory linen was perfect for an outdoor ceremony. The team were patient, professional, and incredibly skilled.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-06-26"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-07-01"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-07-19"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-07-20"
+        },
+        {
+          "text": "The attention to detail at Picadilly Tailors is remarkable. The hand-stitched buttonholes, the perfect canvas construction, the quality lining \u2014 everything speaks of genuine craft.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-07-28"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-07-28"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-09"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-08-13"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-14"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-08-16"
+        },
+        {
+          "text": "Very happy with my bespoke suit overall. The fabric quality and fit are excellent. One minor adjustment was needed after collection but Suresh sorted it quickly and professionally.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-08-18"
+        },
+        {
+          "text": "Excellent quality suit overall. Suresh was helpful and knowledgeable throughout. The bespoke fit is noticeably better than anything I have worn before. Will be back for another.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-08-21"
+        },
+        {
+          "text": "The best tailoring experience in Singapore without question. My bespoke suit for the black tie event drew so many compliments. The fabric drape and silhouette are perfection.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-08-22"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-01"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-09-05"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-08"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-14"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-18"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-09-18"
+        },
+        {
+          "text": "Really pleased with the quality and fit. The consultation was thorough and Suresh offered helpful advice. Communication could be a bit more regular during the waiting period.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-09-20"
+        },
+        {
+          "text": "Suresh's knowledge of fabrics is encyclopaedic. He helped me choose the perfect weight wool for Singapore's climate. The suit is comfortable, sharp, and beautifully constructed.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-09-24"
+        },
+        {
+          "text": "Mixed experience overall. The fabric and construction are fine but the fit required more adjustments than expected for a bespoke suit. Staff were helpful in sorting it eventually.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-09-26"
+        },
+        {
+          "text": "My wedding suit from Picadilly Tailors was everything I dreamed of. The ivory linen was perfect for an outdoor ceremony. The team were patient, professional, and incredibly skilled.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": true,
+          "date": "2025-10-08"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-10-08"
+        },
+        {
+          "text": "Perfect bespoke suit for my corporate role. The cut is sharp, the fabric holds beautifully throughout the day. Colleagues noticed immediately. Will be returning for a second suit.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-10-17"
+        },
+        {
+          "text": "The quality of the wool fabric is extraordinary. Suresh recommended an Italian cloth that has proven incredibly durable and elegant. My suit looks as good as the day I collected it.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-10-21"
+        },
+        {
+          "text": "The quality of the wool fabric is extraordinary. Suresh recommended an Italian cloth that has proven incredibly durable and elegant. My suit looks as good as the day I collected it.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-10-27"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-05"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-05"
+        },
+        {
+          "text": "The attention to detail at Picadilly Tailors is remarkable. The hand-stitched buttonholes, the perfect canvas construction, the quality lining \u2014 everything speaks of genuine craft.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-06"
+        },
+        {
+          "text": "I have been a loyal customer for six years and the quality never wavers. The wool fabric is luxurious, the fit is flawless, and the staff are always knowledgeable and professional.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-08"
+        },
+        {
+          "text": "Decent quality but disappointing given the price and reputation. My suit took much longer than promised and needed two rounds of alterations. Service needs to be more consistent.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-09"
+        },
+        {
+          "text": "I have been a loyal customer for six years and the quality never wavers. The wool fabric is luxurious, the fit is flawless, and the staff are always knowledgeable and professional.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-10"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-11-25"
+        },
+        {
+          "text": "Really pleased with the quality and fit. The consultation was thorough and Suresh offered helpful advice. Communication could be a bit more regular during the waiting period.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-27"
+        },
+        {
+          "text": "The suit quality is decent and Suresh is clearly skilled. However the turnaround time was significantly longer than promised which caused stress ahead of my event. Needs improvement.",
+          "rating": 3,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": false,
+          "date": "2025-12-18"
+        }
+      ],
+      "Customer Service": [
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-01-10"
+        },
+        {
+          "text": "Excellent from consultation to collection. Suresh has a remarkable eye for proportion and fit. My slim-fit business suit is exactly what I envisioned. Truly bespoke tailoring.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-01-28"
+        },
+        {
+          "text": "Outstanding quality and attention to detail. Suresh took the time to understand exactly what I needed for my wedding. The final suit exceeded all expectations. Truly bespoke.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-02-23"
+        },
+        {
+          "text": "The quality of the wool fabric is extraordinary. Suresh recommended an Italian cloth that has proven incredibly durable and elegant. My suit looks as good as the day I collected it.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": true,
+          "date": "2025-03-02"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-03-05"
+        },
+        {
+          "text": "Decent quality but disappointing given the price and reputation. My suit took much longer than promised and needed two rounds of alterations. Service needs to be more consistent.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-15"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-17"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-23"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-01"
+        },
+        {
+          "text": "Five-star service and product. The staff are incredibly knowledgeable about fabrics and styles. My evening tuxedo was completed to the highest standard. I will return without hesitation.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-04-06"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-07"
+        },
+        {
+          "text": "Excellent from consultation to collection. Suresh has a remarkable eye for proportion and fit. My slim-fit business suit is exactly what I envisioned. Truly bespoke tailoring.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-04-22"
+        },
+        {
+          "text": "Good bespoke service. My suit is well made and I have received several compliments. The final fitting took one small adjustment. Suresh handled it with skill and good humour.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-04-26"
+        },
+        {
+          "text": "Solid bespoke tailoring. The suit construction is excellent and the fabric is quality wool. Suresh's expertise is clear. The experience was slightly less personal than I expected.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-04-26"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-04-27"
+        },
+        {
+          "text": "Returned for my third suit and the standard remains impeccable. The staff remember my preferences and the quality is consistent. This is what loyalty to a tailor feels like.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-05-07"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-07"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-05-20"
+        },
+        {
+          "text": "Some good and some not so good. The fabric quality is decent and Suresh is knowledgeable. But the suit needed three fittings to get right which is unusual for bespoke tailoring.",
+          "rating": 3,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-05-24"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Great service from a knowledgeable team. My business suit fits well and looks sharp. The process was longer than expected but the quality justifies the time. Will return.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Outstanding quality and attention to detail. Suresh took the time to understand exactly what I needed for my wedding. The final suit exceeded all expectations. Truly bespoke.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-27"
+        },
+        {
+          "text": "Suresh's knowledge of fabrics is encyclopaedic. He helped me choose the perfect weight wool for Singapore's climate. The suit is comfortable, sharp, and beautifully constructed.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-06-08"
+        },
+        {
+          "text": "I ordered a bespoke wedding suit and was blown away by the quality. The fit is perfect, the fabric beautiful, and Suresh's expertise is unmatched. Highly recommend to anyone.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-12"
+        },
+        {
+          "text": "Very good experience. The fabric quality is excellent and the fit is precise. Suresh took great care with the measurements. Delivery was slightly delayed but worth it for the quality.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-18"
+        },
+        {
+          "text": "Excellent quality suit overall. Suresh was helpful and knowledgeable throughout. The bespoke fit is noticeably better than anything I have worn before. Will be back for another.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-06-24"
+        },
+        {
+          "text": "The craftsmanship here is extraordinary. Every stitch is considered, every detail refined. My wedding suit was delivered on time and was absolutely perfect. Thank you Suresh and team.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-06-25"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-06-26"
+        },
+        {
+          "text": "My wedding suit from Picadilly Tailors was everything I dreamed of. The ivory linen was perfect for an outdoor ceremony. The team were patient, professional, and incredibly skilled.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-06-26"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-07-01"
+        },
+        {
+          "text": "Good bespoke service. My suit is well made and I have received several compliments. The final fitting took one small adjustment. Suresh handled it with skill and good humour.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": false,
+          "date": "2025-07-20"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-07-28"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-09"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-14"
+        },
+        {
+          "text": "Very happy with my bespoke suit overall. The fabric quality and fit are excellent. One minor adjustment was needed after collection but Suresh sorted it quickly and professionally.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-08-18"
+        },
+        {
+          "text": "Excellent quality suit overall. Suresh was helpful and knowledgeable throughout. The bespoke fit is noticeably better than anything I have worn before. Will be back for another.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-08-21"
+        },
+        {
+          "text": "Happy with the results. The suit looks smart and fits much better than off-the-rack. Suresh knows his craft. Communication during the wait period could be improved.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-28"
+        },
+        {
+          "text": "Absolutely stunning craftsmanship. Suresh and the team at Picadilly Tailors created the most perfectly fitted suit I have ever worn. The fabric quality is exceptional and every detail is immaculate.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-09-05"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-08"
+        },
+        {
+          "text": "Really pleased with the quality and fit. The consultation was thorough and Suresh offered helpful advice. Communication could be a bit more regular during the waiting period.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-09-20"
+        },
+        {
+          "text": "Suresh's knowledge of fabrics is encyclopaedic. He helped me choose the perfect weight wool for Singapore's climate. The suit is comfortable, sharp, and beautifully constructed.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-09-24"
+        },
+        {
+          "text": "Mixed experience overall. The fabric and construction are fine but the fit required more adjustments than expected for a bespoke suit. Staff were helpful in sorting it eventually.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-09-26"
+        },
+        {
+          "text": "My wedding suit from Picadilly Tailors was everything I dreamed of. The ivory linen was perfect for an outdoor ceremony. The team were patient, professional, and incredibly skilled.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": true,
+          "date": "2025-10-08"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-10-08"
+        },
+        {
+          "text": "The quality of the wool fabric is extraordinary. Suresh recommended an Italian cloth that has proven incredibly durable and elegant. My suit looks as good as the day I collected it.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-10-21"
+        },
+        {
+          "text": "The quality of the wool fabric is extraordinary. Suresh recommended an Italian cloth that has proven incredibly durable and elegant. My suit looks as good as the day I collected it.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-10-27"
+        },
+        {
+          "text": "I brought my groomsmen here for their wedding suits and the whole experience was seamless. Every suit fitted perfectly, the staff were professional, and the quality was outstanding.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-05"
+        },
+        {
+          "text": "Really happy with my corporate suit. The fit is excellent and the quality is apparent. I had to visit for one adjustment but the team were accommodating and professional about it.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-05"
+        },
+        {
+          "text": "I have been a loyal customer for six years and the quality never wavers. The wool fabric is luxurious, the fit is flawless, and the staff are always knowledgeable and professional.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-08"
+        },
+        {
+          "text": "Decent quality but disappointing given the price and reputation. My suit took much longer than promised and needed two rounds of alterations. Service needs to be more consistent.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-09"
+        },
+        {
+          "text": "I have been a loyal customer for six years and the quality never wavers. The wool fabric is luxurious, the fit is flawless, and the staff are always knowledgeable and professional.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-11-10"
+        },
+        {
+          "text": "My navy business suit from Picadilly Tailors is the finest piece of clothing I own. The fabric quality, the cut, the finish \u2014 all exceptional. Suresh really listens to what you want.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-11-25"
+        },
+        {
+          "text": "Really pleased with the quality and fit. The consultation was thorough and Suresh offered helpful advice. Communication could be a bit more regular during the waiting period.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-27"
+        },
+        {
+          "text": "The suit quality is decent and Suresh is clearly skilled. However the turnaround time was significantly longer than promised which caused stress ahead of my event. Needs improvement.",
+          "rating": 3,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": false,
+          "date": "2025-12-18"
+        }
+      ],
+      "Turnaround Time": [
+        {
+          "text": "World-class tailoring at Far East Plaza. The hand-stitched lapels and surgeon's buttonholes set this apart from anything I have bought ready-to-wear. A genuine luxury experience.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-02-16"
+        },
+        {
+          "text": "The quality is okay but not worth the price or the wait. Communication was poor throughout and I had to chase for updates multiple times. The fit was also not as precise as expected.",
+          "rating": 2,
+          "sentiment": "Negative",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-02-20"
+        },
+        {
+          "text": "Outstanding quality and attention to detail. Suresh took the time to understand exactly what I needed for my wedding. The final suit exceeded all expectations. Truly bespoke.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-02-23"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-03-05"
+        },
+        {
+          "text": "Disappointed with the experience. The turnaround time was two weeks longer than promised and the suit still required significant alterations at collection. Expected much better.",
+          "rating": 2,
+          "sentiment": "Negative",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-03-14"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-23"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-01"
+        },
+        {
+          "text": "Good bespoke tailoring experience. Suresh is clearly skilled and the suit is well constructed. The fabric selection is impressive. Just wish the process was slightly faster.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-07"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-05-22"
+        },
+        {
+          "text": "Very poor experience. The suit took six weeks longer than promised and the quality did not justify the premium price. Communication was minimal and I had to chase constantly for updates.",
+          "rating": 1,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Great service from a knowledgeable team. My business suit fits well and looks sharp. The process was longer than expected but the quality justifies the time. Will return.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Outstanding quality and attention to detail. Suresh took the time to understand exactly what I needed for my wedding. The final suit exceeded all expectations. Truly bespoke.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-27"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-08"
+        },
+        {
+          "text": "Very good experience. The fabric quality is excellent and the fit is precise. Suresh took great care with the measurements. Delivery was slightly delayed but worth it for the quality.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-18"
+        },
+        {
+          "text": "Disappointed. My bespoke suit was delivered with visible stitching issues and required substantial rework. The delay and quality problems made this a very poor investment.",
+          "rating": 1,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-06-22"
+        },
+        {
+          "text": "World-class tailoring at Far East Plaza. The hand-stitched lapels and surgeon's buttonholes set this apart from anything I have bought ready-to-wear. A genuine luxury experience.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-06-22"
+        },
+        {
+          "text": "The craftsmanship here is extraordinary. Every stitch is considered, every detail refined. My wedding suit was delivered on time and was absolutely perfect. Thank you Suresh and team.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-06-25"
+        },
+        {
+          "text": "The finished suit looks reasonable but the process was frustrating. Delays in communication and a longer wait than quoted made this less enjoyable than expected. Average overall.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Casual Blazer",
+          "return_customer": false,
+          "date": "2025-06-28"
+        },
+        {
+          "text": "World-class tailoring at Far East Plaza. The hand-stitched lapels and surgeon's buttonholes set this apart from anything I have bought ready-to-wear. A genuine luxury experience.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-07-04"
+        },
+        {
+          "text": "Disappointed with the experience. The turnaround time was two weeks longer than promised and the suit still required significant alterations at collection. Expected much better.",
+          "rating": 2,
+          "sentiment": "Negative",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-07-12"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-07-19"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-07-20"
+        },
+        {
+          "text": "Okay experience. The suit is wearable and looks alright. The turnaround time was very long and the communication was poor. For the price I expected a more premium experience.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-08-09"
+        },
+        {
+          "text": "Very happy with my bespoke suit overall. The fabric quality and fit are excellent. One minor adjustment was needed after collection but Suresh sorted it quickly and professionally.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-08-18"
+        },
+        {
+          "text": "Happy with the results. The suit looks smart and fits much better than off-the-rack. Suresh knows his craft. Communication during the wait period could be improved.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-08-28"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-18"
+        },
+        {
+          "text": "Remarkable attention to detail throughout the process. The bespoke suit arrived on time and fit perfectly after just one alteration. The linen for my summer wedding was ideal.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-09-18"
+        },
+        {
+          "text": "Really pleased with the quality and fit. The consultation was thorough and Suresh offered helpful advice. Communication could be a bit more regular during the waiting period.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-09-20"
+        },
+        {
+          "text": "Okay experience. The suit is wearable and looks alright. The turnaround time was very long and the communication was poor. For the price I expected a more premium experience.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-09-24"
+        },
+        {
+          "text": "World-class tailoring at Far East Plaza. The hand-stitched lapels and surgeon's buttonholes set this apart from anything I have bought ready-to-wear. A genuine luxury experience.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-10-22"
+        },
+        {
+          "text": "Really pleased with the quality and fit. The consultation was thorough and Suresh offered helpful advice. Communication could be a bit more regular during the waiting period.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-27"
+        },
+        {
+          "text": "The suit quality is decent and Suresh is clearly skilled. However the turnaround time was significantly longer than promised which caused stress ahead of my event. Needs improvement.",
+          "rating": 3,
+          "sentiment": "Positive",
+          "service_type": "Alterations",
+          "return_customer": false,
+          "date": "2025-12-18"
+        }
+      ],
+      "Price & Value": [
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-01-10"
+        },
+        {
+          "text": "Reasonable quality tailoring but I found the pricing high for what was delivered. The suit is good but I expected more precision in the fit given the bespoke price point.",
+          "rating": 3,
+          "sentiment": "Neutral",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-01-25"
+        },
+        {
+          "text": "The quality is okay but not worth the price or the wait. Communication was poor throughout and I had to chase for updates multiple times. The fit was also not as precise as expected.",
+          "rating": 2,
+          "sentiment": "Negative",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-02-20"
+        },
+        {
+          "text": "Decent quality but disappointing given the price and reputation. My suit took much longer than promised and needed two rounds of alterations. Service needs to be more consistent.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-03-15"
+        },
+        {
+          "text": "The finest bespoke tailoring in Singapore. My black tie tuxedo is a work of art. The shawl lapel, the silk lining, the perfect drape \u2014 nothing comes close at this price point.",
+          "rating": 5,
+          "sentiment": "Neutral",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-03-17"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-04-02"
+        },
+        {
+          "text": "The finest bespoke tailoring in Singapore. My black tie tuxedo is a work of art. The shawl lapel, the silk lining, the perfect drape \u2014 nothing comes close at this price point.",
+          "rating": 5,
+          "sentiment": "Neutral",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-04-02"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-04-27"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-05-09"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-05-10"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-05-20"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": false,
+          "date": "2025-05-22"
+        },
+        {
+          "text": "Exceptional service from start to finish. The tailored suit fits like a second skin. The lining detail and hand stitching are remarkable. Worth every dollar spent.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Casual Blazer",
+          "return_customer": true,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Very poor experience. The suit took six weeks longer than promised and the quality did not justify the premium price. Communication was minimal and I had to chase constantly for updates.",
+          "rating": 1,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-05-26"
+        },
+        {
+          "text": "Very good experience. The fabric quality is excellent and the fit is precise. Suresh took great care with the measurements. Delivery was slightly delayed but worth it for the quality.",
+          "rating": 4,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-18"
+        },
+        {
+          "text": "Disappointed. My bespoke suit was delivered with visible stitching issues and required substantial rework. The delay and quality problems made this a very poor investment.",
+          "rating": 1,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-06-22"
+        },
+        {
+          "text": "The finest bespoke tailoring in Singapore. My black tie tuxedo is a work of art. The shawl lapel, the silk lining, the perfect drape \u2014 nothing comes close at this price point.",
+          "rating": 5,
+          "sentiment": "Neutral",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-06-26"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Wedding Suit",
+          "return_customer": true,
+          "date": "2025-07-19"
+        },
+        {
+          "text": "Okay experience. The suit is wearable and looks alright. The turnaround time was very long and the communication was poor. For the price I expected a more premium experience.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-08-09"
+        },
+        {
+          "text": "Outstanding value for a bespoke suit of this quality. The fabric is premium, the construction superb, and the fit perfect. I have recommended Picadilly Tailors to all my colleagues.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-08-16"
+        },
+        {
+          "text": "Cannot recommend highly enough. The team invested real time in understanding my body shape and preferences. The tailored result is magnificent. Best money I have ever spent on clothing.",
+          "rating": 5,
+          "sentiment": "Positive",
+          "service_type": "Formal Evening",
+          "return_customer": true,
+          "date": "2025-09-18"
+        },
+        {
+          "text": "Okay experience. The suit is wearable and looks alright. The turnaround time was very long and the communication was poor. For the price I expected a more premium experience.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Business Suit",
+          "return_customer": true,
+          "date": "2025-09-24"
+        },
+        {
+          "text": "The finest bespoke tailoring in Singapore. My black tie tuxedo is a work of art. The shawl lapel, the silk lining, the perfect drape \u2014 nothing comes close at this price point.",
+          "rating": 5,
+          "sentiment": "Neutral",
+          "service_type": "Business Suit",
+          "return_customer": false,
+          "date": "2025-10-21"
+        },
+        {
+          "text": "Decent quality but disappointing given the price and reputation. My suit took much longer than promised and needed two rounds of alterations. Service needs to be more consistent.",
+          "rating": 3,
+          "sentiment": "Negative",
+          "service_type": "Wedding Suit",
+          "return_customer": false,
+          "date": "2025-11-09"
+        }
+      ]
     },
     "return_vs_new_comparison": {
       "return_customers": {

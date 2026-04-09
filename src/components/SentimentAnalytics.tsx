@@ -22,6 +22,10 @@ interface SentimentJSON {
   };
   diagnostic: {
     aspect_sentiment_scores: Record<string, number>;
+    aspect_reviews: Record<string, {
+      text: string; rating: number; sentiment: string;
+      service_type: string; return_customer: boolean; date: string;
+    }[]>;
     return_vs_new_comparison: {
       return_customers: { count: number; avg_rating: number; avg_sentiment: number };
       new_customers:    { count: number; avg_rating: number; avg_sentiment: number };
@@ -175,10 +179,15 @@ function useLiveAnalytics() {
   const trendDirection     = data ? data.predictive.trend_projection.direction : null;
   const generatedAt        = data ? data.generated_at : null;
 
+  const aspectReviews: Record<string, { text: string; rating: number; sentiment: string; service_type: string; return_customer: boolean; date: string }[]> =
+    data?.diagnostic.aspect_reviews ?? {};
+
+  const returnVsNew = data?.diagnostic.return_vs_new_comparison ?? null;
+
   return {
     live: !!data, generatedAt,
-    overviewKPIs, ratingDist, sentimentDist, monthlyReviews, aspectSentiment, prescriptiveRecs,
-    classifierAccuracy, trendDirection,
+    overviewKPIs, ratingDist, sentimentDist, monthlyReviews, aspectSentiment, aspectReviews, prescriptiveRecs,
+    classifierAccuracy, trendDirection, returnVsNew,
   };
 }
 
@@ -406,13 +415,20 @@ function OverviewTab({ overviewKPIs, ratingDist, sentimentDist, monthlyReviews, 
           {monthlyReviews.map((m, i) => {
             const heightPct = (m.count / maxCount) * 100;
             return (
-              <div key={m.month} className="flex-1 flex flex-col items-center gap-1.5">
+              <div key={m.month} className="relative flex-1 flex flex-col items-center gap-1.5 group">
+                {/* Tooltip */}
+                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10">
+                  <div className="bg-obsidian border border-gold/30 px-2.5 py-1.5 whitespace-nowrap">
+                    <p className="font-josefin text-[0.65rem] tracking-[0.15em] uppercase text-gold">{m.count} review{m.count !== 1 ? 's' : ''}</p>
+                  </div>
+                  <div className="w-px h-1.5 bg-gold/30 mx-auto" />
+                </div>
                 <div className="w-full flex items-end" style={{ height: '5.5rem' }}>
                   <motion.div
                     initial={{ height: 0 }}
                     animate={{ height: `${heightPct}%` }}
                     transition={{ duration: 0.8, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-full bg-gold/30 hover:bg-gold/55 transition-colors border-t border-gold/50"
+                    className="w-full bg-gold/30 group-hover:bg-gold/55 transition-colors border-t border-gold/50"
                   />
                 </div>
                 <span className="font-josefin text-xs text-cream-muted/30">{m.month}</span>
@@ -425,7 +441,100 @@ function OverviewTab({ overviewKPIs, ratingDist, sentimentDist, monthlyReviews, 
   );
 }
 
-function PreferencesTab({ aspectSentiment }: { aspectSentiment: AspectItem[] }) {
+type AspectReview = { text: string; rating: number; sentiment: string; service_type: string; return_customer: boolean; date: string };
+
+const SENTIMENT_FILTERS = ['All', 'Positive', 'Neutral', 'Negative'] as const;
+type SentimentFilter = (typeof SENTIMENT_FILTERS)[number];
+
+function AspectReviewDrillDown({ aspect, reviews }: { aspect: string; reviews: AspectReview[] }) {
+  const [filter, setFilter] = useState<SentimentFilter>('All');
+
+  const sentimentColour = (s: string) =>
+    s === 'Positive' ? 'text-gold/80' : s === 'Negative' ? 'text-red-400/80' : 'text-cream-muted/50';
+
+  const filterBtnClass = (f: SentimentFilter) => {
+    const active = filter === f;
+    const colour =
+      f === 'Positive' ? (active ? 'border-gold/60 text-gold' : 'border-gold/20 text-gold/40 hover:border-gold/40 hover:text-gold/60') :
+      f === 'Negative' ? (active ? 'border-red-400/60 text-red-400' : 'border-red-400/20 text-red-400/40 hover:border-red-400/40 hover:text-red-400/60') :
+      f === 'Neutral'  ? (active ? 'border-cream-muted/50 text-cream-muted' : 'border-cream-muted/20 text-cream-muted/40 hover:border-cream-muted/40 hover:text-cream-muted/60') :
+                         (active ? 'border-gold/40 text-cream' : 'border-gold/10 text-cream-muted/40 hover:border-gold/20 hover:text-cream-muted/60');
+    return `font-josefin text-[0.6rem] tracking-[0.15em] uppercase border px-3 py-1.5 transition-colors ${colour}`;
+  };
+
+  const counts = {
+    Positive: reviews.filter(r => r.sentiment === 'Positive').length,
+    Neutral:  reviews.filter(r => r.sentiment === 'Neutral').length,
+    Negative: reviews.filter(r => r.sentiment === 'Negative').length,
+  };
+
+  const visible = filter === 'All' ? reviews : reviews.filter(r => r.sentiment === filter);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: 'auto' }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      className="overflow-hidden"
+    >
+      <div className="mt-4 border-t border-gold/10 pt-4 space-y-4">
+        {/* Filter bar */}
+        <div className="flex items-center gap-2 flex-wrap">
+          {SENTIMENT_FILTERS.map(f => (
+            <button key={f} onClick={() => setFilter(f)} className={filterBtnClass(f)}>
+              {f}{f !== 'All' ? ` (${counts[f as keyof typeof counts]})` : ` (${reviews.length})`}
+            </button>
+          ))}
+        </div>
+
+        {/* Review list */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-3"
+          >
+            {visible.length === 0 ? (
+              <p className="font-dm text-sm text-cream-muted/30">No {filter.toLowerCase()} reviews for this aspect.</p>
+            ) : (
+              visible.map((r, i) => (
+                <div key={i} className="border border-gold/8 bg-obsidian p-4 space-y-2">
+                  <p className="font-dm text-sm text-cream/80 leading-relaxed">"{r.text}"</p>
+                  <div className="flex items-center gap-4 flex-wrap">
+                    <span className="font-josefin text-[0.65rem] tracking-[0.15em] uppercase text-gold/50">
+                      {'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}
+                    </span>
+                    <span className={`font-josefin text-[0.65rem] tracking-[0.15em] uppercase ${sentimentColour(r.sentiment)}`}>
+                      {r.sentiment}
+                    </span>
+                    <span className="font-dm text-xs text-cream-muted/35">{r.service_type}</span>
+                    <span className="font-dm text-xs text-cream-muted/25">{r.date}</span>
+                    {r.return_customer && (
+                      <span className="font-josefin text-[0.6rem] tracking-[0.15em] uppercase text-gold/30">
+                        Returning client
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+}
+
+function PreferencesTab({ aspectSentiment, aspectReviews }: {
+  aspectSentiment: AspectItem[];
+  aspectReviews: Record<string, AspectReview[]>;
+}) {
+  const [openAspect, setOpenAspect] = useState<string | null>(null);
+
   return (
     <div className="space-y-10">
       <div className="grid lg:grid-cols-2 gap-8">
@@ -463,20 +572,50 @@ function PreferencesTab({ aspectSentiment }: { aspectSentiment: AspectItem[] }) 
 
       <div className="border border-gold/10 bg-obsidian-50/80 p-8">
         <SectionHead title="Aspect-Based Sentiment Score" />
-        <div className="space-y-4">
-          {aspectSentiment.map((a, i) => (
-            <HBarRow
-              key={a.label}
-              label={a.label}
-              pct={a.score}
-              delay={i * 0.08}
-              dim={a.score < 80}
-            />
-          ))}
-        </div>
-        <p className="font-dm text-sm text-cream-muted/35 mt-6">
-          Computed via keyword-matching against five business dimensions, then scored with the sentiment pipeline.
+        <p className="font-dm text-sm text-cream-muted/35 mb-6">
+          Click any aspect to view the reviews behind the score.
         </p>
+        <div className="space-y-2">
+          {aspectSentiment.map((a, i) => {
+            const reviews = aspectReviews[a.label] ?? [];
+            const isOpen = openAspect === a.label;
+            return (
+              <div key={a.label} className="border border-gold/8 bg-obsidian">
+                <button
+                  onClick={() => setOpenAspect(isOpen ? null : a.label)}
+                  className="w-full flex items-center gap-4 px-4 py-3 hover:bg-gold/5 transition-colors text-left"
+                >
+                  <span className="font-dm text-sm text-cream-muted/50 w-36 shrink-0 text-right leading-tight">
+                    {a.label}
+                  </span>
+                  <Bar pct={a.score} delay={i * 0.08} dim={a.score < 80} />
+                  <span className="font-josefin text-xs text-gold/70 w-10 text-right">{a.score}%</span>
+                  <span className="font-josefin text-[0.6rem] tracking-[0.1em] uppercase text-cream-muted/25 w-16 text-right shrink-0">
+                    {reviews.length > 0 ? `${reviews.length} reviews` : '—'}
+                  </span>
+                  <span className="text-gold/30 text-xs shrink-0">{isOpen ? '▲' : '▼'}</span>
+                </button>
+                <AnimatePresence>
+                  {isOpen && reviews.length > 0 && (
+                    <div className="px-4 pb-4">
+                      <AspectReviewDrillDown aspect={a.label} reviews={reviews} />
+                    </div>
+                  )}
+                  {isOpen && reviews.length === 0 && (
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="px-4 pb-4 font-dm text-sm text-cream-muted/30"
+                    >
+                      No reviews available — run sentiment_analysis.py to generate data.
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -635,9 +774,53 @@ function ForecastingTab() {
   );
 }
 
-function SegmentationTab({ prescriptiveRecs }: { prescriptiveRecs: PrescItem[] }) {
+type ReturnVsNew = {
+  return_customers: { count: number; avg_rating: number; avg_sentiment: number };
+  new_customers:    { count: number; avg_rating: number; avg_sentiment: number };
+};
+
+function SegmentationTab({ prescriptiveRecs, returnVsNew }: { prescriptiveRecs: PrescItem[]; returnVsNew: ReturnVsNew | null }) {
   return (
     <div className="space-y-10">
+
+      {/* Return vs New Customer — live data */}
+      {returnVsNew && (
+        <div className="border border-gold/10 bg-obsidian-50/80 p-8">
+          <SectionHead title="Return vs New Customer" />
+          <div className="grid lg:grid-cols-2 gap-6">
+            {([
+              { label: 'Returning Clients', data: returnVsNew.return_customers },
+              { label: 'New Clients',       data: returnVsNew.new_customers    },
+            ] as const).map(({ label, data }) => (
+              <div key={label} className="border border-gold/10 bg-obsidian p-6 space-y-5">
+                <p className="font-josefin text-[0.7rem] tracking-[0.2em] uppercase text-gold/60">{label}</p>
+                <p className="font-cormorant text-5xl font-light text-cream">{data.count}
+                  <span className="font-dm text-sm text-cream-muted/40 ml-2">clients</span>
+                </p>
+                <div className="space-y-3 pt-2 border-t border-gold/10">
+                  {[
+                    { k: 'Avg Rating',    v: `${data.avg_rating} ★` },
+                    { k: 'Avg Sentiment', v: `${Math.round(data.avg_sentiment * 100)}%` },
+                  ].map(row => (
+                    <div key={row.k} className="flex justify-between items-center">
+                      <span className="font-josefin text-xs tracking-[0.15em] uppercase text-cream-muted/35">{row.k}</span>
+                      <span className="font-josefin text-xs text-gold/70">{row.v}</span>
+                    </div>
+                  ))}
+                  {/* Sentiment bar */}
+                  <div className="pt-1">
+                    <Bar pct={Math.round(data.avg_sentiment * 100)} dim={data.avg_sentiment < 0.8} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="font-dm text-sm text-cream-muted/30 mt-4">
+            Computed from {returnVsNew.return_customers.count + returnVsNew.new_customers.count} reviews via Hugging Face sentiment pipeline.
+          </p>
+        </div>
+      )}
+
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {segments.map(s => (
           <div key={s.label} className="border border-gold/10 bg-obsidian-50/80 p-6">
@@ -798,11 +981,11 @@ export default function SentimentAnalytics() {
                 live={analytics.live}
               />
             )}
-            {activeTab === 'Preferences'    && <PreferencesTab aspectSentiment={analytics.aspectSentiment} />}
+            {activeTab === 'Preferences'    && <PreferencesTab aspectSentiment={analytics.aspectSentiment} aspectReviews={analytics.aspectReviews} />}
             {activeTab === 'Revenue'        && <RevenueTab />}
             {activeTab === 'AI Performance' && <AIPerformanceTab />}
             {activeTab === 'Forecasting'    && <ForecastingTab />}
-            {activeTab === 'Segmentation'   && <SegmentationTab prescriptiveRecs={analytics.prescriptiveRecs} />}
+            {activeTab === 'Segmentation'   && <SegmentationTab prescriptiveRecs={analytics.prescriptiveRecs} returnVsNew={analytics.returnVsNew} />}
           </motion.div>
         </AnimatePresence>
 

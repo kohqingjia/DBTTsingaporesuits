@@ -136,6 +136,26 @@ aspect_scores = {
     for aspect, kws in ASPECT_KEYWORDS.items()
 }
 
+# Reviews per aspect (for drill-down in dashboard)
+def aspect_reviews(df_in: pd.DataFrame, keywords: list[str]) -> list[dict]:
+    matched = df_in[df_in["text_lower"].apply(lambda t: any(k in t for k in keywords))]
+    rows = []
+    for _, row in matched.iterrows():
+        rows.append({
+            "text":            row["review_text"],
+            "rating":          int(row["rating"]),
+            "sentiment":       row["sentiment_label"],
+            "service_type":    row["service_type"],
+            "return_customer": bool(row["return_customer"]),
+            "date":            str(row["date"].date()),
+        })
+    return rows
+
+aspect_review_map = {
+    aspect: aspect_reviews(df, kws)
+    for aspect, kws in ASPECT_KEYWORDS.items()
+}
+
 # Return vs new customer comparison
 return_customers = df[df["return_customer"] == True]
 new_customers    = df[df["return_customer"] == False]
@@ -162,6 +182,7 @@ negative_drivers = dict(Counter(
 
 diagnostic = {
     "aspect_sentiment_scores": aspect_scores,
+    "aspect_reviews":          aspect_review_map,
     "return_vs_new_comparison": comparison,
     "negative_review_drivers":  negative_drivers,
 }
